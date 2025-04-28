@@ -1,4 +1,5 @@
 'use client';
+import scottsmile from '../../../public/ScottSmile.jpg';
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -27,10 +28,11 @@ export default function About() {
           className="relative h-[400px] rounded-xl overflow-hidden"
         >
           <Image
-            src="/placeholder-about.jpg"
-            alt="Scott Aronin"
+            src={scottsmile}
+            alt="Scott Aronin smiling in a gym setting"
             fill
             className="object-cover"
+            priority
           />
         </motion.div>
 
