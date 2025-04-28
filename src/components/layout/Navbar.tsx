@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
-
+import logo from '@/assets/logo3.png';
+import Image from 'next/image';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -12,8 +13,6 @@ const Navbar = () => {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
-    { name: 'Courses', href: '/courses' },
-    { name: 'Pricing', href: '/pricing' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -27,9 +26,16 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-gray-900">
-              Scott Aronin
-            </Link>
+              <Link href="/" className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Image  
+                  src={logo} 
+                  alt="Scott Aronin" 
+                  width={60} 
+                  height={60} 
+                  className="rounded-full" 
+                />
+                Scott Aronin
+              </Link>
           </div>
           
           {/* Desktop Navigation */}
