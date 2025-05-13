@@ -27,7 +27,35 @@ export default {
         {
           name: 'address',
           title: 'Address',
-          type: 'text',
+          type: 'object',
+          fields: [
+            {
+              name: 'street',
+              title: 'Street Address',
+              type: 'string',
+            },
+            {
+              name: 'city',
+              title: 'City',
+              type: 'string',
+            },
+            {
+              name: 'state',
+              title: 'State/Province',
+              type: 'string',
+            },
+            {
+              name: 'postalCode',
+              title: 'Postal/Zip Code',
+              type: 'string',
+            },
+            {
+              name: 'country',
+              title: 'Country',
+              type: 'string',
+              initialValue: 'United States',
+            }
+          ]
         },
         {
           name: 'socialLinks',
@@ -52,6 +80,60 @@ export default {
           ],
         },
       ],
+    },
+    {
+      name: 'businessHours',
+      title: 'Business Hours',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'day',
+              title: 'Day',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Monday', value: 'monday' },
+                  { title: 'Tuesday', value: 'tuesday' },
+                  { title: 'Wednesday', value: 'wednesday' },
+                  { title: 'Thursday', value: 'thursday' },
+                  { title: 'Friday', value: 'friday' },
+                  { title: 'Saturday', value: 'saturday' },
+                  { title: 'Sunday', value: 'sunday' },
+                ],
+              },
+              validation: (Rule: any) => Rule.required(),
+            },
+            {
+              name: 'isOpen',
+              title: 'Is Open',
+              type: 'boolean',
+              initialValue: true,
+            },
+            {
+              name: 'openTime',
+              title: 'Opening Time',
+              type: 'string',
+              hidden: ({ parent }: any) => !parent?.isOpen,
+            },
+            {
+              name: 'closeTime',
+              title: 'Closing Time',
+              type: 'string',
+              hidden: ({ parent }: any) => !parent?.isOpen,
+            },
+            {
+              name: 'notes',
+              title: 'Additional Notes',
+              type: 'string',
+              description: 'Optional notes (e.g., "By appointment only")',
+            }
+          ],
+        }
+      ],
+      validation: (Rule: any) => Rule.required().min(1),
     },
     {
       name: 'seo',

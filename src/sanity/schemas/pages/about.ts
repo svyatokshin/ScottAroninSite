@@ -36,6 +36,30 @@ export default {
       ],
     },
     {
+      name: 'missionStatement',
+      title: 'Mission Statement',
+      type: 'object',
+      fields: [
+        {
+          name: 'heading',
+          title: 'Mission Statement Heading',
+          type: 'string',
+        },
+        {
+          name: 'content',
+          title: 'Mission Statement Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+      ]
+    },
+    {
+      name: 'additionalContent',
+      title: 'Additional Content',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
+    {
       name: 'seo',
       title: 'SEO',
       type: 'object',

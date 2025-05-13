@@ -99,7 +99,7 @@ export default function Home() {
       <section className="w-full bg-gray-100 py-24">
         <div className="text-center mb-16">
           <span style={{ color: '#3b4f7a' }} className="font-medium tracking-widest">HOLISTIC APPROACH</span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 bg-gradient-to-r from-blue-800 to-indigo-800 bg-clip-text text-transparent">Three Pillars of Wellness</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 bg-gradient-to-r from-blue-800 to-indigo-800 bg-clip-text text-transparent">Five Pillars of Wellness</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Experience a comprehensive approach to wellness that integrates mind-body practices, physical fitness, and mindful nutrition.
           </p>
