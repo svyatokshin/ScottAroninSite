@@ -35,6 +35,130 @@ export default {
       ],
     },
     {
+      name: 'sectionOne',
+      title: 'Section One',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Section Title',
+          type: 'string',
+          description: 'Optional title for this section',
+        },
+        {
+          name: 'image',
+          title: 'Section Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'content',
+          title: 'Section Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+      ],
+    },
+    {
+      name: 'sectionTwo',
+      title: 'Section Two',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Section Title',
+          type: 'string',
+          description: 'Optional title for this section',
+        },
+        {
+          name: 'image',
+          title: 'Section Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'content',
+          title: 'Section Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+      ],
+    },
+    {
+      name: 'sectionThree',
+      title: 'Section Three',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Section Title',
+          type: 'string',
+          description: 'Optional title for this section',
+        },
+        {
+          name: 'image',
+          title: 'Section Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        },
+        {
+          name: 'content',
+          title: 'Section Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+      ],
+    },
+    {
+      name: 'wellnessPillars',
+      title: 'Five Pillars of Wellness',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'pillar',
+          title: 'Wellness Pillar',
+          fields: [
+            {
+              name: 'title',
+              title: 'Pillar Title',
+              type: 'string',
+            },
+            {
+              name: 'description',
+              title: 'Pillar Description',
+              type: 'text',
+            },
+            {
+              name: 'image',
+              title: 'Pillar Image',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+            },
+            {
+              name: 'link',
+              title: 'Pillar Link',
+              type: 'url',
+              description: 'Optional link to learn more about this pillar',
+            },
+            {
+              name: 'order',
+              title: 'Display Order',
+              type: 'number',
+            }
+          ],
+        }
+      ],
+    },
+    {
       name: 'seo',
       title: 'SEO',
       type: 'object',

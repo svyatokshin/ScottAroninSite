@@ -156,36 +156,11 @@ export default function Home() {
       </section>
 
       {/* Featured Programs */}
-      <section className="w-full bg-gradient-to-b from-black to-gray-900 py-32">
-        <div className="text-center mb-20">
-          <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-violet-400 font-light tracking-[0.2em]"
-          >
-            HOLISTIC APPROACH
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-5xl md:text-6xl font-light mt-6 mb-8 text-white"
-          >
-            Three Pillars of{" "}
-            <span className="bg-gradient-to-r from-violet-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-              Wellness
-            </span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto font-light"
-          >
+      <section className="w-full bg-gray-100 py-24">
+        <div className="text-center mb-16">
+          <span style={{ color: '#3b4f7a' }} className="font-medium tracking-widest">HOLISTIC APPROACH</span>
+          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 bg-gradient-to-r from-blue-800 to-indigo-800 bg-clip-text text-transparent">Five Pillars of Wellness</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Experience a comprehensive approach to wellness that integrates mind-body practices, physical fitness, and mindful nutrition.
           </motion.p>
         </div>
