@@ -12,33 +12,45 @@ export interface SEO {
 }
 
 export interface HeroSection {
-  heading?: string
-  subheading?: string
-  heroImage?: SanityImage
+  heading: string
+  subheading: string
+  heroImage: any
+  ctaLink?: string
+  ctaText?: string
 }
 
 export interface ContentSection {
-  title?: string
-  image?: SanityImage
-  content?: any[] // Portable Text content
+  title: string
+  content: any
+  image?: any
+  link?: string
 }
 
 export interface WellnessPillar {
+  _id: string
   title: string
   description: string
-  image: SanityImage
+  icon?: any
   link?: string
-  order: number
+}
+
+export interface Newsletter {
+  title: string
+  description: string
+  placeholder?: string
+  buttonText?: string
 }
 
 export interface HomePage {
   title: string
   heroSection: HeroSection
-  sectionOne: ContentSection
-  sectionTwo: ContentSection
-  sectionThree: ContentSection
-  wellnessPillars: WellnessPillar[]
+  sectionOne?: ContentSection
+  sectionTwo?: ContentSection
+  sectionThree?: ContentSection
+  wellnessPillars?: WellnessPillar[]
+  newsletter?: Newsletter
   seo?: SEO
+  wellnessPillarsImage?: SanityImage
 }
 
 export interface MainContent {

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 import logo from '@/assets/logo3.png';
 import Image from 'next/image';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-sm z-50 shadow-sm">
+    <nav className="fixed w-full bg-white/90 backdrop-blur-md z-50 shadow-sm border-b border-zen-blue-light/20">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -26,16 +27,19 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-              <Link href="/" className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <Link href="/" className="text-2xl font-bold text-zen-blue-dark flex items-center gap-2 hover:opacity-80 transition-opacity group">
+              <div className="relative">
                 <Image  
                   src={logo} 
                   alt="Scott Aronin" 
                   width={60} 
                   height={60} 
-                  className="rounded-full" 
+                  className="rounded-full animate-float group-hover:animate-glow transition-all duration-300" 
                 />
-                Scott Aronin
-              </Link>
+                <div className="absolute inset-0 rounded-full bg-zen-purple-light/20 animate-pulse-slow" />
+              </div>
+              <span className="animate-fade-in group-hover:text-zen-purple transition-colors duration-300">Scott Aronin</span>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
@@ -45,9 +49,10 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className="relative text-zen-blue-dark hover:text-zen-purple px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 group"
                 >
                   {item.name}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-zen-purple transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
             </div>
@@ -57,7 +62,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-zen-blue-dark hover:text-zen-purple focus:outline-none transition-colors hover:bg-zen-blue-light/10"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -73,14 +78,14 @@ const Navbar = () => {
           open: { opacity: 1, height: 'auto' },
           closed: { opacity: 0, height: 0 }
         }}
-        className="md:hidden"
+        className="md:hidden bg-white/95 backdrop-blur-md overflow-hidden"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-zen-blue-dark hover:text-zen-purple hover:bg-zen-blue-light/10 transition-all duration-300"
               onClick={() => setIsOpen(false)}
             >
               {item.name}

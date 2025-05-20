@@ -27,6 +27,7 @@ export async function getHomePage() {
       sectionOne,
       sectionTwo,
       sectionThree,
+      wellnessPillarsImage,
       wellnessPillars,
       seo
     }`
@@ -70,6 +71,7 @@ export async function getHomePage() {
       }],
       image: null
     },
+    wellnessPillarsImage: data?.wellnessPillarsImage || null,
     wellnessPillars: data?.wellnessPillars || [],
     seo: data?.seo || null
   }))

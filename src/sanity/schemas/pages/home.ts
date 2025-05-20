@@ -116,6 +116,15 @@ export default {
       ],
     },
     {
+      name: 'wellnessPillarsImage',
+      title: 'Wellness Pillars Image',
+      type: 'image',
+      description: 'Background image for the wellness pillars section',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'wellnessPillars',
       title: 'Five Pillars of Wellness',
       type: 'array',

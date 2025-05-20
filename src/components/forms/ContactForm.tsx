@@ -40,12 +40,12 @@ export function ContactForm() {
     <AnimatedSection
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      className="bg-white p-8 rounded-2xl shadow-sm"
+      className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
     >
-      <h2 className="text-2xl font-light mb-6">Send a Message</h2>
+      <h2 className="text-2xl font-light mb-6 text-zen-blue-dark">Send a Message</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="name" className="block text-sm font-medium text-zen-blue-dark/80 mb-1">
             Name
           </label>
           <input
@@ -55,11 +55,11 @@ export function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-zen-blue-light/30 rounded-lg focus:ring-2 focus:ring-zen-purple focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-zen-blue-dark/80 mb-1">
             Email
           </label>
           <input
@@ -69,11 +69,11 @@ export function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-zen-blue-light/30 rounded-lg focus:ring-2 focus:ring-zen-purple focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
           />
         </div>
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="subject" className="block text-sm font-medium text-zen-blue-dark/80 mb-1">
             Subject
           </label>
           <input
@@ -83,11 +83,11 @@ export function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-zen-blue-light/30 rounded-lg focus:ring-2 focus:ring-zen-purple focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
           />
         </div>
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="message" className="block text-sm font-medium text-zen-blue-dark/80 mb-1">
             Message
           </label>
           <textarea
@@ -97,21 +97,21 @@ export function ContactForm() {
             onChange={handleChange}
             required
             rows={4}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-zen-blue-light/30 rounded-lg focus:ring-2 focus:ring-zen-purple focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
           />
         </div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-violet-600 text-white px-6 py-3 rounded-lg font-light hover:bg-violet-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-zen-purple to-zen-purple-dark text-white px-6 py-3 rounded-lg font-light hover:from-zen-purple-dark hover:to-zen-purple transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed animate-zen-fade"
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
         {submitStatus === 'success' && (
-          <p className="text-green-600 text-center">Message sent successfully!</p>
+          <p className="text-zen-blue-dark text-center animate-fade-in">Message sent successfully!</p>
         )}
         {submitStatus === 'error' && (
-          <p className="text-red-600 text-center">Failed to send message. Please try again.</p>
+          <p className="text-zen-red text-center animate-fade-in">Failed to send message. Please try again.</p>
         )}
       </form>
     </AnimatedSection>
