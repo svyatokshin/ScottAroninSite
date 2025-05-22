@@ -42,6 +42,7 @@ export interface Newsletter {
 }
 
 export interface HomePage {
+  titleSection: ReactI18NextChildren | Iterable<ReactI18NextChildren>
   title: string
   heroSection: HeroSection
   sectionOne?: ContentSection

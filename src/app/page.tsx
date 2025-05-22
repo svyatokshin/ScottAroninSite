@@ -11,5 +11,6 @@ async function getData(): Promise<HomePage> {
 
 export default async function Home() {
   const data = await getData()
+  console.log('Homepage data:', JSON.stringify(data, null, 2))
   return <HomePageClient data={data} />
 } 

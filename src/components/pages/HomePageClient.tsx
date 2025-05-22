@@ -24,6 +24,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
   const { scrollY } = useScroll();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const heroHeight = useTransform(scrollY, [0, 300], ['100vh', '60vh']);
+  const [openModalKey, setOpenModalKey] = useState<string | null>(null);
 
   console.log('wellnessPillarsImage', data.wellnessPillarsImage);
   
@@ -70,12 +71,26 @@ export function HomePageClient({ data }: HomePageClientProps) {
     }
   };
 
+  const handleOpenModal = (key: string) => setOpenModalKey(key);
+  const handleCloseModal = () => setOpenModalKey(null);
+
+  // Trap focus and close on Escape
+  useEffect(() => {
+    if (!openModalKey) return;
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') handleCloseModal();
+    }
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [openModalKey]);
+
   return (
     <div className="relative">
       {/* Hero Section */}
       <motion.section 
         className="relative flex items-center justify-center overflow-hidden"
         style={{ height: heroHeight }}
+        key="hero-section"
       >
         {data.heroSection.heroImage && (
           <motion.div 
@@ -108,6 +123,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             style={{
               y: useTransform(scrollY, [0, 300], [0, -50])
             }}
+            key="hero-heading"
           >
             {data.heroSection.heading}
           </motion.h1>
@@ -123,6 +139,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             style={{
               y: useTransform(scrollY, [0, 300], [0, -30])
             }}
+            key="hero-subheading"
           >
             {data.heroSection.subheading}
           </motion.p>
@@ -137,6 +154,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             style={{
               y: useTransform(scrollY, [0, 300], [0, -20])
             }}
+            key="hero-cta"
           >
             <Link 
               href={data.heroSection.ctaLink || "/contact"} 
@@ -150,6 +168,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
 
       {/* Scroll to Top Button */}
       <motion.button
+        key="scroll-top-button"
         onClick={scrollToTop}
         className="fixed bottom-8 right-8 bg-zen-blue-dark text-white p-4 rounded-full shadow-lg hover:bg-zen-blue transition-colors duration-300 z-50"
         initial={{ opacity: 0, y: 20 }}
@@ -161,193 +180,81 @@ export function HomePageClient({ data }: HomePageClientProps) {
         <FaArrowUp className="w-5 h-5" />
       </motion.button>
 
-      {/* Content Sections */}
-      {data.sectionOne && (
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              ref={ref}
-              className="grid md:grid-cols-2 gap-12 items-center"
-              variants={fadeInUp}
-              initial="hidden"
-              animate={sectionOneControls}
-              key="section-one"
-            >
-              <div>
-                <h2 className="text-4xl font-playfair font-light text-zen-blue-dark mb-6">
-                  {data.sectionOne.title}
-                </h2>
-                <div className="prose prose-lg text-zen-purple-dark font-light mb-6">
-                  <PortableText value={data.sectionOne.content} />
-                </div>
-                {data.sectionOne.link && (
-                  <Link 
-                    href={data.sectionOne.link}
-                    className="text-zen-blue-dark hover:text-zen-blue transition-colors duration-300 font-light"
-                  >
-                    Learn More →
-                  </Link>
-                )}
-              </div>
-              {data.sectionOne.image && (
-                <motion.div 
-                  className="relative h-[400px] rounded-lg overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  key="section-one-image"
-                >
-                  <Image
-                    src={urlFor(data.sectionOne.image).url()}
-                    alt={data.sectionOne.title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              )}
-            </motion.div>
-          </div>
-        </section>
-      )}
+      {/* Title Section */}
+      <motion.section 
+        className="relative pt-12 pb-8 bg-gradient-to-br from-zen-blue-light/10 via-zen-purple-light/5 to-zen-yellow-light/10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="absolute inset-0 bg-zen-radial from-zen-purple/5 via-transparent to-transparent" />
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.h2 
+            className="text-4xl md:text-5xl font-playfair font-light text-center text-zen-blue-dark mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <span className="relative inline-block">
+              {data.titleSection}
+              <span className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-zen-blue-dark via-zen-purple to-zen-yellow-light" />
+            </span>
+          </motion.h2>
+        </div>
+      </motion.section>
 
-      {data.sectionTwo && (
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="relative rounded-2xl overflow-hidden">
-              <div className="absolute left-0 right-0 top-0 bg-zen-yellow-light/60" style={{ height: '120%' }} />
-              <div className="absolute bottom-0 left-0 w-full overflow-hidden">
-                <motion.svg
-                  className="relative block w-full h-[50px]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 1200 120"
-                  preserveAspectRatio="none"
-                  animate={{
-                    d: [
-                      "M0,0L0,120L1200,120L1200,0C1200,0,1100,120,1000,120C900,120,800,80,700,80C600,80,500,120,400,120C300,120,200,80,100,80C0,80,0,0,0,0Z",
-                      "M0,0L0,120L1200,120L1200,0C1200,0,1100,100,1000,100C900,100,800,100,700,100C600,100,500,100,400,100C300,100,200,100,100,100C0,100,0,0,0,0Z",
-                      "M0,0L0,120L1200,120L1200,0C1200,0,1100,80,1000,80C900,80,800,120,700,120C600,120,500,80,400,80C300,80,200,120,100,120C0,120,0,0,0,0Z",
-                      "M0,0L0,120L1200,120L1200,0C1200,0,1100,100,1000,100C900,100,800,100,700,100C600,100,500,100,400,100C300,100,200,100,100,100C0,100,0,0,0,0Z",
-                      "M0,0L0,120L1200,120L1200,0C1200,0,1100,120,1000,120C900,120,800,80,700,80C600,80,500,120,400,120C300,120,200,80,100,80C0,80,0,0,0,0Z"
-                    ]
-                  }}
-                  transition={{
-                    duration: 12,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  <motion.path
-                    d="M0,0L0,120L1200,120L1200,0C1200,0,1100,120,1000,120C900,120,800,80,700,80C600,80,500,120,400,120C300,120,200,80,100,80C0,80,0,0,0,0Z"
-                    className="fill-white"
-                    animate={{
-                      d: [
-                        "M0,0L0,120L1200,120L1200,0C1200,0,1100,120,1000,120C900,120,800,80,700,80C600,80,500,120,400,120C300,120,200,80,100,80C0,80,0,0,0,0Z",
-                        "M0,0L0,120L1200,120L1200,0C1200,0,1100,100,1000,100C900,100,800,100,700,100C600,100,500,100,400,100C300,100,200,100,100,100C0,100,0,0,0,0Z",
-                        "M0,0L0,120L1200,120L1200,0C1200,0,1100,80,1000,80C900,80,800,120,700,120C600,120,500,80,400,80C300,80,200,120,100,120C0,120,0,0,0,0Z",
-                        "M0,0L0,120L1200,120L1200,0C1200,0,1100,100,1000,100C900,100,800,100,700,100C600,100,500,100,400,100C300,100,200,100,100,100C0,100,0,0,0,0Z",
-                        "M0,0L0,120L1200,120L1200,0C1200,0,1100,120,1000,120C900,120,800,80,700,80C600,80,500,120,400,120C300,120,200,80,100,80C0,80,0,0,0,0Z"
-                      ]
-                    }}
-                    transition={{
-                      duration: 12,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  />
-                </motion.svg>
-              </div>
-              <div className="relative z-10">
-                <motion.div 
-                  ref={ref}
-                  className="grid md:grid-cols-2 gap-12 items-center p-16 md:p-24"
-                  variants={fadeInUp}
-                  initial="hidden"
-                  animate={sectionTwoControls}
-                  key="section-two"
-                >
-                  {data.sectionTwo.image && (
-                    <motion.div 
-                      className="relative h-[400px] rounded-lg overflow-hidden order-2 md:order-1"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.3 }}
-                      key="section-two-image"
-                    >
-                      <Image
-                        src={urlFor(data.sectionTwo.image).url()}
-                        alt={data.sectionTwo.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
+      {/* Content Sections as Cards */}
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            data.sectionOne && { ...data.sectionOne, key: 'sectionOne' },
+            data.sectionTwo && { ...data.sectionTwo, key: 'sectionTwo' },
+            data.sectionThree && { ...data.sectionThree, key: 'sectionThree' },
+          ].filter(Boolean).map((section) => {
+            const s = section as { image?: any; title: string; content: any; link?: string; key: string };
+            return (
+              <div
+                key={s.key}
+                className="group relative bg-gradient-to-br from-zen-blue-dark to-zen-purple-dark rounded-3xl p-8 shadow-2xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
+              >
+                <div className="absolute inset-0 bg-zen-radial from-zen-purple/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+                <div className="relative z-10 flex flex-col items-center text-center h-full">
+                  {s.image && (
+                    <Image
+                      src={urlFor(s.image).url()}
+                      alt={s.title}
+                      width={64}
+                      height={64}
+                      className="w-16 h-16 mb-6 rounded-xl object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
                   )}
-                  <div className="order-1 md:order-2">
-                    <h2 className="text-4xl font-playfair font-light text-zen-blue-dark mb-6">
-                      {data.sectionTwo.title}
-                    </h2>
-                    <div className="prose prose-lg text-zen-purple-dark font-light mb-6">
-                      <PortableText value={data.sectionTwo.content} />
-                    </div>
-                    {data.sectionTwo.link && (
-                      <Link 
-                        href={data.sectionTwo.link}
-                        className="text-zen-blue-dark hover:text-zen-blue transition-colors duration-300 font-light"
-                      >
-                        Explore More →
-                      </Link>
-                    )}
+                  <h2 className="text-2xl font-playfair font-light text-white mb-4 mt-2">
+                    {s.title}
+                  </h2>
+                  <div className="prose prose-invert text-zinc-200 font-light mb-6 max-w-none">
+                    <PortableText value={s.content} />
                   </div>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {data.sectionThree && (
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              ref={ref}
-              className="grid md:grid-cols-2 gap-12 items-center"
-              variants={fadeInUp}
-              initial="hidden"
-              animate={sectionThreeControls}
-              key="section-three"
-            >
-              <div>
-                <h2 className="text-4xl font-playfair font-light text-zen-blue-dark mb-6">
-                  {data.sectionThree.title}
-                </h2>
-                <div className="prose prose-lg text-zen-purple-dark font-light mb-6">
-                  <PortableText value={data.sectionThree.content} />
+                  <div className="flex flex-col items-center w-full mt-auto">
+                    <Link
+                      href="#"
+                      onClick={e => { e.preventDefault(); handleOpenModal(s.key); }}
+                      className="inline-block text-zen-yellow-light hover:text-white transition-colors text-lg font-light"
+                      tabIndex={0}
+                      aria-label={`More about ${s.title}`}
+                    >
+                      {s.key === 'sectionOne' && 'Explore Mind-Body Practices →'}
+                      {s.key === 'sectionTwo' && 'Explore Physical Fitness →'}
+                      {s.key === 'sectionThree' && 'Explore Nutrition & Wellness →'}
+                    </Link>
+                  </div>
                 </div>
-                {data.sectionThree.link && (
-                  <Link 
-                    href={data.sectionThree.link}
-                    className="text-zen-blue-dark hover:text-zen-blue transition-colors duration-300 font-light"
-                  >
-                    Start Your Journey →
-                  </Link>
-                )}
               </div>
-              {data.sectionThree.image && (
-                <motion.div 
-                  className="relative h-[400px] rounded-lg overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                  key="section-three-image"
-                >
-                  <Image
-                    src={urlFor(data.sectionThree.image).url()}
-                    alt={data.sectionThree.title}
-                    fill
-                    className="object-cover"
-                  />
-                </motion.div>
-              )}
-            </motion.div>
-          </div>
-        </section>
-      )}
+            );
+          })}
+        </div>
+      </div>
 
       {/* Wellness Pillars Section */}
       {data.wellnessPillars && data.wellnessPillars.length > 0 && (
@@ -420,7 +327,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             variants={fadeInUp}
             initial="hidden"
             animate={newsletterControls}
-            key="newsletter"
+            key="newsletter-content"
           >
             <h2 className="text-4xl font-playfair font-light text-zen-blue-dark mb-6">
               Stay Connected
@@ -444,6 +351,54 @@ export function HomePageClient({ data }: HomePageClientProps) {
           </motion.div>
         </div>
       </section>
+
+      {/* Modal for card details */}
+      {openModalKey && (() => {
+        const modalSection = [
+          data.sectionOne && { ...data.sectionOne, key: 'sectionOne' },
+          data.sectionTwo && { ...data.sectionTwo, key: 'sectionTwo' },
+          data.sectionThree && { ...data.sectionThree, key: 'sectionThree' },
+        ].filter(Boolean).find((s) => (s as any).key === openModalKey) as { image?: any; title: string; content: any; key: string } | undefined;
+        if (!modalSection) return null;
+        return (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            tabIndex={-1}
+            onClick={handleCloseModal}
+          >
+            <div
+              className="bg-zinc-900 rounded-2xl shadow-2xl p-8 max-w-lg w-full relative flex flex-col items-center text-center border border-zinc-700"
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                onClick={handleCloseModal}
+                className="absolute top-4 right-4 text-zinc-400 hover:text-white text-2xl font-bold focus:outline-none"
+                aria-label="Close modal"
+              >
+                ×
+              </button>
+              {modalSection.image && (
+                <Image
+                  src={urlFor(modalSection.image).url()}
+                  alt={modalSection.title}
+                  width={120}
+                  height={120}
+                  className="rounded-xl mb-6 object-cover w-28 h-28"
+                />
+              )}
+              <h2 id="modal-title" className="text-2xl font-playfair font-light text-white mb-4 mt-2">
+                {modalSection.title}
+              </h2>
+              <div className="prose prose-invert text-zinc-200 font-light mb-2 max-w-none">
+                <PortableText value={modalSection.content} />
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 } 

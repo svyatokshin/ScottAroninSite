@@ -24,6 +24,7 @@ export async function getHomePage() {
     `*[_type == "home"][0]{
       title,
       heroSection,
+      titleSection,
       sectionOne,
       sectionTwo,
       sectionThree,
@@ -33,6 +34,7 @@ export async function getHomePage() {
     }`
   ).then(data => ({
     title: data?.title || 'Welcome',
+    titleSection: data?.titleSection || 'Our Holistic Approach to Wellness',
     heroSection: data?.heroSection || {
       heading: 'Welcome to Holistic Wellness',
       subheading: 'Discover your path to complete wellbeing',

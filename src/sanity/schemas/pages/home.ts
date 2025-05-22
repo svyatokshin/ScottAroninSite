@@ -35,6 +35,11 @@ export default {
       ],
     },
     {
+      name: 'titleSection',
+      title: 'Title Section',
+      type: 'text',
+    },
+    {
       name: 'sectionOne',
       title: 'Section One',
       type: 'object',
