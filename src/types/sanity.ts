@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export interface SanityImage {
   _type: 'image'
   asset: {
@@ -42,7 +44,7 @@ export interface Newsletter {
 }
 
 export interface HomePage {
-  titleSection: ReactI18NextChildren | Iterable<ReactI18NextChildren>
+  titleSection: ReactNode | Iterable<ReactNode>
   title: string
   heroSection: HeroSection
   sectionOne?: ContentSection
