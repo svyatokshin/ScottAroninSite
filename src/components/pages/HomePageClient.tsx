@@ -107,60 +107,66 @@ export function HomePageClient({ data }: HomePageClientProps) {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/30" />
+            {/* Luxury overlay: dark vignette + gold gradient */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/60" />
+            <div className="absolute inset-0 pointer-events-none" style={{background: 'radial-gradient(ellipse at center, rgba(255,215,102,0.10) 0%, rgba(0,0,0,0.0) 70%)'}} />
           </motion.div>
         )}
-        
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <motion.h1 
-            className="text-5xl md:text-7xl font-playfair font-light text-white mb-6 drop-shadow-lg"
-            initial={{ opacity: 0, y: 50 }}
+        <div className="relative z-10 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
+          {/* Subtitle */}
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 1,
-              ease: [0.6, -0.05, 0.01, 0.99]
-            }}
-            style={{
-              y: useTransform(scrollY, [0, 300], [0, -50])
-            }}
+            transition={{ duration: 1, delay: 0.1 }}
+          >
+            <span className="inline-block uppercase tracking-[0.35em] text-white/90 text-base md:text-lg font-medium bg-white/10 border border-zen-blue/60 rounded-full px-8 py-2 backdrop-blur-md shadow-md"
+                  style={{letterSpacing: '0.25em', borderWidth: '1.5px', boxShadow: '0 2px 24px 0 rgba(56,189,248,0.10)'}}>
+              Holistic Wellness Coaching
+            </span>
+          </motion.div>
+          {/* Main Headline */}
+          <motion.h1 
+            className="text-[2.8rem] md:text-[5.5rem] leading-[1.05] font-playfair font-semibold text-white mb-8 drop-shadow-2xl"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.25, ease: [0.6, -0.05, 0.01, 0.99] }}
+            style={{ y: useTransform(scrollY, [0, 300], [0, -60]) }}
             key="hero-heading"
           >
-            {data.heroSection.heading}
+            Transform Your Life<br className="hidden md:block" />
+            Through <span className="bg-gradient-to-r from-zen-blue via-zen-blue-dark to-zen-blue-light bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(56,189,248,0.25)] font-semibold">Mind-Body Wellness</span>
           </motion.h1>
+          {/* Subheading */}
           <motion.p 
-            className="text-xl md:text-2xl font-light text-white/90 mb-8 max-w-2xl mx-auto drop-shadow-md"
-            initial={{ opacity: 0, y: 50 }}
+            className="text-lg md:text-xl font-light text-white/90 mb-12 max-w-3xl mx-auto drop-shadow-lg tracking-wide"
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 1,
-              delay: 0.3,
-              ease: [0.6, -0.05, 0.01, 0.99]
-            }}
-            style={{
-              y: useTransform(scrollY, [0, 300], [0, -30])
-            }}
+            transition={{ duration: 1, delay: 0.45, ease: [0.6, -0.05, 0.01, 0.99] }}
+            style={{ y: useTransform(scrollY, [0, 300], [0, -30]) }}
             key="hero-subheading"
           >
-            {data.heroSection.subheading}
+            Experience personalized wellness coaching that harmonizes mind, body, and spirit for lasting transformation.
           </motion.p>
+          {/* CTA Button */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 1,
-              delay: 0.6,
-              ease: [0.6, -0.05, 0.01, 0.99]
-            }}
-            style={{
-              y: useTransform(scrollY, [0, 300], [0, -20])
-            }}
+            transition={{ duration: 1, delay: 0.65, ease: [0.6, -0.05, 0.01, 0.99] }}
+            style={{ y: useTransform(scrollY, [0, 300], [0, -20]) }}
             key="hero-cta"
           >
             <Link 
               href={data.heroSection.ctaLink || "/contact"} 
-              className="inline-block bg-zen-blue-dark/90 text-white px-10 py-4 text-lg rounded-full hover:bg-zen-blue/90 transition-colors duration-300 shadow-lg"
+              className="inline-flex items-center gap-3 bg-white/10 border border-zen-blue/70 px-12 py-4 text-xl rounded-full font-semibold text-zen-blue-light shadow-xl hover:bg-zen-blue/10 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
+              style={{boxShadow: '0 4px 32px 0 rgba(56,189,248,0.15)'}}
+              aria-label="Book a Session"
+              tabIndex={0}
             >
-              {data.heroSection.ctaText || "Book a Session"}
+              Book a Session
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-zen-blue-light group-hover:text-zen-blue transition-colors">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+              </svg>
             </Link>
           </motion.div>
         </div>
@@ -225,9 +231,9 @@ export function HomePageClient({ data }: HomePageClientProps) {
                     <Image
                       src={urlFor(s.image).url()}
                       alt={s.title}
-                      width={64}
-                      height={64}
-                      className="w-16 h-16 mb-6 rounded-xl object-cover group-hover:scale-110 transition-transform duration-500"
+                      width={128}
+                      height={128}
+                      className="w-32 h-32 mb-10 rounded-xl object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   )}
                   <h2 className="text-2xl font-playfair font-light text-white mb-4 mt-2">

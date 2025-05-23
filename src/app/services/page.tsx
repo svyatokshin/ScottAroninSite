@@ -25,6 +25,14 @@ export default async function Services() {
             <h1 className="text-4xl md:text-5xl font-light mb-6 text-zen-blue-dark animate-fade-in">
               {data.title}
             </h1>
+            <div className="mb-12">
+              <a
+                href="/contact"
+                className="inline-block bg-zen-blue-dark text-white px-8 py-3 rounded-lg font-light hover:bg-zen-blue-dark/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Book a Session
+              </a>
+            </div>
           </AnimatedSection>
 
           {/* Services List */}
