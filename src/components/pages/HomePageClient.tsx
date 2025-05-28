@@ -26,6 +26,18 @@ export function HomePageClient({ data }: HomePageClientProps) {
   const heroHeight = useTransform(scrollY, [0, 300], ['100vh', '60vh']);
   const [openModalKey, setOpenModalKey] = useState<string | null>(null);
 
+  // Add debugging logs
+  useEffect(() => {
+    console.log('HomePageClient data:', {
+      aboutSection: data.aboutSection,
+      mainSectionOne: data.mainSectionOne,
+      mainSectionTwo: data.mainSectionTwo,
+      cardSectionOne: data.cardSectionOne,
+      cardSectionTwo: data.cardSectionTwo,
+      cardSectionThree: data.cardSectionThree
+    });
+  }, [data]);
+
   console.log('wellnessPillarsImage', data.wellnessPillarsImage);
   
   useEffect(() => {

@@ -31,84 +31,138 @@ export async function getHomePage() {
         content
       },
       cardSectionsTitle,
-      cardSectionOne,
-      cardSectionTwo,
-      cardSectionThree,
-      mainSectionOne,
-      mainSectionTwo,
+      cardSectionOne {
+        title,
+        image,
+        content,
+        mediaType,
+        video {
+          url,
+          poster
+        }
+      },
+      cardSectionTwo {
+        title,
+        image,
+        content,
+        mediaType,
+        video {
+          url,
+          poster
+        }
+      },
+      cardSectionThree {
+        title,
+        image,
+        content,
+        mediaType,
+        video {
+          url,
+          poster
+        }
+      },
+      mainSectionOne {
+        title,
+        image,
+        content,
+        mediaType,
+        video {
+          url,
+          poster
+        }
+      },
+      mainSectionTwo {
+        title,
+        image,
+        content,
+        mediaType,
+        video {
+          url,
+          poster
+        }
+      },
       seo
     }`
-  ).then(data => ({
-    title: data?.title || 'Welcome',
-    titleSection: data?.titleSection || 'Our Holistic Approach to Wellness',
-    heroSection: data?.heroSection || {
-      heading: 'Welcome to Holistic Wellness',
-      subheading: 'Discover your path to complete wellbeing',
-      heroImage: null
-    },
-    aboutSection: data?.aboutSection || null,
-    cardSectionsTitle: data?.cardSectionsTitle || 'Services Provided',
-    cardSectionOne: data?.cardSectionOne || {
-      title: 'Holistic Approach',
-      content: [{
-        _type: 'block',
-        children: [{
-          _type: 'span',
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-        }]
-      }],
-      image: null
-    },
-    cardSectionTwo: data?.cardSectionTwo || {
-      title: 'Personalized Care',
-      content: [{
-        _type: 'block',
-        children: [{
-          _type: 'span',
-          text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        }]
-      }],
-      image: null
-    },
-    cardSectionThree: data?.cardSectionThree || {
-      title: 'Transform Your Life',
-      content: [{
-        _type: 'block',
-        children: [{
-          _type: 'span',
-          text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.'
-        }]
-      }],
-      image: null
-    },
-    mainSectionOne: data?.mainSectionOne || {
-      title: 'Main Section One',
-      content: [{
-        _type: 'block',
-        children: [{
-          _type: 'span',
-          text: 'Experience our comprehensive approach to wellness that integrates mind, body, and spirit for optimal health and vitality.'
-        }]
-      }],
-      mediaType: 'image',
-      image: null,
-      video: null
-    },
-    mainSectionTwo: data?.mainSectionTwo || {
-      title: 'Main Section Two',
-      content: [{
-        _type: 'block',
-        children: [{
-          _type: 'span',
-          text: 'Discover personalized wellness solutions tailored to your unique needs and goals, helping you achieve lasting transformation.'
-        }]
-      }],
-      mediaType: 'image',
-      image: null,
-      video: null
-    },
-    seo: data?.seo || null
-  }))
+  ).then(data => {
+    console.log('Fetched data:', data); // Add logging to debug
+    return {
+      title: data?.title || 'Welcome',
+      titleSection: data?.titleSection || 'Our Holistic Approach to Wellness',
+      heroSection: data?.heroSection || {
+        heading: 'Welcome to Holistic Wellness',
+        subheading: 'Discover your path to complete wellbeing',
+        heroImage: null
+      },
+      aboutSection: data?.aboutSection || null,
+      cardSectionsTitle: data?.cardSectionsTitle || 'Services Provided',
+      cardSectionOne: data?.cardSectionOne || {
+        title: 'Holistic Approach',
+        content: [{
+          _type: 'block',
+          children: [{
+            _type: 'span',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+          }]
+        }],
+        mediaType: 'image',
+        image: null,
+        video: null
+      },
+      cardSectionTwo: data?.cardSectionTwo || {
+        title: 'Personalized Care',
+        content: [{
+          _type: 'block',
+          children: [{
+            _type: 'span',
+            text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+          }]
+        }],
+        mediaType: 'image',
+        image: null,
+        video: null
+      },
+      cardSectionThree: data?.cardSectionThree || {
+        title: 'Transform Your Life',
+        content: [{
+          _type: 'block',
+          children: [{
+            _type: 'span',
+            text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.'
+          }]
+        }],
+        mediaType: 'image',
+        image: null,
+        video: null
+      },
+      mainSectionOne: data?.mainSectionOne || {
+        title: 'Main Section One',
+        content: [{
+          _type: 'block',
+          children: [{
+            _type: 'span',
+            text: 'Experience our comprehensive approach to wellness that integrates mind, body, and spirit for optimal health and vitality.'
+          }]
+        }],
+        mediaType: 'image',
+        image: null,
+        video: null
+      },
+      mainSectionTwo: data?.mainSectionTwo || {
+        title: 'Main Section Two',
+        content: [{
+          _type: 'block',
+          children: [{
+            _type: 'span',
+            text: 'Discover personalized wellness solutions tailored to your unique needs and goals, helping you achieve lasting transformation.'
+          }]
+        }],
+        mediaType: 'image',
+        image: null,
+        video: null
+      },
+      seo: data?.seo || null
+    };
+  });
 }
 
 export async function getAboutPage() {
