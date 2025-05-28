@@ -214,29 +214,27 @@ export function HomePageClient({ data }: HomePageClientProps) {
               </h2>
             )}
             <div className="prose prose-lg max-w-none text-zen-blue-dark">
-              <PortableText value={data.aboutSection.content} />
+              {data.aboutSection.content && (
+                <PortableText value={data.aboutSection.content} />
+              )}
             </div>
           </div>
         </motion.section>
       )}
 
-      {/* Section Title */}
-      {data.cardSectionsTitle && (
-        <motion.section
-          className="container mx-auto px-4 py-16"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+      {/* Content Sections as Cards */}
+      <motion.section
+        className="container mx-auto px-4 py-16"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        {data.cardSectionsTitle && (
           <h2 className="text-4xl font-playfair font-light text-center text-zen-blue-dark mb-8">
             {data.cardSectionsTitle}
           </h2>
-        </motion.section>
-      )}
-
-      {/* Content Sections as Cards */}
-      <div className="container mx-auto px-4 py-16">
+        )}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             data.cardSectionOne && { ...data.cardSectionOne, key: 'cardSectionOne' },
@@ -263,7 +261,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                   <h2 className="text-2xl font-playfair font-light text-white mb-4 mt-2">
                     {s.title}
                   </h2>
-                  <div className="prose prose-invert text-zinc-200 font-light mb-6 max-w-none">
+                  <div className="prose prose-lg prose-invert max-w-none text-white">
                     <PortableText value={s.content} />
                   </div>
                   <div className="flex flex-col items-center w-full mt-auto">
@@ -284,7 +282,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             );
           })}
         </div>
-      </div>
+      </motion.section>
 
       {/* Main Sections */}
       <div className="container mx-auto px-4 py-16 space-y-16">
@@ -418,7 +416,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
         if (!modalSection) return null;
         return (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
@@ -426,12 +424,12 @@ export function HomePageClient({ data }: HomePageClientProps) {
             onClick={handleCloseModal}
           >
             <div
-              className="bg-zinc-900 rounded-2xl shadow-2xl p-8 max-w-lg w-full relative flex flex-col items-center text-center border border-zinc-700"
+              className="bg-white rounded-2xl shadow-2xl p-8 max-w-4xl w-full mx-4 relative flex flex-col items-center text-center border border-zinc-200"
               onClick={e => e.stopPropagation()}
             >
               <button
                 onClick={handleCloseModal}
-                className="absolute top-4 right-4 text-zinc-400 hover:text-white text-2xl font-bold focus:outline-none"
+                className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 text-2xl font-bold focus:outline-none transition-colors"
                 aria-label="Close modal"
               >
                 ×
@@ -440,15 +438,15 @@ export function HomePageClient({ data }: HomePageClientProps) {
                 <Image
                   src={urlFor(modalSection.image).url()}
                   alt={modalSection.title}
-                  width={120}
-                  height={120}
-                  className="rounded-xl mb-6 object-cover w-28 h-28"
+                  width={160}
+                  height={160}
+                  className="rounded-xl mb-8 object-cover w-40 h-40"
                 />
               )}
-              <h2 id="modal-title" className="text-2xl font-playfair font-light text-white mb-4 mt-2">
+              <h2 id="modal-title" className="text-3xl font-playfair font-light text-zen-blue-dark mb-6 mt-2">
                 {modalSection.title}
               </h2>
-              <div className="prose prose-invert text-zinc-200 font-light mb-2 max-w-none">
+              <div className="prose prose-lg max-w-none text-zen-blue-dark">
                 <PortableText value={modalSection.content} />
               </div>
             </div>
