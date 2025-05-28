@@ -40,6 +40,30 @@ export default {
       type: 'text',
     },
     {
+      name: 'aboutSection',
+      title: 'About Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'image',
+          title: 'About Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+            metadata: ['dimensions', 'palette'],
+          },
+          description: 'Upload a square image (1:1 aspect ratio recommended)'
+        },
+        {
+          name: 'content',
+          title: 'About Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+          description: 'Brief about text, supports rich formatting.'
+        }
+      ]
+    },
+    {
       name: 'sectionOne',
       title: 'Section One',
       type: 'object',

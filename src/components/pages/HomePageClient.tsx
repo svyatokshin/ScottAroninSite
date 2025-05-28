@@ -211,6 +211,35 @@ export function HomePageClient({ data }: HomePageClientProps) {
         </div>
       </motion.section>
 
+      {/* About Section */}
+      {data.aboutSection && (
+        <motion.section
+          className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-10 md:gap-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          {data.aboutSection.image && (
+            <div className="flex-shrink-0 w-40 h-40 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
+              <Image
+                src={urlFor(data.aboutSection.image).url()}
+                alt="About"
+                width={400}
+                height={400}
+                className="object-cover w-full h-full"
+                priority={false}
+              />
+            </div>
+          )}
+          <div className="flex-1">
+            <div className="prose prose-lg max-w-none text-zen-blue-dark">
+              <PortableText value={data.aboutSection.content} />
+            </div>
+          </div>
+        </motion.section>
+      )}
+
       {/* Content Sections as Cards */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

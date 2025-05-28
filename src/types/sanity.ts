@@ -47,6 +47,10 @@ export interface HomePage {
   titleSection: ReactNode | Iterable<ReactNode>
   title: string
   heroSection: HeroSection
+  aboutSection?: {
+    image?: any
+    content?: any[]
+  }
   sectionOne?: ContentSection
   sectionTwo?: ContentSection
   sectionThree?: ContentSection

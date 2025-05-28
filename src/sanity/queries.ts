@@ -25,6 +25,10 @@ export async function getHomePage() {
       title,
       heroSection,
       titleSection,
+      aboutSection {
+        image,
+        content
+      },
       sectionOne,
       sectionTwo,
       sectionThree,
@@ -40,6 +44,7 @@ export async function getHomePage() {
       subheading: 'Discover your path to complete wellbeing',
       heroImage: null
     },
+    aboutSection: data?.aboutSection || null,
     sectionOne: data?.sectionOne || {
       title: 'Holistic Approach',
       content: [{
