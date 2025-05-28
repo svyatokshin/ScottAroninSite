@@ -201,34 +201,41 @@ export function HomePageClient({ data }: HomePageClientProps) {
       {/* About Section */}
       {data.aboutSection && (
         <motion.section
-          className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-10 md:gap-16"
+          className="py-20 bg-gradient-to-br from-zen-blue-light/10 via-zen-purple-light/5 to-zen-yellow-light/10"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {data.aboutSection.image && (
-            <div className="flex-shrink-0 w-40 h-40 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
-              <Image
-                src={urlFor(data.aboutSection.image).url()}
-                alt="About"
-                width={400}
-                height={400}
-                className="object-cover w-full h-full"
-                priority={false}
-              />
-            </div>
-          )}
-          <div className="flex-1">
-            {data.aboutSection.title && (
-              <h2 className="text-3xl font-playfair font-light text-zen-blue-dark mb-6">
-                {data.aboutSection.title}
-              </h2>
-            )}
-            <div className="prose prose-lg max-w-none text-zen-blue-dark">
-              {data.aboutSection.content && (
-                <PortableText value={data.aboutSection.content} />
-              )}
+          <div className="container mx-auto px-4">
+            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden">
+              <div className="absolute inset-0 bg-zen-radial from-zen-purple/5 via-transparent to-transparent opacity-50" />
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                {data.aboutSection.image && (
+                  <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-lg bg-zinc-100 group">
+                    <Image
+                      src={urlFor(data.aboutSection.image).url()}
+                      alt="About"
+                      width={600}
+                      height={600}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      priority={false}
+                    />
+                  </div>
+                )}
+                <div className="flex-1">
+                  {data.aboutSection.title && (
+                    <h2 className="text-3xl md:text-4xl font-playfair font-light text-zen-blue-dark mb-6">
+                      {data.aboutSection.title}
+                    </h2>
+                  )}
+                  <div className="prose prose-lg max-w-none text-zen-blue-dark/80">
+                    {data.aboutSection.content && (
+                      <PortableText value={data.aboutSection.content} />
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </motion.section>
@@ -297,92 +304,104 @@ export function HomePageClient({ data }: HomePageClientProps) {
       </motion.section>
 
       {/* Main Sections */}
-      <div className="container mx-auto px-4 py-16 space-y-16">
-        {data.mainSectionOne && (
-          <motion.section
-            className="flex flex-col md:flex-row items-center gap-10 md:gap-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex-1">
-              {data.mainSectionOne.title && (
-                <h2 className="text-3xl font-playfair font-light text-zen-blue-dark mb-6">
-                  {data.mainSectionOne.title}
-                </h2>
-              )}
-              <div className="prose prose-lg max-w-none text-zen-blue-dark">
-                <PortableText value={data.mainSectionOne.content} />
-              </div>
-            </div>
-            <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
-              {data.mainSectionOne.mediaType === 'video' && data.mainSectionOne.video ? (
-                <div className="relative aspect-video">
-                  <iframe
-                    src={data.mainSectionOne.video.url}
-                    className="absolute inset-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title={data.mainSectionOne.title || 'Video content'}
-                  />
+      <div className="py-20 bg-gradient-to-br from-zen-blue-light/10 via-zen-purple-light/5 to-zen-yellow-light/10">
+        <div className="container mx-auto px-4">
+          {data.mainSectionOne && (
+            <motion.section
+              className="mb-24 last:mb-0"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-zen-radial from-zen-purple/5 via-transparent to-transparent opacity-50" />
+                <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                  <div className="flex-1">
+                    {data.mainSectionOne.title && (
+                      <h2 className="text-3xl md:text-4xl font-playfair font-light text-zen-blue-dark mb-6">
+                        {data.mainSectionOne.title}
+                      </h2>
+                    )}
+                    <div className="prose prose-lg max-w-none text-zen-blue-dark/80">
+                      <PortableText value={data.mainSectionOne.content} />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-lg bg-zinc-100 group">
+                    {data.mainSectionOne.mediaType === 'video' && data.mainSectionOne.video ? (
+                      <div className="relative aspect-video">
+                        <iframe
+                          src={data.mainSectionOne.video.url}
+                          className="absolute inset-0 w-full h-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          title={data.mainSectionOne.title || 'Video content'}
+                        />
+                      </div>
+                    ) : data.mainSectionOne.image ? (
+                      <Image
+                        src={urlFor(data.mainSectionOne.image).url()}
+                        alt={data.mainSectionOne.title || 'Main Section One'}
+                        width={600}
+                        height={400}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                        priority={false}
+                      />
+                    ) : null}
+                  </div>
                 </div>
-              ) : data.mainSectionOne.image ? (
-                <Image
-                  src={urlFor(data.mainSectionOne.image).url()}
-                  alt={data.mainSectionOne.title || 'Main Section One'}
-                  width={600}
-                  height={400}
-                  className="object-cover w-full h-full"
-                  priority={false}
-                />
-              ) : null}
-            </div>
-          </motion.section>
-        )}
+              </div>
+            </motion.section>
+          )}
 
-        {data.mainSectionTwo && (
-          <motion.section
-            className="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex-1">
-              {data.mainSectionTwo.title && (
-                <h2 className="text-3xl font-playfair font-light text-zen-blue-dark mb-6">
-                  {data.mainSectionTwo.title}
-                </h2>
-              )}
-              <div className="prose prose-lg max-w-none text-zen-blue-dark">
-                <PortableText value={data.mainSectionTwo.content} />
-              </div>
-            </div>
-            <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
-              {data.mainSectionTwo.mediaType === 'video' && data.mainSectionTwo.video ? (
-                <div className="relative aspect-video">
-                  <iframe
-                    src={data.mainSectionTwo.video.url}
-                    className="absolute inset-0 w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title={data.mainSectionTwo.title || 'Video content'}
-                  />
+          {data.mainSectionTwo && (
+            <motion.section
+              className="mb-24 last:mb-0"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-zen-radial from-zen-purple/5 via-transparent to-transparent opacity-50" />
+                <div className="relative z-10 flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
+                  <div className="flex-1">
+                    {data.mainSectionTwo.title && (
+                      <h2 className="text-3xl md:text-4xl font-playfair font-light text-zen-blue-dark mb-6">
+                        {data.mainSectionTwo.title}
+                      </h2>
+                    )}
+                    <div className="prose prose-lg max-w-none text-zen-blue-dark/80">
+                      <PortableText value={data.mainSectionTwo.content} />
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-lg bg-zinc-100 group">
+                    {data.mainSectionTwo.mediaType === 'video' && data.mainSectionTwo.video ? (
+                      <div className="relative aspect-video">
+                        <iframe
+                          src={data.mainSectionTwo.video.url}
+                          className="absolute inset-0 w-full h-full"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          title={data.mainSectionTwo.title || 'Video content'}
+                        />
+                      </div>
+                    ) : data.mainSectionTwo.image ? (
+                      <Image
+                        src={urlFor(data.mainSectionTwo.image).url()}
+                        alt={data.mainSectionTwo.title || 'Main Section Two'}
+                        width={600}
+                        height={400}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                        priority={false}
+                      />
+                    ) : null}
+                  </div>
                 </div>
-              ) : data.mainSectionTwo.image ? (
-                <Image
-                  src={urlFor(data.mainSectionTwo.image).url()}
-                  alt={data.mainSectionTwo.title || 'Main Section Two'}
-                  width={600}
-                  height={400}
-                  className="object-cover w-full h-full"
-                  priority={false}
-                />
-              ) : null}
-            </div>
-          </motion.section>
-        )}
+              </div>
+            </motion.section>
+          )}
+        </div>
       </div>
 
       {/* Newsletter Section */}
