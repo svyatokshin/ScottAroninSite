@@ -4,6 +4,7 @@ import { urlFor } from '@/sanity/queries'
 import { PortableText } from '@portabletext/react'
 import Image from 'next/image'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
+import scottImage from '@/assets/Scott2.jpg'
 
 async function getData(): Promise<AboutPage> {
   return getAboutPage()
@@ -36,7 +37,7 @@ export default async function About() {
           </AnimatedSection>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <AnimatedSection
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -59,26 +60,17 @@ export default async function About() {
               viewport={{ once: true }}
               className="relative h-[500px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
             >
-              {data.mainContent.profileImage ? (
-                <div className="relative w-full h-full">
-                  <Image
-                    src={urlFor(data.mainContent.profileImage).url()}
-                    alt={data.mainContent.heading || 'Profile'}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain group-hover:scale-105 transition-transform duration-500"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-zen-blue-light/20 to-zen-purple-light/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-zen-blue-light to-zen-purple-light flex items-center justify-center">
-                  <div className="text-center text-white p-8">
-                    <p className="text-xl font-light mb-4">Add your profile image in Sanity Studio</p>
-                    <p className="text-sm opacity-80">Recommended size: 800x1000px</p>
-                  </div>
-                </div>
-              )}
+              <div className="relative w-full h-full">
+                <Image
+                  src={scottImage}
+                  alt="Scott Aronin"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-zen-blue-light/20 to-zen-purple-light/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
             </AnimatedSection>
           </div>
 

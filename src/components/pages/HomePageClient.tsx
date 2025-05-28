@@ -319,7 +319,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                       alt={s.title}
                       width={128}
                       height={128}
-                      className="w-32 h-32 mb-10 rounded-xl object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-32 h-32 mb-2 rounded-xl object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   )}
                   <h2 className="text-2xl font-playfair font-light text-white mb-4 mt-2">
