@@ -36,6 +36,38 @@ export function HomePageClient({ data }: HomePageClientProps) {
       cardSectionTwo: data.cardSectionTwo,
       cardSectionThree: data.cardSectionThree
     });
+
+    // Add specific debugging for main sections
+    console.log('Main Section One details:', {
+      title: data.mainSectionOne?.title,
+      content: data.mainSectionOne?.content,
+      mediaType: data.mainSectionOne?.mediaType,
+      image: data.mainSectionOne?.image,
+      video: data.mainSectionOne?.video
+    });
+
+    console.log('Main Section Two details:', {
+      title: data.mainSectionTwo?.title,
+      content: data.mainSectionTwo?.content,
+      mediaType: data.mainSectionTwo?.mediaType,
+      image: data.mainSectionTwo?.image,
+      video: data.mainSectionTwo?.video
+    });
+
+    // Add specific debugging for media content
+    console.log('Main Section One media:', {
+      mediaType: data.mainSectionOne?.mediaType,
+      image: data.mainSectionOne?.image,
+      video: data.mainSectionOne?.video,
+      imageUrl: data.mainSectionOne?.image ? urlFor(data.mainSectionOne.image).url() : null
+    });
+
+    console.log('Main Section Two media:', {
+      mediaType: data.mainSectionTwo?.mediaType,
+      image: data.mainSectionTwo?.image,
+      video: data.mainSectionTwo?.video,
+      imageUrl: data.mainSectionTwo?.image ? urlFor(data.mainSectionTwo.image).url() : null
+    });
   }, [data]);
 
   console.log('wellnessPillarsImage', data.wellnessPillarsImage);
@@ -95,6 +127,19 @@ export function HomePageClient({ data }: HomePageClientProps) {
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [openModalKey]);
+
+  // Add helper function for YouTube embed URL
+  const getYouTubeEmbedUrl = (url: string): string => {
+    if (!url) return '';
+    
+    // Handle different YouTube URL formats
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    
+    return match && match[2].length === 11
+      ? `https://www.youtube.com/embed/${match[2]}`
+      : '';
+  };
 
   return (
     <div className="relative">
@@ -317,10 +362,10 @@ export function HomePageClient({ data }: HomePageClientProps) {
               </div>
             </div>
             <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
-              {data.mainSectionOne.mediaType === 'video' && data.mainSectionOne.video ? (
+              {data.mainSectionOne.mediaType === 'video' && data.mainSectionOne.video?.url ? (
                 <div className="relative aspect-video">
                   <iframe
-                    src={data.mainSectionOne.video.url}
+                    src={getYouTubeEmbedUrl(data.mainSectionOne.video.url)}
                     className="absolute inset-0 w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -328,14 +373,15 @@ export function HomePageClient({ data }: HomePageClientProps) {
                   />
                 </div>
               ) : data.mainSectionOne.image ? (
-                <Image
-                  src={urlFor(data.mainSectionOne.image).url()}
-                  alt={data.mainSectionOne.title || 'Main Section One'}
-                  width={600}
-                  height={400}
-                  className="object-cover w-full h-full"
-                  priority={false}
-                />
+                <div className="relative aspect-video">
+                  <Image
+                    src={urlFor(data.mainSectionOne.image).url()}
+                    alt={data.mainSectionOne.title || 'Main Section One'}
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
               ) : null}
             </div>
           </motion.section>
@@ -360,10 +406,10 @@ export function HomePageClient({ data }: HomePageClientProps) {
               </div>
             </div>
             <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
-              {data.mainSectionTwo.mediaType === 'video' && data.mainSectionTwo.video ? (
+              {data.mainSectionTwo.mediaType === 'video' && data.mainSectionTwo.video?.url ? (
                 <div className="relative aspect-video">
                   <iframe
-                    src={data.mainSectionTwo.video.url}
+                    src={getYouTubeEmbedUrl(data.mainSectionTwo.video.url)}
                     className="absolute inset-0 w-full h-full"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -371,14 +417,15 @@ export function HomePageClient({ data }: HomePageClientProps) {
                   />
                 </div>
               ) : data.mainSectionTwo.image ? (
-                <Image
-                  src={urlFor(data.mainSectionTwo.image).url()}
-                  alt={data.mainSectionTwo.title || 'Main Section Two'}
-                  width={600}
-                  height={400}
-                  className="object-cover w-full h-full"
-                  priority={false}
-                />
+                <div className="relative aspect-video">
+                  <Image
+                    src={urlFor(data.mainSectionTwo.image).url()}
+                    alt={data.mainSectionTwo.title || 'Main Section Two'}
+                    fill
+                    className="object-cover"
+                    priority={false}
+                  />
+                </div>
               ) : null}
             </div>
           </motion.section>
