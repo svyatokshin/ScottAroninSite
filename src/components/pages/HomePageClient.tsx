@@ -246,34 +246,41 @@ export function HomePageClient({ data }: HomePageClientProps) {
       {/* About Section */}
       {data.aboutSection && (
         <motion.section
-          className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center gap-10 md:gap-16"
+          className="py-20 bg-gradient-to-br from-zen-blue-light/10 via-zen-purple-light/5 to-zen-yellow-light/10"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {data.aboutSection.image && (
-            <div className="flex-shrink-0 w-40 h-40 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
-              <Image
-                src={urlFor(data.aboutSection.image).url()}
-                alt="About"
-                width={400}
-                height={400}
-                className="object-cover w-full h-full"
-                priority={false}
-              />
-            </div>
-          )}
-          <div className="flex-1">
-            {data.aboutSection.title && (
-              <h2 className="text-3xl font-playfair font-light text-zen-blue-dark mb-6">
-                {data.aboutSection.title}
-              </h2>
-            )}
-            <div className="prose prose-lg max-w-none text-zen-blue-dark">
-              {data.aboutSection.content && (
-                <PortableText value={data.aboutSection.content} />
-              )}
+          <div className="container mx-auto px-4">
+            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden">
+              <div className="absolute inset-0 bg-zen-radial from-zen-purple/5 via-transparent to-transparent opacity-50" />
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                {data.aboutSection.image && (
+                  <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-lg bg-zinc-100 group">
+                    <Image
+                      src={urlFor(data.aboutSection.image).url()}
+                      alt="About"
+                      width={600}
+                      height={600}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      priority={false}
+                    />
+                  </div>
+                )}
+                <div className="flex-1">
+                  {data.aboutSection.title && (
+                    <h2 className="text-3xl md:text-4xl font-playfair font-light text-zen-blue-dark mb-6">
+                      {data.aboutSection.title}
+                    </h2>
+                  )}
+                  <div className="prose prose-lg max-w-none text-zen-blue-dark/80">
+                    {data.aboutSection.content && (
+                      <PortableText value={data.aboutSection.content} />
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </motion.section>
