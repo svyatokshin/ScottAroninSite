@@ -35,22 +35,21 @@ export default {
       ],
     },
     {
-      name: 'titleSection',
-      title: 'Title Section',
-      type: 'text',
-    },
-    {
       name: 'aboutSection',
       title: 'About Section',
       type: 'object',
       fields: [
         {
+          name: 'title',
+          title: 'About Title',
+          type: 'string',
+        },
+        {
           name: 'image',
           title: 'About Image',
           type: 'image',
           options: {
-            hotspot: true,
-            metadata: ['dimensions', 'palette'],
+            hotspot: true
           },
           description: 'Upload a square image (1:1 aspect ratio recommended)'
         },
@@ -64,8 +63,13 @@ export default {
       ]
     },
     {
-      name: 'sectionOne',
-      title: 'Section One',
+      name: 'cardSectionsTitle',
+      title: 'Card Sections Title',
+      type: 'string',
+    },
+    {
+      name: 'cardSectionOne',
+      title: 'Card Section One',
       type: 'object',
       fields: [
         {
@@ -91,8 +95,8 @@ export default {
       ],
     },
     {
-      name: 'sectionTwo',
-      title: 'Section Two',
+      name: 'cardSectionTwo',
+      title: 'Card Section Two',
       type: 'object',
       fields: [
         {
@@ -118,8 +122,8 @@ export default {
       ],
     },
     {
-      name: 'sectionThree',
-      title: 'Section Three',
+      name: 'cardSectionThree',
+      title: 'Card Section Three',
       type: 'object',
       fields: [
         {
@@ -145,55 +149,137 @@ export default {
       ],
     },
     {
-      name: 'wellnessPillarsImage',
-      title: 'Wellness Pillars Image',
-      type: 'image',
-      description: 'Background image for the wellness pillars section',
-      options: {
-        hotspot: true,
-      },
-    },
-    {
-      name: 'wellnessPillars',
-      title: 'Five Pillars of Wellness',
-      type: 'array',
-      of: [
+      name: 'mainSectionOne',
+      title: 'Main Section One',
+      type: 'object',
+      fields: [
         {
+          name: 'title',
+          title: 'Section Title',
+          type: 'string',
+          description: 'Optional title for this section',
+        },
+        {
+          name: 'mediaType',
+          title: 'Media Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Image', value: 'image' },
+              { title: 'Video', value: 'video' }
+            ],
+            layout: 'radio'
+          },
+          initialValue: 'image'
+        },
+        {
+          name: 'image',
+          title: 'Section Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          hidden: ({ parent }: any) => parent?.mediaType === 'video'
+        },
+        {
+          name: 'video',
+          title: 'Section Video',
           type: 'object',
-          name: 'pillar',
-          title: 'Wellness Pillar',
+          hidden: ({ parent }: any) => parent?.mediaType === 'image',
           fields: [
             {
-              name: 'title',
-              title: 'Pillar Title',
-              type: 'string',
-            },
-            {
-              name: 'description',
-              title: 'Pillar Description',
-              type: 'text',
-            },
-            {
-              name: 'image',
-              title: 'Pillar Image',
-              type: 'image',
-              options: {
-                hotspot: true,
-              },
-            },
-            {
-              name: 'link',
-              title: 'Pillar Link',
+              name: 'url',
+              title: 'Video URL',
               type: 'url',
-              description: 'Optional link to learn more about this pillar',
+              description: 'URL to the video (YouTube, Vimeo, etc.)',
+              validation: (Rule: any) => Rule.uri({
+                scheme: ['http', 'https']
+              })
             },
             {
-              name: 'order',
-              title: 'Display Order',
-              type: 'number',
+              name: 'poster',
+              title: 'Video Poster',
+              type: 'image',
+              description: 'Optional poster image for the video',
+              options: {
+                hotspot: true
+              }
             }
-          ],
-        }
+          ]
+        },
+        {
+          name: 'content',
+          title: 'Section Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+      ],
+    },
+    {
+      name: 'mainSectionTwo',
+      title: 'Main Section Two',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Section Title',
+          type: 'string',
+          description: 'Optional title for this section',
+        },
+        {
+          name: 'mediaType',
+          title: 'Media Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Image', value: 'image' },
+              { title: 'Video', value: 'video' }
+            ],
+            layout: 'radio'
+          },
+          initialValue: 'image'
+        },
+        {
+          name: 'image',
+          title: 'Section Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          hidden: ({ parent }: any) => parent?.mediaType === 'video'
+        },
+        {
+          name: 'video',
+          title: 'Section Video',
+          type: 'object',
+          hidden: ({ parent }: any) => parent?.mediaType === 'image',
+          fields: [
+            {
+              name: 'url',
+              title: 'Video URL',
+              type: 'url',
+              description: 'URL to the video (YouTube, Vimeo, etc.)',
+              validation: (Rule: any) => Rule.uri({
+                scheme: ['http', 'https']
+              })
+            },
+            {
+              name: 'poster',
+              title: 'Video Poster',
+              type: 'image',
+              description: 'Optional poster image for the video',
+              options: {
+                hotspot: true
+              }
+            }
+          ]
+        },
+        {
+          name: 'content',
+          title: 'Section Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
       ],
     },
     {

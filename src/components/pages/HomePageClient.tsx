@@ -186,31 +186,6 @@ export function HomePageClient({ data }: HomePageClientProps) {
         <FaArrowUp className="w-5 h-5" />
       </motion.button>
 
-      {/* Title Section */}
-      <motion.section 
-        className="relative pt-12 pb-8 bg-gradient-to-br from-zen-blue-light/10 via-zen-purple-light/5 to-zen-yellow-light/10"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="absolute inset-0 bg-zen-radial from-zen-purple/5 via-transparent to-transparent" />
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.h2 
-            className="text-4xl md:text-5xl font-playfair font-light text-center text-zen-blue-dark mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <span className="relative inline-block">
-              {data.titleSection}
-              <span className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-zen-blue-dark via-zen-purple to-zen-yellow-light" />
-            </span>
-          </motion.h2>
-        </div>
-      </motion.section>
-
       {/* About Section */}
       {data.aboutSection && (
         <motion.section
@@ -233,6 +208,11 @@ export function HomePageClient({ data }: HomePageClientProps) {
             </div>
           )}
           <div className="flex-1">
+            {data.aboutSection.title && (
+              <h2 className="text-3xl font-playfair font-light text-zen-blue-dark mb-6">
+                {data.aboutSection.title}
+              </h2>
+            )}
             <div className="prose prose-lg max-w-none text-zen-blue-dark">
               <PortableText value={data.aboutSection.content} />
             </div>
@@ -240,13 +220,28 @@ export function HomePageClient({ data }: HomePageClientProps) {
         </motion.section>
       )}
 
+      {/* Section Title */}
+      {data.cardSectionsTitle && (
+        <motion.section
+          className="container mx-auto px-4 py-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl font-playfair font-light text-center text-zen-blue-dark mb-8">
+            {data.cardSectionsTitle}
+          </h2>
+        </motion.section>
+      )}
+
       {/* Content Sections as Cards */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            data.sectionOne && { ...data.sectionOne, key: 'sectionOne' },
-            data.sectionTwo && { ...data.sectionTwo, key: 'sectionTwo' },
-            data.sectionThree && { ...data.sectionThree, key: 'sectionThree' },
+            data.cardSectionOne && { ...data.cardSectionOne, key: 'cardSectionOne' },
+            data.cardSectionTwo && { ...data.cardSectionTwo, key: 'cardSectionTwo' },
+            data.cardSectionThree && { ...data.cardSectionThree, key: 'cardSectionThree' },
           ].filter(Boolean).map((section) => {
             const s = section as { image?: any; title: string; content: any; link?: string; key: string };
             return (
@@ -279,9 +274,9 @@ export function HomePageClient({ data }: HomePageClientProps) {
                       tabIndex={0}
                       aria-label={`More about ${s.title}`}
                     >
-                      {s.key === 'sectionOne' && 'Explore Mind-Body Practices →'}
-                      {s.key === 'sectionTwo' && 'Explore Physical Fitness →'}
-                      {s.key === 'sectionThree' && 'Explore Nutrition & Wellness →'}
+                      {s.key === 'cardSectionOne' && 'Explore Mind-Body Practices →'}
+                      {s.key === 'cardSectionTwo' && 'Explore Physical Fitness →'}
+                      {s.key === 'cardSectionThree' && 'Explore Nutrition & Wellness →'}
                     </Link>
                   </div>
                 </div>
@@ -291,68 +286,94 @@ export function HomePageClient({ data }: HomePageClientProps) {
         </div>
       </div>
 
-      {/* Wellness Pillars Section */}
-      {data.wellnessPillars && data.wellnessPillars.length > 0 && (
-        <section className="pt-32 pb-32 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="relative rounded-2xl overflow-hidden min-h-[600px] md:min-h-[800px]">
-              <div className="absolute left-0 right-0 top-0 bg-zen-yellow-light/60" style={{ height: '120%' }} />
-              <div className="relative z-10">
-                <motion.h2 
-                  className="text-5xl md:text-7xl font-playfair font-light text-center text-zen-blue-dark mb-16 mt-10 underline"
-                  variants={fadeInUp}
-                  initial="hidden"
-                  animate={pillarsControls}
-                  key="pillars-title"
-                >
-                  Pillars of Wellness
-                </motion.h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                  <div className="md:col-span-3 flex justify-center gap-20">
-                    {data.wellnessPillars.slice(0, 3).map((pillar, index) => (
-                      <motion.div
-                        key={pillar._id}
-                        className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-lg"
-                        variants={fadeInUp}
-                        initial="hidden"
-                        animate={pillarsControls}
-                        transition={{ duration: 0.6, delay: index * 0.2 }}
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {pillar.icon && (
-                          <div className="text-4xl mb-4">
-                            <Image
-                              src={urlFor(pillar.icon).url()}
-                              alt={pillar.title}
-                              width={48}
-                              height={48}
-                              className="inline-block"
-                            />
-                          </div>
-                        )}
-                        <h3 className="text-2xl font-playfair font-light text-zen-blue-dark mb-4">
-                          {pillar.title}
-                        </h3>
-                        <p className="text-zen-purple-dark font-light">
-                          {pillar.description}
-                        </p>
-                        {pillar.link && (
-                          <Link
-                            href={pillar.link}
-                            className="inline-block mt-4 text-zen-blue-dark hover:text-zen-blue transition-colors"
-                          >
-                            Learn more →
-                          </Link>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+      {/* Main Sections */}
+      <div className="container mx-auto px-4 py-16 space-y-16">
+        {data.mainSectionOne && (
+          <motion.section
+            className="flex flex-col md:flex-row items-center gap-10 md:gap-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex-1">
+              {data.mainSectionOne.title && (
+                <h2 className="text-3xl font-playfair font-light text-zen-blue-dark mb-6">
+                  {data.mainSectionOne.title}
+                </h2>
+              )}
+              <div className="prose prose-lg max-w-none text-zen-blue-dark">
+                <PortableText value={data.mainSectionOne.content} />
               </div>
             </div>
-          </div>
-        </section>
-      )}
+            <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
+              {data.mainSectionOne.mediaType === 'video' && data.mainSectionOne.video ? (
+                <div className="relative aspect-video">
+                  <iframe
+                    src={data.mainSectionOne.video.url}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={data.mainSectionOne.title || 'Video content'}
+                  />
+                </div>
+              ) : data.mainSectionOne.image ? (
+                <Image
+                  src={urlFor(data.mainSectionOne.image).url()}
+                  alt={data.mainSectionOne.title || 'Main Section One'}
+                  width={600}
+                  height={400}
+                  className="object-cover w-full h-full"
+                  priority={false}
+                />
+              ) : null}
+            </div>
+          </motion.section>
+        )}
+
+        {data.mainSectionTwo && (
+          <motion.section
+            className="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex-1">
+              {data.mainSectionTwo.title && (
+                <h2 className="text-3xl font-playfair font-light text-zen-blue-dark mb-6">
+                  {data.mainSectionTwo.title}
+                </h2>
+              )}
+              <div className="prose prose-lg max-w-none text-zen-blue-dark">
+                <PortableText value={data.mainSectionTwo.content} />
+              </div>
+            </div>
+            <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
+              {data.mainSectionTwo.mediaType === 'video' && data.mainSectionTwo.video ? (
+                <div className="relative aspect-video">
+                  <iframe
+                    src={data.mainSectionTwo.video.url}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={data.mainSectionTwo.title || 'Video content'}
+                  />
+                </div>
+              ) : data.mainSectionTwo.image ? (
+                <Image
+                  src={urlFor(data.mainSectionTwo.image).url()}
+                  alt={data.mainSectionTwo.title || 'Main Section Two'}
+                  width={600}
+                  height={400}
+                  className="object-cover w-full h-full"
+                  priority={false}
+                />
+              ) : null}
+            </div>
+          </motion.section>
+        )}
+      </div>
 
       {/* Newsletter Section */}
       <section className="py-20 bg-white">
@@ -390,9 +411,9 @@ export function HomePageClient({ data }: HomePageClientProps) {
       {/* Modal for card details */}
       {openModalKey && (() => {
         const modalSection = [
-          data.sectionOne && { ...data.sectionOne, key: 'sectionOne' },
-          data.sectionTwo && { ...data.sectionTwo, key: 'sectionTwo' },
-          data.sectionThree && { ...data.sectionThree, key: 'sectionThree' },
+          data.cardSectionOne && { ...data.cardSectionOne, key: 'cardSectionOne' },
+          data.cardSectionTwo && { ...data.cardSectionTwo, key: 'cardSectionTwo' },
+          data.cardSectionThree && { ...data.cardSectionThree, key: 'cardSectionThree' },
         ].filter(Boolean).find((s) => (s as any).key === openModalKey) as { image?: any; title: string; content: any; key: string } | undefined;
         if (!modalSection) return null;
         return (

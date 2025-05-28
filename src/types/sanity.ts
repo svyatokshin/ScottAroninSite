@@ -25,6 +25,11 @@ export interface ContentSection {
   title: string
   content: any
   image?: any
+  video?: {
+    url: string
+    poster?: any
+  }
+  mediaType?: 'image' | 'video'
   link?: string
 }
 
@@ -48,12 +53,16 @@ export interface HomePage {
   title: string
   heroSection: HeroSection
   aboutSection?: {
+    title?: string
     image?: any
     content?: any[]
   }
-  sectionOne?: ContentSection
-  sectionTwo?: ContentSection
-  sectionThree?: ContentSection
+  cardSectionsTitle?: string
+  cardSectionOne?: ContentSection
+  cardSectionTwo?: ContentSection
+  cardSectionThree?: ContentSection
+  mainSectionOne?: ContentSection
+  mainSectionTwo?: ContentSection
   wellnessPillars?: WellnessPillar[]
   newsletter?: Newsletter
   seo?: SEO

@@ -26,14 +26,16 @@ export async function getHomePage() {
       heroSection,
       titleSection,
       aboutSection {
+        title,
         image,
         content
       },
-      sectionOne,
-      sectionTwo,
-      sectionThree,
-      wellnessPillarsImage,
-      wellnessPillars,
+      cardSectionsTitle,
+      cardSectionOne,
+      cardSectionTwo,
+      cardSectionThree,
+      mainSectionOne,
+      mainSectionTwo,
       seo
     }`
   ).then(data => ({
@@ -45,7 +47,8 @@ export async function getHomePage() {
       heroImage: null
     },
     aboutSection: data?.aboutSection || null,
-    sectionOne: data?.sectionOne || {
+    cardSectionsTitle: data?.cardSectionsTitle || 'Services Provided',
+    cardSectionOne: data?.cardSectionOne || {
       title: 'Holistic Approach',
       content: [{
         _type: 'block',
@@ -56,7 +59,7 @@ export async function getHomePage() {
       }],
       image: null
     },
-    sectionTwo: data?.sectionTwo || {
+    cardSectionTwo: data?.cardSectionTwo || {
       title: 'Personalized Care',
       content: [{
         _type: 'block',
@@ -67,7 +70,7 @@ export async function getHomePage() {
       }],
       image: null
     },
-    sectionThree: data?.sectionThree || {
+    cardSectionThree: data?.cardSectionThree || {
       title: 'Transform Your Life',
       content: [{
         _type: 'block',
@@ -78,8 +81,32 @@ export async function getHomePage() {
       }],
       image: null
     },
-    wellnessPillarsImage: data?.wellnessPillarsImage || null,
-    wellnessPillars: data?.wellnessPillars || [],
+    mainSectionOne: data?.mainSectionOne || {
+      title: 'Main Section One',
+      content: [{
+        _type: 'block',
+        children: [{
+          _type: 'span',
+          text: 'Experience our comprehensive approach to wellness that integrates mind, body, and spirit for optimal health and vitality.'
+        }]
+      }],
+      mediaType: 'image',
+      image: null,
+      video: null
+    },
+    mainSectionTwo: data?.mainSectionTwo || {
+      title: 'Main Section Two',
+      content: [{
+        _type: 'block',
+        children: [{
+          _type: 'span',
+          text: 'Discover personalized wellness solutions tailored to your unique needs and goals, helping you achieve lasting transformation.'
+        }]
+      }],
+      mediaType: 'image',
+      image: null,
+      video: null
+    },
     seo: data?.seo || null
   }))
 }
