@@ -227,17 +227,21 @@ export default {
           description: 'Optional title for this section',
         },
         {
+          name: 'content',
+          title: 'Section Content',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+        {
           name: 'mediaType',
           title: 'Media Type',
           type: 'string',
           options: {
             list: [
               { title: 'Image', value: 'image' },
-              { title: 'Video', value: 'video' }
+              { title: 'Video', value: 'video' },
             ],
-            layout: 'radio'
           },
-          initialValue: 'image'
         },
         {
           name: 'image',
@@ -246,39 +250,71 @@ export default {
           options: {
             hotspot: true,
           },
-          hidden: ({ parent }: any) => parent?.mediaType === 'video'
+          hidden: ({ parent }: any) => parent?.mediaType !== 'image',
         },
         {
           name: 'video',
           title: 'Section Video',
           type: 'object',
-          hidden: ({ parent }: any) => parent?.mediaType === 'image',
           fields: [
             {
               name: 'url',
-              title: 'Video URL',
+              title: 'YouTube URL',
               type: 'url',
-              description: 'URL to the video (YouTube, Vimeo, etc.)',
-              validation: (Rule: any) => Rule.uri({
-                scheme: ['http', 'https']
-              })
             },
-            {
-              name: 'poster',
-              title: 'Video Poster',
-              type: 'image',
-              description: 'Optional poster image for the video',
-              options: {
-                hotspot: true
-              }
-            }
-          ]
+          ],
+          hidden: ({ parent }: any) => parent?.mediaType !== 'video',
+        },
+      ],
+    },
+    {
+      name: 'mainSectionThree',
+      title: 'Main Section Three',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Section Title',
+          type: 'string',
         },
         {
           name: 'content',
           title: 'Section Content',
           type: 'array',
           of: [{ type: 'block' }],
+        },
+        {
+          name: 'mediaType',
+          title: 'Media Type',
+          type: 'string',
+          options: {
+            list: [
+              { title: 'Image', value: 'image' },
+              { title: 'Video', value: 'video' },
+            ],
+          },
+        },
+        {
+          name: 'image',
+          title: 'Section Image',
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+          hidden: ({ parent }: any) => parent?.mediaType !== 'image',
+        },
+        {
+          name: 'video',
+          title: 'Section Video',
+          type: 'object',
+          fields: [
+            {
+              name: 'url',
+              title: 'YouTube URL',
+              type: 'url',
+            },
+          ],
+          hidden: ({ parent }: any) => parent?.mediaType !== 'video',
         },
       ],
     },

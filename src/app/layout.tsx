@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Outfit } from 'next/font/google';
+import { Cormorant_Garamond, Quicksand } from 'next/font/google';
 import '@/assets/globals.css';
 import Navbar from '@/components/layout/Navbar';
 
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
+const quicksand = Quicksand({ 
+  subsets: ['latin'], 
+  variable: '--font-quicksand',
+  weight: ['300', '400', '500', '600', '700']
+});
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
   variable: '--font-cormorant',
@@ -22,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${outfit.variable} ${cormorant.variable} font-sans antialiased`}>
+      <body className={`${quicksand.variable} ${cormorant.variable} font-sans antialiased`}>
         {/* Animated background elements */}
         <div className="fixed inset-0 bg-white" />
         <div className="fixed inset-0 bg-zen-radial from-zen-blue-light/5 via-transparent to-transparent animate-zen-fade" />

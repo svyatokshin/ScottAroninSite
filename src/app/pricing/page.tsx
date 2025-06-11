@@ -144,7 +144,7 @@ export default function Pricing() {
           href="/contact"
           className="inline-block bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
         >
-          Contact Sales
+          Book a Session - Free Consultation Available
         </a>
       </motion.div>
     </div>

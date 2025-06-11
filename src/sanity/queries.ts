@@ -1,5 +1,6 @@
 import { sanityClient } from './client'
 import imageUrlBuilder from '@sanity/image-url'
+import { ResearchSection } from '@/types/sanity'
 
 const builder = imageUrlBuilder(sanityClient)
 
@@ -81,13 +82,24 @@ export async function getHomePage() {
           poster
         }
       },
+      mainSectionThree {
+        title,
+        image,
+        content,
+        mediaType,
+        video {
+          url,
+          poster
+        }
+      },
       seo
     }`
   );
 
   console.log('Raw Sanity data for main sections:', {
     mainSectionOne: result?.mainSectionOne,
-    mainSectionTwo: result?.mainSectionTwo
+    mainSectionTwo: result?.mainSectionTwo,
+    mainSectionThree: result?.mainSectionThree
   });
 
   const data = {
@@ -165,12 +177,26 @@ export async function getHomePage() {
       image: null,
       video: null
     },
+    mainSectionThree: result?.mainSectionThree || {
+      title: 'Main Section Three',
+      content: [{
+        _type: 'block',
+        children: [{
+          _type: 'span',
+          text: 'Transform your life through our holistic wellness programs designed to nurture your mind, body, and spirit.'
+        }]
+      }],
+      mediaType: 'image',
+      image: null,
+      video: null
+    },
     seo: result?.seo || null
   };
 
   console.log('Processed data for main sections:', {
     mainSectionOne: data.mainSectionOne,
-    mainSectionTwo: data.mainSectionTwo
+    mainSectionTwo: data.mainSectionTwo,
+    mainSectionThree: data.mainSectionThree
   });
 
   return data;
@@ -359,4 +385,44 @@ export async function getContactPage() {
     ],
     seo: data?.seo || null
   }))
+}
+
+export async function getResearchPage() {
+  const result = await sanityClient.fetch(
+    `*[_type == "research"][0]{
+      title,
+      heroSection {
+        heading,
+        subheading,
+        heroImage
+      },
+      researchSections[] {
+        title,
+        category,
+        summary,
+        "keyFindings": coalesce(keyFindings, []),
+        "statistics": coalesce(statistics, []),
+        "visualData": coalesce(visualData, []),
+        "relatedStudies": coalesce(relatedStudies, [])
+      },
+      seo
+    }`
+  );
+
+  return {
+    title: result?.title || 'Research Data',
+    heroSection: result?.heroSection || {
+      heading: 'Scientific Research on Mind-Body Wellness',
+      subheading: 'Evidence-based insights into meditation, mindfulness, and holistic health practices',
+      heroImage: null
+    },
+    researchSections: result?.researchSections?.map((section: Partial<ResearchSection>) => ({
+      ...section,
+      keyFindings: section.keyFindings || [],
+      statistics: section.statistics || [],
+      visualData: section.visualData || [],
+      relatedStudies: section.relatedStudies || []
+    })) || [],
+    seo: result?.seo || null
+  };
 } 
