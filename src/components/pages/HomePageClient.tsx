@@ -4,15 +4,18 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
-import { urlFor } from '@/sanity/queries';
-import { HomePage } from '@/types/sanity';
-import { PortableText } from '@portabletext/react';
+import { HomePage } from '@/types';
 import { FaArrowUp } from 'react-icons/fa';
 
 interface HomePageClientProps {
   data: HomePage;
 }
 
+/**
+ * Client-side home page component with animations and interactivity
+ * @param data - Static home page data
+ * @returns JSX element for the interactive home page
+ */
 export function HomePageClient({ data }: HomePageClientProps) {
   const controls = useAnimation();
   const sectionOneControls = useAnimation();
@@ -25,52 +28,6 @@ export function HomePageClient({ data }: HomePageClientProps) {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const heroHeight = useTransform(scrollY, [0, 300], ['100vh', '60vh']);
   const [openModalKey, setOpenModalKey] = useState<string | null>(null);
-
-  // Add debugging logs
-  useEffect(() => {
-    console.log('HomePageClient data:', {
-      aboutSection: data.aboutSection,
-      mainSectionOne: data.mainSectionOne,
-      mainSectionTwo: data.mainSectionTwo,
-      cardSectionOne: data.cardSectionOne,
-      cardSectionTwo: data.cardSectionTwo,
-      cardSectionThree: data.cardSectionThree
-    });
-
-    // Add specific debugging for main sections
-    console.log('Main Section One details:', {
-      title: data.mainSectionOne?.title,
-      content: data.mainSectionOne?.content,
-      mediaType: data.mainSectionOne?.mediaType,
-      image: data.mainSectionOne?.image,
-      video: data.mainSectionOne?.video
-    });
-
-    console.log('Main Section Two details:', {
-      title: data.mainSectionTwo?.title,
-      content: data.mainSectionTwo?.content,
-      mediaType: data.mainSectionTwo?.mediaType,
-      image: data.mainSectionTwo?.image,
-      video: data.mainSectionTwo?.video
-    });
-
-    // Add specific debugging for media content
-    console.log('Main Section One media:', {
-      mediaType: data.mainSectionOne?.mediaType,
-      image: data.mainSectionOne?.image,
-      video: data.mainSectionOne?.video,
-      imageUrl: data.mainSectionOne?.image ? urlFor(data.mainSectionOne.image).url() : null
-    });
-
-    console.log('Main Section Two media:', {
-      mediaType: data.mainSectionTwo?.mediaType,
-      image: data.mainSectionTwo?.image,
-      video: data.mainSectionTwo?.video,
-      imageUrl: data.mainSectionTwo?.image ? urlFor(data.mainSectionTwo.image).url() : null
-    });
-  }, [data]);
-
-  console.log('wellnessPillarsImage', data.wellnessPillarsImage);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -158,8 +115,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
             }}
           >
             <Image
-              src={urlFor(data.heroSection.heroImage).url()}
-              alt="Hero background"
+              src={data.heroSection.heroImage.src}
+              alt={data.heroSection.heroImage.alt}
               fill
               className="object-cover"
               priority
@@ -256,13 +213,13 @@ export function HomePageClient({ data }: HomePageClientProps) {
             <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden">
               <div className="absolute inset-0 bg-zen-radial from-zen-purple/5 via-transparent to-transparent opacity-50" />
               <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16">
-                {data.aboutSection.image && (
+                {data.aboutSection?.image && (
                   <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-lg bg-zinc-100 group">
                     <Image
-                      src={urlFor(data.aboutSection.image).url()}
-                      alt="About"
-                      width={600}
-                      height={600}
+                      src={data.aboutSection.image.src}
+                      alt={data.aboutSection.image.alt}
+                      width={data.aboutSection.image.width || 600}
+                      height={data.aboutSection.image.height || 600}
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                       priority={false}
                     />
@@ -275,8 +232,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
                     </h2>
                   )}
                   <div className="prose prose-lg max-w-none text-zen-blue-dark/80">
-                    {data.aboutSection.content && (
-                      <PortableText value={data.aboutSection.content} />
+                    {data.aboutSection?.content && (
+                      <p className="text-lg leading-relaxed">{data.aboutSection.content}</p>
                     )}
                   </div>
                 </div>
@@ -315,10 +272,10 @@ export function HomePageClient({ data }: HomePageClientProps) {
                 <div className="relative z-10 flex flex-col items-center text-center h-full">
                   {s.image && (
                     <Image
-                      src={urlFor(s.image).url()}
-                      alt={s.title}
-                      width={128}
-                      height={128}
+                      src={s.image.src}
+                      alt={s.image.alt}
+                      width={s.image.width || 128}
+                      height={s.image.height || 128}
                       className="w-32 h-32 mb-10 rounded-xl object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                   )}
@@ -326,7 +283,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                     {s.title}
                   </h2>
                   <div className="prose prose-lg prose-invert max-w-none text-white">
-                    <PortableText value={s.content} />
+                    <p className="text-base leading-relaxed">{s.content}</p>
                   </div>
                   <div className="flex flex-col items-center w-full mt-auto">
                     <Link
@@ -365,7 +322,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                 </h2>
               )}
               <div className="prose prose-lg max-w-none text-zen-blue-dark">
-                <PortableText value={data.mainSectionOne.content} />
+                <p className="text-lg leading-relaxed">{data.mainSectionOne.content}</p>
               </div>
             </div>
             <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
@@ -382,8 +339,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
               ) : data.mainSectionOne.image ? (
                 <div className="relative aspect-video">
                   <Image
-                    src={urlFor(data.mainSectionOne.image).url()}
-                    alt={data.mainSectionOne.title || 'Main Section One'}
+                    src={data.mainSectionOne.image.src}
+                    alt={data.mainSectionOne.image.alt}
                     fill
                     className="object-cover"
                     priority={false}
@@ -409,7 +366,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                 </h2>
               )}
               <div className="prose prose-lg max-w-none text-zen-blue-dark">
-                <PortableText value={data.mainSectionTwo.content} />
+                <p className="text-lg leading-relaxed">{data.mainSectionTwo.content}</p>
               </div>
             </div>
             <div className="flex-shrink-0 w-full md:w-1/2 rounded-2xl overflow-hidden shadow-xl bg-zinc-100">
@@ -426,8 +383,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
               ) : data.mainSectionTwo.image ? (
                 <div className="relative aspect-video">
                   <Image
-                    src={urlFor(data.mainSectionTwo.image).url()}
-                    alt={data.mainSectionTwo.title || 'Main Section Two'}
+                    src={data.mainSectionTwo.image.src}
+                    alt={data.mainSectionTwo.image.alt}
                     fill
                     className="object-cover"
                     priority={false}
@@ -502,10 +459,10 @@ export function HomePageClient({ data }: HomePageClientProps) {
               </button>
               {modalSection.image && (
                 <Image
-                  src={urlFor(modalSection.image).url()}
-                  alt={modalSection.title}
-                  width={160}
-                  height={160}
+                  src={modalSection.image.src}
+                  alt={modalSection.image.alt}
+                  width={modalSection.image.width || 160}
+                  height={modalSection.image.height || 160}
                   className="rounded-xl mb-8 object-cover w-40 h-40"
                 />
               )}
@@ -513,7 +470,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                 {modalSection.title}
               </h2>
               <div className="prose prose-lg max-w-none text-zen-blue-dark">
-                <PortableText value={modalSection.content} />
+                <p className="text-lg leading-relaxed">{modalSection.content}</p>
               </div>
             </div>
           </div>

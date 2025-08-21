@@ -1,16 +1,10 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { getHomePage, urlFor } from '@/sanity/queries'
-import { HomePage } from '@/types/sanity'
-import { PortableText } from '@portabletext/react'
 import { HomePageClient } from '@/components/pages/HomePageClient'
+import { homePageData } from '@/data/static-content'
 
-async function getData(): Promise<HomePage> {
-  return getHomePage()
-}
-
-export default async function Home() {
-  const data = await getData()
-  console.log('Homepage data:', JSON.stringify(data, null, 2))
-  return <HomePageClient data={data} />
+/**
+ * Home page component - now using static data instead of Sanity CMS
+ * @returns JSX element for the home page
+ */
+export default function Home() {
+  return <HomePageClient data={homePageData} />
 } 

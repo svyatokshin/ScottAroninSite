@@ -1,16 +1,14 @@
-import { getServicesPage } from '@/sanity/queries'
-import { ServicesPage } from '@/types/sanity'
-import { urlFor } from '@/sanity/queries'
-import { PortableText } from '@portabletext/react'
+import { ServicesPage } from '@/types'
+import { servicesPageData } from '@/data/static-content'
 import Image from 'next/image'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
-async function getData(): Promise<ServicesPage> {
-  return getServicesPage()
-}
-
-export default async function Services() {
-  const data = await getData()
+/**
+ * Services page component - now using static data instead of Sanity CMS
+ * @returns JSX element for the services page
+ */
+export default function Services() {
+  const data = servicesPageData
 
   return (
     <div className="min-h-screen">
@@ -51,10 +49,10 @@ export default async function Services() {
                   {service.icon && (
                     <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500">
                       <Image
-                        src={urlFor(service.icon).url()}
-                        alt={service.serviceTitle}
-                        width={64}
-                        height={64}
+                        src={service.icon.src}
+                        alt={service.icon.alt}
+                        width={service.icon.width || 64}
+                        height={service.icon.height || 64}
                         className="w-16 h-16 animate-float"
                       />
                     </div>
@@ -64,7 +62,7 @@ export default async function Services() {
                   </h3>
                   {service.description && (
                     <div className="prose prose-invert mb-6">
-                      <PortableText value={service.description} />
+                      <p className="text-base leading-relaxed">{service.description}</p>
                     </div>
                   )}
                   {service.features && service.features.length > 0 && (

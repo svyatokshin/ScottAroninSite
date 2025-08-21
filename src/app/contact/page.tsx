@@ -1,16 +1,16 @@
 'use client'
 
-import { getContactPage } from '@/sanity/queries'
-import { ContactPage } from '@/types/sanity'
+import { ContactPage } from '@/types'
+import { contactPageData } from '@/data/static-content'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
 import { ContactForm } from '@/components/forms/ContactForm'
 
-async function getData(): Promise<ContactPage> {
-  return getContactPage()
-}
-
-export default async function Contact() {
-  const data = await getData()
+/**
+ * Contact page component - now using static data instead of Sanity CMS
+ * @returns JSX element for the contact page
+ */
+export default function Contact() {
+  const data = contactPageData
 
   return (
     <div className="min-h-screen">

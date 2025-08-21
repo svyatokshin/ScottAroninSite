@@ -1,16 +1,14 @@
-import { getAboutPage } from '@/sanity/queries'
-import { AboutPage } from '@/types/sanity'
-import { urlFor } from '@/sanity/queries'
-import { PortableText } from '@portabletext/react'
+import { AboutPage } from '@/types'
+import { aboutPageData } from '@/data/static-content'
 import Image from 'next/image'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
-async function getData(): Promise<AboutPage> {
-  return getAboutPage()
-}
-
-export default async function About() {
-  const data = await getData()
+/**
+ * About page component - now using static data instead of Sanity CMS
+ * @returns JSX element for the about page
+ */
+export default function About() {
+  const data = aboutPageData
 
   return (
     <div className="min-h-screen">
@@ -48,7 +46,7 @@ export default async function About() {
               )}
               {data.mainContent.bio && (
                 <div className="prose prose-lg text-zen-blue-dark/80">
-                  <PortableText value={data.mainContent.bio} />
+                  <p className="text-lg leading-relaxed">{data.mainContent.bio}</p>
                 </div>
               )}
             </AnimatedSection>
@@ -62,8 +60,8 @@ export default async function About() {
               {data.mainContent.profileImage ? (
                 <div className="relative w-full h-full">
                   <Image
-                    src={urlFor(data.mainContent.profileImage).url()}
-                    alt={data.mainContent.heading || 'Profile'}
+                    src={data.mainContent.profileImage.src}
+                    alt={data.mainContent.profileImage.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-contain group-hover:scale-105 transition-transform duration-500"
@@ -74,8 +72,8 @@ export default async function About() {
               ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-zen-blue-light to-zen-purple-light flex items-center justify-center">
                   <div className="text-center text-white p-8">
-                    <p className="text-xl font-light mb-4">Add your profile image in Sanity Studio</p>
-                    <p className="text-sm opacity-80">Recommended size: 800x1000px</p>
+                    <p className="text-xl font-light mb-4">Profile image placeholder</p>
+                    <p className="text-sm opacity-80">Add your profile image to the static data</p>
                   </div>
                 </div>
               )}
@@ -97,7 +95,7 @@ export default async function About() {
               )}
               {data.missionStatement.content && (
                 <div className="prose prose-lg prose-invert max-w-3xl mx-auto text-white">
-                  <PortableText value={data.missionStatement.content} />
+                  <p className="text-lg leading-relaxed">{data.missionStatement.content}</p>
                 </div>
               )}
             </AnimatedSection>
@@ -112,7 +110,7 @@ export default async function About() {
               viewport={{ once: true }}
               className="prose prose-lg max-w-3xl mx-auto text-zen-blue-dark/80"
             >
-              <PortableText value={data.additionalContent} />
+              <p className="text-lg leading-relaxed">{data.additionalContent}</p>
             </AnimatedSection>
           )}
         </div>
