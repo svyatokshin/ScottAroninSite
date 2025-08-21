@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-outfit)'],
+        sans: ['var(--font-quicksand)'],
         serif: ['var(--font-cormorant)'],
         playfair: ['var(--font-playfair)'],
       },

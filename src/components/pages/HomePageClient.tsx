@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
 import { HomePage } from '@/types';
 import { FaArrowUp } from 'react-icons/fa';
+import { AnimatedSection } from '@/components/animations/AnimatedSection';
 
 interface HomePageClientProps {
   data: HomePage;
@@ -169,15 +170,16 @@ export function HomePageClient({ data }: HomePageClientProps) {
             transition={{ duration: 1, delay: 0.65, ease: [0.6, -0.05, 0.01, 0.99] }}
             style={{ y: useTransform(scrollY, [0, 300], [0, -20]) }}
             key="hero-cta"
+            className="flex flex-col items-center gap-3"
           >
             <Link 
               href={data.heroSection.ctaLink || "/contact"} 
               className="inline-flex items-center gap-3 bg-white/10 border border-zen-blue/70 px-12 py-4 text-xl rounded-full font-semibold text-zen-blue-light shadow-xl hover:bg-zen-blue/10 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
               style={{boxShadow: '0 4px 32px 0 rgba(56,189,248,0.15)'}}
-              aria-label="Book a Session"
+              aria-label="Book a Session - Free Consultation Available"
               tabIndex={0}
             >
-              Book a Session
+              Book a Session - Free Consultation Available
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-zen-blue-light group-hover:text-zen-blue transition-colors">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
               </svg>
@@ -252,56 +254,146 @@ export function HomePageClient({ data }: HomePageClientProps) {
         viewport={{ once: true }}
       >
         {data.cardSectionsTitle && (
-          <h2 className="text-4xl font-playfair font-light text-center text-zen-blue-dark mb-8">
+          <h2 className="text-4xl font-playfair font-light text-center text-zen-blue-dark mb-16">
             {data.cardSectionsTitle}
           </h2>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            data.cardSectionOne && { ...data.cardSectionOne, key: 'cardSectionOne' },
-            data.cardSectionTwo && { ...data.cardSectionTwo, key: 'cardSectionTwo' },
-            data.cardSectionThree && { ...data.cardSectionThree, key: 'cardSectionThree' },
-          ].filter(Boolean).map((section) => {
-            const s = section as { image?: any; title: string; content: any; link?: string; key: string };
-            return (
-              <div
-                key={s.key}
-                className="group relative bg-gradient-to-br from-zen-blue-dark to-zen-purple-dark rounded-3xl p-8 shadow-2xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-2xl hover:scale-[1.025]"
-              >
-                <div className="absolute inset-0 bg-zen-radial from-zen-purple/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-                <div className="relative z-10 flex flex-col items-center text-center h-full">
-                  {s.image && (
+        <div className="relative max-w-6xl mx-auto">
+          {/* Top Card - Centered */}
+          {data.cardSectionOne && (
+            <AnimatedSection
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="group relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] rounded-[2rem] p-10 md:p-12 shadow-2xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] hover:scale-[1.01] max-w-2xl mx-auto mb-[-2rem] z-10 overflow-hidden"
+            >
+              {/* Space background effects */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
+              <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
+              {/* Star effects */}
+              <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
+              <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
+              {/* Nebula effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
+              <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16 text-center md:text-left">
+                {data.cardSectionOne.image && (
+                  <div className="flex-shrink-0 transform group-hover:scale-105 transition-transform duration-500">
                     <Image
-                      src={s.image.src}
-                      alt={s.image.alt}
-                      width={s.image.width || 128}
-                      height={s.image.height || 128}
+                      src={data.cardSectionOne.image.src}
+                      alt={data.cardSectionOne.image.alt}
+                      width={data.cardSectionOne.image.width || 128}
+                      height={data.cardSectionOne.image.height || 128}
                       className="w-32 h-32 mb-10 rounded-xl object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                  )}
+                  </div>
+                )}
+                <div className="flex-1">
                   <h2 className="text-2xl font-playfair font-light text-white mb-4 mt-2">
-                    {s.title}
+                    {data.cardSectionOne.title}
                   </h2>
                   <div className="prose prose-lg prose-invert max-w-none text-white">
-                    <p className="text-base leading-relaxed">{s.content}</p>
+                    <p className="text-base leading-relaxed">{data.cardSectionOne.content}</p>
                   </div>
-                  <div className="flex flex-col items-center w-full mt-auto">
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-3xl md:text-4xl font-playfair font-light text-white mb-6">
+                    {data.cardSectionOne.title}
+                  </h2>
+                  <div className="prose prose-lg prose-invert max-w-none text-white/90">
+                    {data.cardSectionOne.content && (
+                      <p className="text-base leading-relaxed">{data.cardSectionOne.content}</p>
+                    )}
+                  </div>
+                  <div className="mt-8">
                     <Link
                       href="#"
-                      onClick={e => { e.preventDefault(); handleOpenModal(s.key); }}
-                      className="inline-block text-zen-yellow-light hover:text-white transition-colors text-lg font-light"
+                      onClick={e => { e.preventDefault(); handleOpenModal('cardSectionOne'); }}
+                      className="inline-flex items-center gap-2 text-zen-yellow-light hover:text-white transition-colors text-lg font-light group-hover:gap-3"
                       tabIndex={0}
-                      aria-label={`More about ${s.title}`}
+                      aria-label={`More about ${data.cardSectionOne.title}`}
                     >
-                      {s.key === 'cardSectionOne' && 'Explore Mind-Body Practices →'}
-                      {s.key === 'cardSectionTwo' && 'Explore Physical Fitness →'}
-                      {s.key === 'cardSectionThree' && 'Explore Nutrition & Wellness →'}
+                      Explore Mind-Body Practices
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 transition-transform group-hover:translate-x-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                      </svg>
                     </Link>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </AnimatedSection>
+          )}
+
+          {/* Bottom Row - Two Cards Forming Triangle Base */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto pt-16">
+            {[
+              data.cardSectionTwo && { ...data.cardSectionTwo, key: 'cardSectionTwo' },
+              data.cardSectionThree && { ...data.cardSectionThree, key: 'cardSectionThree' },
+            ].filter(Boolean).map((section, index) => {
+              const s = section as { image?: any; title: string; content: any; link?: string; key: string };
+              return (
+                <AnimatedSection
+                  key={s.key}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: (index + 1) * 0.2 }}
+                  viewport={{ once: true }}
+                  className={`group relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] rounded-2xl p-8 shadow-xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] hover:scale-[1.01] overflow-hidden ${
+                    index === 0 ? 'md:translate-x-8' : 'md:-translate-x-8'
+                  }`}
+                >
+                  {/* Space background effects */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                  <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
+                  {/* Star effects */}
+                  <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
+                  <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
+                  {/* Nebula effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
+                  <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
+                  <div className="relative z-10 flex flex-col items-center text-center h-full">
+                    {s.image && (
+                      <div className="mb-6 transform group-hover:scale-105 transition-transform duration-500">
+                        <Image
+                          src={s.image.src}
+                          alt={s.image.alt || s.title}
+                          width={s.image.width || 144}
+                          height={s.image.height || 144}
+                          className="w-36 h-36 rounded-xl object-cover shadow-md"
+                        />
+                      </div>
+                    )}
+                    <h2 className="text-2xl font-playfair font-light text-white mb-4">
+                      {s.title}
+                    </h2>
+                    <div className="prose prose-lg prose-invert max-w-none text-white/90">
+                      <p className="text-base leading-relaxed">{s.content}</p>
+                    </div>
+                    <div className="mt-6">
+                      <Link
+                        href="#"
+                        onClick={e => { e.preventDefault(); handleOpenModal(s.key); }}
+                        className="inline-flex items-center gap-2 text-zen-yellow-light hover:text-white transition-colors text-lg font-light group-hover:gap-3"
+                        tabIndex={0}
+                        aria-label={`More about ${s.title}`}
+                      >
+                        {s.key === 'cardSectionTwo' && 'Explore Physical Fitness'}
+                        {s.key === 'cardSectionThree' && 'Explore Nutrition & Wellness'}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 transition-transform group-hover:translate-x-1">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
         </div>
       </motion.section>
 
@@ -394,6 +486,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
             </div>
           </motion.section>
         )}
+
+
       </div>
 
       {/* Newsletter Section */}

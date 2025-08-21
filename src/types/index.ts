@@ -133,4 +133,51 @@ export interface ContactPage {
   contactInfo: ContactInfo
   businessHours: BusinessHours[]
   seo?: SEO
+}
+
+export interface ResearchFinding {
+  finding: string;
+  description: string;
+  source: string;
+}
+
+export interface ResearchStatistic {
+  statistic: string;
+  context: string;
+  source: string;
+}
+
+export interface VisualData {
+  title: string;
+  image: StaticImage;
+  description: string;
+}
+
+export interface RelatedStudy {
+  title: string;
+  authors: string;
+  year: number;
+  journal: string;
+  url: string;
+}
+
+export interface ResearchSection {
+  title: string;
+  category: string;
+  summary: string;
+  keyFindings: ResearchFinding[];
+  statistics: ResearchStatistic[];
+  visualData: VisualData[];
+  relatedStudies: RelatedStudy[];
+}
+
+export interface ResearchPage {
+  pageTitle: string;
+  heroSection: {
+    heading: string;
+    subheading: string;
+    heroImage: StaticImage;
+  };
+  researchSections: ResearchSection[];
+  seo?: SEO;
 } 

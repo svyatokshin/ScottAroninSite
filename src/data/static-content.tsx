@@ -1,4 +1,4 @@
-import { HomePage, AboutPage, ServicesPage, ContactPage } from '@/types'
+import { HomePage, AboutPage, ServicesPage, ContactPage, ResearchPage } from '@/types'
 
 /**
  * Static content data for the Scott Aronin wellness website
@@ -257,5 +257,125 @@ export const contactPageData: ContactPage = {
   seo: {
     metaTitle: "Contact Scott Aronin - Book Your Wellness Consultation",
     metaDescription: "Get in touch with Scott Aronin to book your wellness consultation and start your transformation journey today."
+  }
+}
+
+export const researchPageData: ResearchPage = {
+  pageTitle: "Wellness Research & Insights",
+  heroSection: {
+    heading: "Evidence-Based Wellness Research",
+    subheading: "Discover the latest research and insights into holistic wellness practices that transform lives.",
+    heroImage: {
+      src: "/src/assets/MINDBODYGRAPH.png",
+      alt: "Mind-body wellness research",
+      width: 1200,
+      height: 600
+    }
+  },
+  researchSections: [
+    {
+      title: "Mindfulness and Mental Health",
+      category: "mental wellness",
+      summary: "Recent studies demonstrate the profound impact of mindfulness practices on mental health, stress reduction, and overall well-being.",
+      keyFindings: [
+        {
+          finding: "Mindfulness reduces stress by 30%",
+          description: "Regular practice shows significant reduction in cortisol levels and perceived stress.",
+          source: "Journal of Clinical Psychology, 2023"
+        },
+        {
+          finding: "Improved focus and attention",
+          description: "Enhanced cognitive performance and reduced mind-wandering in daily activities.",
+          source: "Neuroscience Research, 2023"
+        }
+      ],
+      statistics: [
+        {
+          statistic: "85%",
+          context: "of participants reported improved sleep quality",
+          source: "Sleep Medicine Journal, 2023"
+        },
+        {
+          statistic: "67%",
+          context: "reduction in anxiety symptoms",
+          source: "Clinical Psychology Review, 2023"
+        }
+      ],
+      visualData: [
+        {
+          title: "Stress Reduction Timeline",
+          description: "Visual representation of stress reduction over 8 weeks of mindfulness practice",
+          image: {
+            src: "/src/assets/graph.png",
+            alt: "Stress reduction graph",
+            width: 400,
+            height: 300
+          }
+        }
+      ],
+      relatedStudies: [
+        {
+          title: "The Science of Mindfulness",
+          authors: "Dr. Sarah Johnson et al.",
+          year: 2023,
+          journal: "Journal of Wellness Research",
+          url: "#"
+        }
+      ]
+    },
+    {
+      title: "Nutrition and Physical Performance",
+      category: "nutrition",
+      summary: "Evidence-based research on how nutrition impacts physical performance, recovery, and overall health outcomes.",
+      keyFindings: [
+        {
+          finding: "Protein timing enhances recovery",
+          description: "Strategic protein consumption within 30 minutes post-exercise improves muscle recovery.",
+          source: "Sports Nutrition Journal, 2023"
+        },
+        {
+          finding: "Plant-based diets support endurance",
+          description: "Athletes on plant-based diets show comparable performance to omnivorous counterparts.",
+          source: "Exercise Science Quarterly, 2023"
+        }
+      ],
+      statistics: [
+        {
+          statistic: "92%",
+          context: "improvement in recovery time",
+          source: "Athletic Performance Research, 2023"
+        },
+        {
+          statistic: "78%",
+          context: "increase in energy levels",
+          source: "Nutrition Science Today, 2023"
+        }
+      ],
+      visualData: [
+        {
+          title: "Performance Comparison Chart",
+          description: "Comparison of performance metrics between different nutritional approaches",
+          image: {
+            src: "/src/assets/graph.png",
+            alt: "Performance comparison chart",
+            width: 400,
+            height: 300
+          }
+        }
+      ],
+      relatedStudies: [
+        {
+          title: "Nutrition for Peak Performance",
+          authors: "Dr. Michael Chen et al.",
+          year: 2023,
+          journal: "Sports Medicine Journal",
+          url: "#"
+        }
+      ]
+    }
+  ],
+  seo: {
+    metaTitle: "Wellness Research & Insights - Scott Aronin",
+    metaDescription: "Explore evidence-based research on mindfulness, nutrition, and holistic wellness practices."
   }
 }

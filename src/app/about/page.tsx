@@ -2,6 +2,7 @@ import { AboutPage } from '@/types'
 import { aboutPageData } from '@/data/static-content'
 import Image from 'next/image'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
+import scottImage from '@/assets/Scott2.jpg'
 
 /**
  * About page component - now using static data instead of Sanity CMS
@@ -28,13 +29,13 @@ export default function About() {
                 href="/contact"
                 className="inline-block bg-zen-blue-dark text-white px-8 py-3 rounded-lg font-light hover:bg-zen-blue-dark/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Book a Session
+                Book a Session - Free Consultation Available
               </a>
             </div>
           </AnimatedSection>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <AnimatedSection
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -81,8 +82,18 @@ export default function About() {
           </div>
 
           {/* Mission Statement */}
-          <div className="relative bg-gradient-to-br from-zen-blue-dark to-zen-purple-dark rounded-3xl p-12 mb-24 overflow-hidden">
-            <div className="absolute inset-0 bg-zen-radial from-zen-purple/10 via-transparent to-transparent animate-zen-fade" />
+          <div className="relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl p-12 mb-24 overflow-hidden shadow-2xl border border-zen-purple/20 mt-20">
+            {/* Space background effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
+            {/* Star effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
+            <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
+            {/* Nebula effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
+            <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
             <AnimatedSection
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -62,6 +62,7 @@ export interface HomePage {
   cardSectionThree?: ContentSection
   mainSectionOne?: ContentSection
   mainSectionTwo?: ContentSection
+  mainSectionThree?: ContentSection
   wellnessPillars?: WellnessPillar[]
   newsletter?: Newsletter
   seo?: SEO
@@ -133,4 +134,51 @@ export interface ContactPage {
   contactInfo: ContactInfo
   businessHours: BusinessHours[]
   seo?: SEO
+}
+
+export interface ResearchFinding {
+  finding: string;
+  description: string;
+  source: string;
+}
+
+export interface ResearchStatistic {
+  statistic: string;
+  context: string;
+  source: string;
+}
+
+export interface VisualData {
+  title: string;
+  image: StaticImage;
+  description: string;
+}
+
+export interface RelatedStudy {
+  title: string;
+  authors: string;
+  year: number;
+  journal: string;
+  url: string;
+}
+
+export interface ResearchSection {
+  title: string;
+  category: 'meditation' | 'placebo' | 'mindBody' | 'stress' | 'other';
+  summary: any[]; // Portable Text content
+  keyFindings: ResearchFinding[];
+  statistics: ResearchStatistic[];
+  visualData: VisualData[];
+  relatedStudies: RelatedStudy[];
+}
+
+export interface ResearchPage {
+  title: string;
+  heroSection: {
+    heading: string;
+    subheading: string;
+    heroImage: StaticImage;
+  };
+  researchSections: ResearchSection[];
+  seo?: SEO;
 } 
