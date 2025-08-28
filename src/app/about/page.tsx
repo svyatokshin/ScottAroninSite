@@ -2,7 +2,6 @@ import { AboutPage } from '@/types'
 import { aboutPageData } from '@/data/static-content'
 import Image from 'next/image'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
-import scottImage from '@/assets/Scott2.jpg'
 
 /**
  * About page component - now using static data instead of Sanity CMS
@@ -12,42 +11,75 @@ export default function About() {
   const data = aboutPageData
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B]">
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-zen-blue-light/10 via-zen-purple-light/5 to-zen-yellow-light/10">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="relative py-32 bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] overflow-hidden">
+        {/* Premium space background effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_50%)]" />
+        {/* Star effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
+        {/* Nebula effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-40 mix-blend-screen" />
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.08),rgba(147,51,234,0.08),rgba(56,189,248,0.08))] opacity-25" />
+        {/* Subtle border lines */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-blue/30 to-transparent" />
+        
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <AnimatedSection 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h1 className="text-4xl md:text-5xl font-light mb-6 text-zen-blue-dark animate-fade-in">
+            <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase mb-6">
+              <div className="w-12 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
+              <span>About Scott</span>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
+            </div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8">
               {data.title}
             </h1>
             <div className="mb-12">
               <a
                 href="/contact"
-                className="inline-block bg-zen-blue-dark text-white px-8 py-3 rounded-lg font-light hover:bg-zen-blue-dark/90 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center gap-3 bg-white/10 border border-zen-blue/70 px-12 py-4 text-xl rounded-full font-semibold text-zen-blue-light shadow-xl hover:bg-zen-blue/10 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
+                style={{boxShadow: '0 4px 32px 0 rgba(56,189,248,0.15)'}}
               >
                 Book a Session - Free Consultation Available
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-zen-blue-light group-hover:text-zen-blue transition-colors">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                </svg>
               </a>
             </div>
           </AnimatedSection>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center mt-20">
             <AnimatedSection
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="space-y-8"
             >
               {data.mainContent.heading && (
-                <h2 className="text-3xl font-light mb-6 text-zen-blue-dark">{data.mainContent.heading}</h2>
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-3 text-zen-blue-light/70 text-sm font-medium tracking-widest uppercase">
+                    <div className="w-6 h-px bg-gradient-to-r from-zen-blue-light/40 to-transparent"></div>
+                    <span>Personal Journey</span>
+                    <div className="w-6 h-px bg-gradient-to-r from-transparent to-zen-blue-light/40"></div>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-tight tracking-tight">
+                    {data.mainContent.heading}
+                  </h2>
+                </div>
               )}
               {data.mainContent.bio && (
-                <div className="prose prose-lg text-zen-blue-dark/80">
-                  <p className="text-lg leading-relaxed">{data.mainContent.bio}</p>
+                <div className="prose prose-xl max-w-none">
+                  <p className="text-xl leading-relaxed text-white/85 font-light">{data.mainContent.bio}</p>
                 </div>
               )}
             </AnimatedSection>
@@ -56,22 +88,24 @@ export default function About() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative h-[500px] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 group"
             >
               {data.mainContent.profileImage ? (
                 <div className="relative w-full h-full">
-                  <Image
-                    src={data.mainContent.profileImage.src}
-                    alt={data.mainContent.profileImage.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain group-hover:scale-105 transition-transform duration-500"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-zen-blue-light/20 to-zen-purple-light/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute -inset-4 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1 h-full">
+                    <Image
+                      src={data.mainContent.profileImage.src}
+                      alt={data.mainContent.profileImage.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 rounded-2xl"
+                      priority
+                    />
+                  </div>
                 </div>
               ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-zen-blue-light to-zen-purple-light flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-br from-zen-blue-light to-zen-purple-light flex items-center justify-center rounded-3xl">
                   <div className="text-center text-white p-8">
                     <p className="text-xl font-light mb-4">Profile image placeholder</p>
                     <p className="text-sm opacity-80">Add your profile image to the static data</p>
@@ -119,9 +153,14 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="prose prose-lg max-w-3xl mx-auto text-zen-blue-dark/80"
+              className="prose prose-xl max-w-4xl mx-auto text-center"
             >
-              <p className="text-lg leading-relaxed">{data.additionalContent}</p>
+              <div className="inline-flex items-center gap-3 text-zen-blue-light/70 text-sm font-medium tracking-widest uppercase mb-6">
+                <div className="w-8 h-px bg-gradient-to-r from-zen-blue-light/40 to-transparent"></div>
+                <span>Additional Insights</span>
+                <div className="w-8 h-px bg-gradient-to-r from-transparent to-zen-blue-light/40"></div>
+              </div>
+              <p className="text-xl leading-relaxed text-white/85 font-light">{data.additionalContent}</p>
             </AnimatedSection>
           )}
         </div>

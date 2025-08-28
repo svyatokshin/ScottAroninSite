@@ -12,8 +12,8 @@ export const homePageData: HomePage = {
     heading: "Transform Your Life Through Mind-Body Wellness",
     subheading: "Experience personalized wellness coaching that harmonizes mind, body, and spirit for lasting transformation.",
     heroImage: {
-      src: "/src/assets/Scott_Aronin-3_1.png",
-      alt: "Scott Aronin - Wellness Coach",
+      src: "/meditation1.jpeg",
+      alt: "Meditation and mindfulness - Wellness Coach",
       width: 1200,
       height: 800
     },
@@ -21,21 +21,21 @@ export const homePageData: HomePage = {
     ctaText: "Book a Session"
   },
   aboutSection: {
-    title: "Meet Your Wellness Guide",
+    title: "Description Of Work",
     image: {
-      src: "/src/assets/Scott1.jpg",
-      alt: "Scott Aronin",
+      src: "/man-8707406_1280.png",
+      alt: "Meditation and mindfulness - Wellness Coach",
       width: 600,
       height: 600
     },
-    content: "With over a decade of experience in holistic wellness coaching, I'm dedicated to helping individuals achieve their optimal health and well-being through a comprehensive, personalized approach. My journey into wellness began with my own transformation – overcoming burnout, chronic stress, and disconnection from my body led me to discover the profound healing power of integrating mind, body, and spirit. Today, I combine evidence-based practices with intuitive guidance to help clients break free from limiting patterns and create vibrant, fulfilling lives. My approach goes beyond quick fixes, focusing instead on sustainable lifestyle transformations that honor your unique needs, goals, and circumstances. Whether you're seeking to improve your physical health, find mental clarity, or discover deeper purpose and meaning, I'm here to guide and support you every step of the way."
+    content: "I want you to be as healthy and happy as you can be.\n\nWhether your goals are physical, like fitness, athletics or weight loss, or you are focused on behavior change, like dietary change or quitting a damaging habit, or you want to improve internal experiences like mood, outlook or ability to focus, one common thread is your mind.\n\nEven while helping you with fitness and nutrition, I also focus on training the mind. I use both ancient wisdom techniques like meditation and qigong and also apply modern science and research-based practices shown to improve wellbeing and daily life. Done together, this may just help you find health and wellbeing results you didn't know possible.\n\nThis work is designed for the modern world that has people more connected but less rested than ever; mentally overstimulated, and possibly challenged by focusing deeply. It is designed to counter the effects of a society that never stops beeping and pinging and vibrating for your constant response. One of the goals is to help you break some of the addiction to devices, notifications, likes and views. To be healthy in this modern world, you have to be able to power down and disconnect- your mind- sometimes. You have to relax. And you can.\n\nThis is where it starts. Physical health and fitness, mental wellbeing, healthy eating, focus and joy, will emanate even more from a place of peace and quiet."
   },
   cardSectionsTitle: "Your Wellness Journey",
   cardSectionOne: {
-    title: "Mind-Body Connection",
-    content: "Discover the transformative power of meditation, mindfulness, and mental wellness practices. Through guided sessions and personalized techniques, you'll learn to quiet the mind, reduce stress, and cultivate lasting inner peace. Our approach integrates ancient wisdom with modern neuroscience to help you develop emotional resilience, improve focus, and create a deeper connection between your thoughts and physical well-being. Whether you're new to meditation or looking to deepen your practice, we'll guide you on a journey toward mental clarity and spiritual growth.",
+    title: "Mind-Body Work",
+    content: "Life won't stop coming at you, but you can train to be much more resilient in the face of it. I teach a mind-body approach with techniques of meditation, energy practice (qigong), and ways to use everyday moments and activities as part of your practice towards better health and a higher experience of wellbeing. This includes, but is not limited to, eating- related mind-body practices aimed partly at crafting a healthier relationship with food and eating with all the attendant possible positive results that will bring.",
     image: {
-      src: "/src/assets/meditation1.jpeg",
+      src: "/meditation5.jpg",
       alt: "Meditation and mindfulness",
       width: 400,
       height: 300
@@ -43,10 +43,10 @@ export const homePageData: HomePage = {
     mediaType: "image"
   },
   cardSectionTwo: {
-    title: "Physical Fitness",
-    content: "Build sustainable strength, flexibility, and endurance through personalized fitness programs designed specifically for your unique goals, fitness level, and lifestyle. Our holistic approach to physical wellness goes beyond traditional exercise routines, incorporating functional movement patterns, injury prevention strategies, and body awareness techniques. From gentle yoga flows to high-intensity interval training, we'll create a balanced program that challenges you while honoring your body's needs. Learn to move with purpose, develop better posture, and discover the joy of being active in ways that energize rather than exhaust you.",
+    title: "Fitness and Conditioning",
+    content: "Humans are made to move. Whatever your age and fitness level, if you can move, you can move better. Whereas human life historically included the necessity of movement- transiting, hunting, gathering, farming, hauling, building, chopping wood and carrying water- many in the modern world aren’t required to move much or functionally in order to survive. Many of us have to use our free time, make effort and sometimes spendmoney in order to exercise for the sake of exercise’s effects. But there are so many proven benefits to making the effort, especially to exercising well and wisely. I help you find motivation and to know how to exercise in ways specifically suited to you and your goals so you can get some of the known benefits of wise movement. These include, increased strength, speed, balance and coordination; weight loss; disease prevention; increased sense of wellbeing and improved mood; improved cognition; better athletic performance; more confidence and optimism; improved immune function; injury prevention; better sleep and more. With a focus on quality of movement and getting the above benefits through functional movement, I will coach and teach you to find ways individualized to you and your enjoyment to experience some of the benefits listed above.",
     image: {
-      src: "/src/assets/workout1.jpg",
+      src: "/workout1.jpg",
       alt: "Physical fitness training",
       width: 400,
       height: 300
@@ -54,10 +54,10 @@ export const homePageData: HomePage = {
     mediaType: "image"
   },
   cardSectionThree: {
-    title: "Nutrition & Wellness",
-    content: "Transform your relationship with food through sustainable nutrition practices that nourish your body, mind, and soul. Our approach to nutrition goes beyond counting calories or restrictive diets – we focus on understanding your body's unique needs, developing intuitive eating habits, and creating meal plans that fit your lifestyle. Learn about nutrient-dense foods, proper hydration, mindful eating practices, and how to fuel your body for optimal energy and performance. We'll help you navigate food sensitivities, establish healthy cooking habits, and create a positive, sustainable relationship with nutrition that supports your overall wellness journey.",
+    title: "Food & Nutrition",
+    content: "Finding food behaviors that are ideal specifically for you is attained through a combination of knowledge- modern scientific and older traditional- and wisdom. But here, the wisdom is largely your own. Through processes of attention, awareness and mindfulness, I help you get in touch with your own body’s individual nutritional needs. Starting this way, you can both discover eating behaviors that are the best for you personally and be more empowered to make the behavior changes and to habitualize them. So much has changed in human diets in modern times- for better and worse. It is great that most people in the modern world have regular access to enough food and usually enough relatively healthy food if they choose it. But so much food is also designed to be hyperpalatable even while largely devoid of actual nutrients. This happens through processing (denutrifying) and adding things like sugar, salt and extra fat. Hyperpalatable foods are more addictive not because they have more compounds the body needs, but because of how they trigger the reward centers in the brain. Part of cultivating the healthiest eating behaviors through deepening body awareness also means sensing the eating behaviors that are not mostly about body needs but about pleasure centers of the brain. I can help with methods to do that.",
     image: {
-      src: "/src/assets/nutrition-1.jpeg",
+      src: "/nutrition2.jpg",
       alt: "Healthy nutrition",
       width: 400,
       height: 300
@@ -68,19 +68,30 @@ export const homePageData: HomePage = {
     title: "Personalized Wellness Coaching",
     content: "Every individual is unique, and so should be their wellness journey. I work closely with each client to develop personalized strategies that align with their specific goals, lifestyle, and preferences. Through comprehensive one-on-one sessions, we'll explore all aspects of wellness including physical fitness, mental clarity, nutritional balance, and emotional well-being. My coaching methodology combines evidence-based practices with intuitive guidance, ensuring that your wellness plan is not only effective but also sustainable and enjoyable. Whether you're looking to overcome specific health challenges, improve your energy levels, or simply optimize your overall well-being, I'll provide the support, accountability, and expertise you need to create lasting positive changes in your life.",
     image: {
-      src: "/src/assets/Scott2.jpg",
-      alt: "Personal coaching session",
+      src: "/MOONORBITGRAPH.png",
+      alt: "Complete wellbeing model - Nutrition, Mind Body Healing, and Fitness & Movement orbiting around central wellness",
+      width: 500,
+      height: 350
+    },
+    mediaType: "image"
+  },
+  mainSectionTwo: {
+    title: "5 Pillars of Wellness",
+    content: "A complete mind-body course for wellbeing, healing, peace and awakening.\n\nBased on 5 pillars of integrated mind-body training, this course can help you experience stillness of mind as desired, improve wellbeing at many levels, deepen your strengths, grow your insight, heal your body and much more.\n\nBased on a combination of modern scientific evidence and a host of ancient wisdom traditions, this course helps you explore the known and profound ways intentional uses of your focus can change the way you experience life- mentally, emotionally, physically and spiritually. You yourself can make yourself feel better and be healthier. This course gives you tools to use for a lifetime to do just that.\n\nThe course is designed to be more immersive at the beginning (usually a period of 4-8 weeks) and then leave you with practices and a plan to continue your journey and practice on your own.",
+    image: {
+      src: "/moonlit2.jpg",
+      alt: "5 Pillars of Wellness - Cosmic connection to mind-body wellness and awakening",
       width: 600,
       height: 400
     },
     mediaType: "image"
   },
-  mainSectionTwo: {
-    title: "Holistic Approach to Health",
+  mainSectionThree: {
+    title: "Research, Evidence, and Tradition",
     content: "True wellness encompasses far more than just physical health – it's about creating harmony between mind, body, and spirit. My holistic approach recognizes the intricate connections between all aspects of your well-being, addressing not just symptoms but root causes of imbalance. We'll work together to identify and transform limiting beliefs, establish healthy boundaries, develop stress management techniques, and create sustainable daily practices that support your overall vitality. This comprehensive approach includes exploring how your environment, relationships, career, and personal values impact your health. By treating you as a whole person rather than isolated symptoms, we can create profound and lasting transformation that radiates into every area of your life, helping you achieve not just better health, but genuine fulfillment and joy.",
     image: {
-      src: "/src/assets/Scott3.jpg",
-      alt: "Holistic wellness approach",
+      src: "/sunset.jpg",
+      alt: "Research, Evidence, and Tradition - Sunset contemplation representing the integration of modern research with ancient wisdom",
       width: 600,
       height: 400
     },
@@ -98,8 +109,8 @@ export const aboutPageData: AboutPage = {
     heading: "Your Wellness Journey Starts Here",
     bio: "With over 10 years of experience in holistic wellness coaching, I've dedicated my life to helping others achieve their optimal health and well-being. My journey began with my own transformation – struggling with chronic stress, poor eating habits, and a disconnection from my body led me to discover the powerful connection between mind, body, and spirit. Through years of study, practice, and personal growth, I developed a comprehensive approach to wellness that addresses the whole person, not just individual symptoms. This transformative experience ignited my passion for helping others break free from limiting patterns and create vibrant, fulfilling lives.",
     profileImage: {
-      src: "/src/assets/Scott4.jpg",
-      alt: "Scott Aronin - Professional Photo",
+      src: "/Scott7.jpg",
+      alt: "Scott Aronin - Personal training session demonstrating fitness coaching expertise",
       width: 500,
       height: 600
     }
@@ -121,12 +132,12 @@ export const servicesPageData: ServicesPage = {
     {
       serviceTitle: "One-on-One Coaching",
       description: "Experience the power of personalized wellness coaching through comprehensive one-on-one sessions tailored specifically to your unique goals, challenges, and lifestyle. Our collaborative approach begins with an in-depth wellness assessment to understand your current state, health history, and aspirations. Together, we'll create a holistic transformation plan that integrates physical fitness, nutritional guidance, stress management, and mindfulness practices. Each session builds upon the last, providing you with practical tools, accountability, and expert support as you navigate your wellness journey. This intensive, personalized approach ensures rapid progress and sustainable results that fit seamlessly into your daily life.",
-      icon: {
-        src: "/src/assets/meditation2.jpg",
-        alt: "Personal coaching",
-        width: 100,
-        height: 100
-      },
+             icon: {
+         src: "/meditation5.jpg",
+         alt: "Personal coaching",
+         width: 100,
+         height: 100
+       },
       features: [
         "Comprehensive initial wellness assessment and goal setting",
         "Custom fitness programs adapted to your fitness level and preferences",
@@ -142,7 +153,7 @@ export const servicesPageData: ServicesPage = {
       serviceTitle: "Group Wellness Programs",
       description: "Join a supportive community of like-minded individuals on similar wellness journeys through our carefully curated group programs. These dynamic sessions combine the benefits of professional guidance with the motivation and camaraderie that comes from shared experiences. Our small group format ensures personalized attention while fostering meaningful connections and mutual support. Each program focuses on specific wellness themes, allowing participants to dive deep into topics like stress management, healthy cooking, fitness fundamentals, or mindfulness practices. The group setting creates natural accountability, celebration of wins, and collective problem-solving that accelerates everyone's progress.",
       icon: {
-        src: "/src/assets/workout2.jpg",
+        src: "/workout2.jpg",
         alt: "Group programs",
         width: 100,
         height: 100
@@ -162,7 +173,7 @@ export const servicesPageData: ServicesPage = {
       serviceTitle: "Wellness Workshops",
       description: "Expand your wellness knowledge and skills through our comprehensive educational workshops designed to empower you with practical tools and evidence-based strategies. These interactive learning experiences cover a wide range of topics, from foundational nutrition principles and meal planning to advanced mindfulness techniques and stress management strategies. Each workshop combines expert instruction with hands-on practice, ensuring you leave with actionable skills you can implement immediately. Whether you're just beginning your wellness journey or looking to deepen your existing knowledge, these workshops provide valuable insights and practical tools for sustainable lifestyle transformation.",
       icon: {
-        src: "/src/assets/nutrition2.jpg",
+        src: "/nutrition2.jpg",
         alt: "Wellness workshops",
         width: 100,
         height: 100
@@ -191,10 +202,10 @@ export const contactPageData: ContactPage = {
     email: "scott@scottaronin.com",
     phone: "(555) 123-4567",
     address: {
-      street: "123 Wellness Way",
-      city: "Health City",
-      state: "CA",
-      postalCode: "90210",
+      street: "Located in the Northeast PA area",
+      city: "",
+      state: "",
+      postalCode: "",
       country: "United States"
     },
     socialLinks: [
@@ -266,8 +277,8 @@ export const researchPageData: ResearchPage = {
     heading: "Evidence-Based Wellness Research",
     subheading: "Discover the latest research and insights into holistic wellness practices that transform lives.",
     heroImage: {
-      src: "/src/assets/MINDBODYGRAPH.png",
-      alt: "Mind-body wellness research",
+      src: "/space2.jpg",
+      alt: "Milky Way galaxy - representing the vastness of wellness research and cosmic connection to mind-body wellness",
       width: 1200,
       height: 600
     }
@@ -299,18 +310,6 @@ export const researchPageData: ResearchPage = {
           statistic: "67%",
           context: "reduction in anxiety symptoms",
           source: "Clinical Psychology Review, 2023"
-        }
-      ],
-      visualData: [
-        {
-          title: "Stress Reduction Timeline",
-          description: "Visual representation of stress reduction over 8 weeks of mindfulness practice",
-          image: {
-            src: "/src/assets/graph.png",
-            alt: "Stress reduction graph",
-            width: 400,
-            height: 300
-          }
         }
       ],
       relatedStudies: [
@@ -349,18 +348,6 @@ export const researchPageData: ResearchPage = {
           statistic: "78%",
           context: "increase in energy levels",
           source: "Nutrition Science Today, 2023"
-        }
-      ],
-      visualData: [
-        {
-          title: "Performance Comparison Chart",
-          description: "Comparison of performance metrics between different nutritional approaches",
-          image: {
-            src: "/src/assets/graph.png",
-            alt: "Performance comparison chart",
-            width: 400,
-            height: 300
-          }
         }
       ],
       relatedStudies: [

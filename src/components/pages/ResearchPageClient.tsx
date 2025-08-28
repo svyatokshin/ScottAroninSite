@@ -36,14 +36,28 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B]">
       {/* Hero Section */}
       <motion.section 
-        className="relative flex items-center justify-center min-h-[60vh] py-20 overflow-hidden"
+        className="relative flex items-center justify-center min-h-[60vh] py-32 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
+        {/* Premium space background effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_50%)]" />
+        {/* Star effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
+        {/* Nebula effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-40 mix-blend-screen" />
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.08),rgba(147,51,234,0.08),rgba(56,189,248,0.08))] opacity-25" />
+        {/* Subtle border lines */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-blue/30 to-transparent" />
+        
         {data.heroSection.heroImage && (
           <div className="absolute inset-0 z-0">
             <Image
@@ -66,7 +80,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
             {data.heroSection.heading}
           </motion.h1>
           <motion.p 
-            className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -77,7 +91,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
       </motion.section>
 
       {/* Research Sections */}
-      <div className="container mx-auto px-4 py-16 space-y-24">
+      <div className="container mx-auto px-4 py-32 space-y-24">
         {data.researchSections.map((section, index) => (
           <AnimatedSection
             key={section.title}
@@ -87,43 +101,54 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden">
+            <div className="relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden border border-zen-purple/20">
+              {/* Space background effects */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
+              {/* Star effects */}
+              <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
+              <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
+              {/* Nebula effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
+              <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
+              
               {/* Category Badge */}
-              <div className="absolute top-6 right-6">
-                <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-zen-blue-light/10 text-zen-blue-dark">
+              <div className="absolute top-6 right-6 z-10">
+                <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-zen-blue-light/20 text-white border border-zen-blue-light/40">
                   {section.category.charAt(0).toUpperCase() + section.category.slice(1)}
                 </span>
               </div>
 
               {/* Section Title */}
-              <h2 className="text-3xl md:text-4xl font-playfair font-light text-zen-blue-dark mb-8 pr-32">
+              <h2 className="text-3xl md:text-4xl font-playfair font-light text-white mb-8 pr-32 relative z-10">
                 {section.title}
               </h2>
 
               {/* Research Summary */}
-              <div className="prose prose-lg max-w-none text-zen-blue-dark/80 mb-12">
-                <p className="text-lg leading-relaxed">{section.summary}</p>
+              <div className="prose prose-lg max-w-none text-white/90 mb-12 relative z-10">
+                <p className="text-lg leading-relaxed font-light">{section.summary}</p>
               </div>
 
               {/* Key Findings */}
               {section.keyFindings.length > 0 && (
-                <div className="mb-12">
-                  <h3 className="text-2xl font-playfair font-light text-zen-blue-dark mb-6">
+                <div className="mb-12 relative z-10">
+                  <h3 className="text-2xl font-playfair font-light text-white mb-6">
                     Key Findings
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {section.keyFindings.map((finding, idx) => (
                       <div 
                         key={idx}
-                        className="bg-zen-blue-light/5 rounded-xl p-6 border border-zen-blue-light/20"
+                        className="bg-[#0A1428]/50 rounded-xl p-6 border border-zen-purple/30 backdrop-blur-sm"
                       >
-                        <h4 className="text-lg font-medium text-zen-blue-dark mb-3">
+                        <h4 className="text-lg font-medium text-white mb-3">
                           {finding.finding}
                         </h4>
-                        <p className="text-zen-blue-dark/70 mb-4">
+                        <p className="text-white/80 mb-4 font-light">
                           {finding.description}
                         </p>
-                        <p className="text-sm text-zen-blue-dark/50">
+                        <p className="text-sm text-zen-blue-light/70">
                           Source: {finding.source}
                         </p>
                       </div>
@@ -134,23 +159,23 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
 
               {/* Statistics */}
               {section.statistics.length > 0 && (
-                <div className="mb-12">
-                  <h3 className="text-2xl font-playfair font-light text-zen-blue-dark mb-6">
+                <div className="mb-12 relative z-10">
+                  <h3 className="text-2xl font-playfair font-light text-white mb-6">
                     Key Statistics
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {section.statistics.map((stat, idx) => (
                       <div 
                         key={idx}
-                        className="text-center p-6 bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 rounded-xl"
+                        className="text-center p-6 bg-gradient-to-br from-[#0A1428]/50 to-[#1E0B3B]/50 rounded-xl border border-zen-purple/30 backdrop-blur-sm"
                       >
-                        <div className="text-3xl font-light text-zen-blue-dark mb-3">
+                        <div className="text-3xl font-light text-zen-blue-light mb-3">
                           {stat.statistic}
                         </div>
-                        <p className="text-zen-blue-dark/70 mb-2">
+                        <p className="text-white/80 mb-2 font-light">
                           {stat.context}
                         </p>
-                        <p className="text-sm text-zen-blue-dark/50">
+                        <p className="text-sm text-zen-blue-light/70">
                           Source: {stat.source}
                         </p>
                       </div>
@@ -160,14 +185,14 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
               )}
 
               {/* Visual Data */}
-              {section.visualData.length > 0 && (
-                <div className="mb-12">
-                  <h3 className="text-2xl font-playfair font-light text-zen-blue-dark mb-6">
+              {section.visualData && section.visualData.length > 0 && (
+                <div className="mb-12 relative z-10">
+                  <h3 className="text-2xl font-playfair font-light text-white mb-6">
                     Visual Data
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {section.visualData.map((visual, idx) => (
-                      <div key={idx} className="bg-white rounded-xl overflow-hidden shadow-lg">
+                      <div key={idx} className="bg-[#0A1428]/50 rounded-xl overflow-hidden shadow-lg border border-zen-purple/30 backdrop-blur-sm">
                         {visual.image && (
                           <div className="relative aspect-video">
                             <Image
@@ -179,10 +204,10 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                           </div>
                         )}
                         <div className="p-6">
-                          <h4 className="text-xl font-medium text-zen-blue-dark mb-3">
+                          <h4 className="text-xl font-medium text-white mb-3">
                             {visual.title}
                           </h4>
-                          <p className="text-zen-blue-dark/70">
+                          <p className="text-white/80 font-light">
                             {visual.description}
                           </p>
                         </div>
@@ -194,8 +219,8 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
 
               {/* Related Studies */}
               {section.relatedStudies.length > 0 && (
-                <div>
-                  <h3 className="text-2xl font-playfair font-light text-zen-blue-dark mb-6">
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-playfair font-light text-white mb-6">
                     Related Studies
                   </h3>
                   <div className="space-y-4">
@@ -205,15 +230,15 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                         href={study.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block p-6 bg-zen-blue-light/5 rounded-xl border border-zen-blue-light/20 hover:bg-zen-blue-light/10 transition-colors duration-300"
+                        className="block p-6 bg-[#0A1428]/50 rounded-xl border border-zen-purple/30 hover:bg-[#0A1428]/70 transition-colors duration-300 backdrop-blur-sm"
                       >
-                        <h4 className="text-lg font-medium text-zen-blue-dark mb-2">
+                        <h4 className="text-lg font-medium text-white mb-2">
                           {study.title}
                         </h4>
-                        <p className="text-zen-blue-dark/70 mb-2">
+                        <p className="text-white/80 mb-2 font-light">
                           {study.authors} ({study.year})
                         </p>
-                        <p className="text-sm text-zen-blue-dark/50">
+                        <p className="text-sm text-zen-blue-light/70">
                           {study.journal}
                         </p>
                       </a>

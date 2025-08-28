@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${quicksand.variable} ${cormorant.variable} font-sans antialiased`}>
         {/* Animated background elements */}
-        <div className="fixed inset-0 bg-white" />
+        <div className="fixed inset-0 bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B]" />
         <div className="fixed inset-0 bg-zen-radial from-zen-blue-light/5 via-transparent to-transparent animate-zen-fade" />
         
         {/* Floating decorative elements */}
@@ -45,9 +45,64 @@ export default function RootLayout({
           </main>
           
           {/* Footer */}
-          <footer className="relative bg-gradient-to-b from-transparent to-zen-blue-dark/5 py-8 mt-16">
-            <div className="container mx-auto px-4 text-center text-zen-blue-dark/60">
-              <p className="animate-fade-in">© {new Date().getFullYear()} Scott Aronin. All rights reserved.</p>
+          <footer className="relative bg-gradient-to-b from-transparent via-[#0F1B2D]/80 to-[#050A14] py-16 mt-16">
+            {/* Premium space background effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/10 via-transparent to-transparent opacity-40" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
+            {/* Star effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_10px_15px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_25px_40px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_35px_80px,#fff,rgba(0,0,0,0))] bg-[length:100px_100px] opacity-10" />
+            
+            {/* Subtle border lines */}
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
+            
+            <div className="container mx-auto px-4 relative z-10">
+              <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                  {/* Company Info */}
+                  <div className="text-center md:text-left">
+                    <h3 className="text-2xl font-playfair font-light text-white mb-4">Scott Aronin</h3>
+                    <p className="text-white/70 font-light leading-relaxed">
+                      Transformative mind-body wellness coaching for lasting change and inner peace.
+                    </p>
+                  </div>
+                  
+                  {/* Quick Links */}
+                  <div className="text-center md:text-left">
+                    <h4 className="text-lg font-light text-zen-blue-light mb-4">Quick Links</h4>
+                    <ul className="space-y-2">
+                      <li><a href="/about" className="text-white/70 hover:text-white transition-colors font-light">About</a></li>
+                      <li><a href="/services" className="text-white/70 hover:text-white transition-colors font-light">Services</a></li>
+                      <li><a href="/research" className="text-white/70 hover:text-white transition-colors font-light">Research</a></li>
+                      <li><a href="/contact" className="text-white/70 hover:text-white transition-colors font-light">Contact</a></li>
+                    </ul>
+                  </div>
+                  
+                  {/* Contact Info */}
+                  <div className="text-center md:text-left">
+                    <h4 className="text-lg font-light text-zen-blue-light mb-4">Get in Touch</h4>
+                    <div className="space-y-2">
+                      <p className="text-white/70 font-light">Book a free consultation</p>
+                      <a 
+                        href="/contact" 
+                        className="inline-flex items-center gap-2 text-zen-blue-light hover:text-white transition-colors font-light group"
+                      >
+                        Contact Us
+                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Bottom Bar */}
+                <div className="pt-8 border-t border-zen-purple/20 text-center">
+                  <p className="text-white/60 font-light">
+                    © {new Date().getFullYear()} Scott Aronin. All rights reserved.
+                  </p>
+                </div>
+              </div>
             </div>
           </footer>
         </div>

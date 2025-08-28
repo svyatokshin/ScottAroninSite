@@ -62,6 +62,7 @@ export interface HomePage {
   cardSectionThree?: ContentSection
   mainSectionOne?: ContentSection
   mainSectionTwo?: ContentSection
+  mainSectionThree?: ContentSection
   wellnessPillars?: WellnessPillar[]
   newsletter?: Newsletter
   seo?: SEO
@@ -167,7 +168,7 @@ export interface ResearchSection {
   summary: string;
   keyFindings: ResearchFinding[];
   statistics: ResearchStatistic[];
-  visualData: VisualData[];
+  visualData?: VisualData[];
   relatedStudies: RelatedStudy[];
 }
 
