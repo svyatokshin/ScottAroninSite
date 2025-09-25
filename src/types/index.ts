@@ -23,6 +23,7 @@ export interface HeroSection {
 export interface ContentSection {
   title: string
   content: string | ReactNode
+  preview?: string
   image?: StaticImage
   video?: {
     url: string

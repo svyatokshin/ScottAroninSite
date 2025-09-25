@@ -11,6 +11,7 @@ interface AnimatedSectionProps {
   whileInView?: any
   transition?: any
   viewport?: any
+  id?: string
 }
 
 export function AnimatedSection({
@@ -20,7 +21,8 @@ export function AnimatedSection({
   animate = { opacity: 1, y: 0 },
   whileInView,
   transition = { duration: 0.8 },
-  viewport = { once: true }
+  viewport = { once: true },
+  id
 }: AnimatedSectionProps) {
   return (
     <motion.div
@@ -30,6 +32,7 @@ export function AnimatedSection({
       whileInView={whileInView}
       transition={transition}
       viewport={viewport}
+      id={id}
     >
       {children}
     </motion.div>

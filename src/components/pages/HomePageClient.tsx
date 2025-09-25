@@ -351,8 +351,11 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  whileInView={{ opacity: 1, y: 0 }}
                  transition={{ duration: 0.8, delay: 0.2 }}
                  viewport={{ once: true }}
-                 className="group relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-2xl p-8 shadow-xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] hover:scale-[1.01] max-w-2xl mx-auto mb-2 overflow-hidden"
                >
+                 <div 
+                   className="group relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-2xl p-8 shadow-xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] hover:scale-[1.01] max-w-2xl mx-auto mb-2 overflow-hidden cursor-pointer"
+                   onClick={() => handleOpenModal('cardSectionOne')}
+                 >
                  {/* Space background effects */}
                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -380,22 +383,17 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      {data.cardSectionOne.title}
                    </h2>
                    <div className="prose prose-lg prose-invert max-w-none text-white/90">
-                     <p className="text-base leading-relaxed">{data.cardSectionOne.content}</p>
+                     <p className="text-base leading-relaxed">{data.cardSectionOne.preview || data.cardSectionOne.content}</p>
                    </div>
                    <div className="mt-6">
-                     <Link
-                       href="#"
-                       onClick={e => { e.preventDefault(); handleOpenModal('cardSectionOne'); }}
-                       className="inline-flex items-center gap-2 text-zen-yellow-light hover:text-white transition-colors text-lg font-light group-hover:gap-3"
-                       tabIndex={0}
-                       aria-label={`More about ${data.cardSectionOne.title}`}
-                     >
+                     <div className="inline-flex items-center gap-2 text-zen-yellow-light group-hover:text-white transition-colors text-lg font-light group-hover:gap-3">
                        Explore Mind-Body Work
                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 transition-transform group-hover:translate-x-1">
                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                        </svg>
-                     </Link>
+                     </div>
                    </div>
+                 </div>
                  </div>
                </AnimatedSection>
              )}
@@ -406,7 +404,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  data.cardSectionTwo && { ...data.cardSectionTwo, key: 'cardSectionTwo' },
                  data.cardSectionThree && { ...data.cardSectionThree, key: 'cardSectionThree' },
                ].filter(Boolean).map((section, index) => {
-                 const s = section as { image?: any; title: string; content: any; link?: string; key: string };
+                 const s = section as { image?: any; title: string; content: any; preview?: string; link?: string; key: string };
                  return (
                    <AnimatedSection
                      key={s.key}
@@ -414,8 +412,11 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      whileInView={{ opacity: 1, y: 0 }}
                      transition={{ duration: 0.8, delay: (index + 1) * 0.2 }}
                      viewport={{ once: true }}
-                     className={`group relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-2xl p-8 shadow-xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] hover:scale-[1.01] overflow-hidden`}
                    >
+                     <div 
+                       className="group relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-2xl p-8 shadow-xl border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] hover:scale-[1.01] overflow-hidden cursor-pointer h-full flex flex-col"
+                       onClick={() => handleOpenModal(s.key)}
+                     >
                      {/* Space background effects */}
                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -442,24 +443,19 @@ export function HomePageClient({ data }: HomePageClientProps) {
                        <h2 className="text-2xl font-playfair font-light text-white mb-4">
                          {s.title}
                        </h2>
-                       <div className="prose prose-lg prose-invert max-w-none text-white/90">
-                         <p className="text-base leading-relaxed">{s.content}</p>
+                       <div className="prose prose-lg prose-invert max-w-none text-white/90 flex-grow flex items-center">
+                         <p className="text-base leading-relaxed">{s.preview || s.content}</p>
                        </div>
                        <div className="mt-6">
-                         <Link
-                           href="#"
-                           onClick={e => { e.preventDefault(); handleOpenModal(s.key); }}
-                           className="inline-flex items-center gap-2 text-zen-yellow-light hover:text-white transition-colors text-lg font-light group-hover:gap-3"
-                           tabIndex={0}
-                           aria-label={`More about ${s.title}`}
-                         >
+                         <div className="inline-flex items-center gap-2 text-zen-yellow-light group-hover:text-white transition-colors text-lg font-light group-hover:gap-3">
                            {s.key === 'cardSectionTwo' && 'Explore Fitness & Conditioning'}
                            {s.key === 'cardSectionThree' && 'Explore Food & Nutrition'}
                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 transition-transform group-hover:translate-x-1">
                              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                            </svg>
-                         </Link>
+                         </div>
                        </div>
+                     </div>
                      </div>
                    </AnimatedSection>
                  );
@@ -556,7 +552,33 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    </div>
                  )}
                  <div className="prose prose-xl max-w-none">
-                   <p className="text-xl leading-relaxed text-white/85 font-light">{data.mainSectionTwo.content}</p>
+                   <div className="text-xl leading-relaxed text-white/85 font-light">
+                     {typeof data.mainSectionTwo.content === 'string' ? data.mainSectionTwo.content.split('\n\n**The 5 Pillars:**\n\n')[0] : data.mainSectionTwo.content}
+                   </div>
+                   {typeof data.mainSectionTwo.content === 'string' && data.mainSectionTwo.content.includes('**The 5 Pillars:**') && (
+                     <div className="mt-8">
+                       <h3 className="text-2xl font-playfair font-light text-white mb-6">The 5 Pillars:</h3>
+                       <ol className="text-xl leading-relaxed text-white/85 font-light space-y-3 list-decimal list-inside">
+                         {data.mainSectionTwo.content.split('**The 5 Pillars:**\n\n')[1]?.split('\n').filter((item: string) => item.trim().match(/^\d+\./)).map((item: string, index: number) => (
+                           <li key={index} className="ml-4">
+                             {item.replace(/^\d+\.\s*/, '')}
+                           </li>
+                         ))}
+                       </ol>
+                     </div>
+                   )}
+                 </div>
+                 <div className="mt-8">
+                   <Link
+                     href="/services#5-pillars-of-wellness"
+                     className="inline-flex items-center gap-3 text-zen-blue-light hover:text-white transition-colors text-lg font-light group"
+                   >
+                     <span>Learn More About the 5 Pillars</span>
+                     <div className="w-8 h-px bg-zen-blue-light/50 group-hover:w-12 transition-all duration-300"></div>
+                     <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                     </svg>
+                   </Link>
                  </div>
                </div>
                <div className="flex-shrink-0 w-full lg:w-1/2">
@@ -701,7 +723,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
         if (!modalSection) return null;
         return (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm p-4"
             role="dialog"
             aria-modal="true"
             aria-labelledby="modal-title"
@@ -709,7 +731,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             onClick={handleCloseModal}
           >
                          <div
-               className="bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl shadow-2xl p-10 max-w-4xl w-full mx-4 relative flex flex-col items-center text-center border border-zen-purple/30 backdrop-blur-sm"
+               className="bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl shadow-2xl p-8 md:p-10 max-w-4xl w-full mx-6 md:mx-8 max-h-[90vh] overflow-y-auto relative flex flex-col items-center text-center border border-zen-purple/30 backdrop-blur-sm"
                onClick={e => e.stopPropagation()}
              >
                {/* Premium background effects */}
@@ -724,22 +746,22 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  ×
                </button>
                {modalSection.image && (
-                 <div className="relative mb-10">
+                 <div className="relative mb-8 md:mb-10">
                    <div className="absolute -inset-2 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-2xl blur-lg opacity-50" />
                    <Image
                      src={modalSection.image.src}
                      alt={modalSection.image.alt}
                      width={modalSection.image.width || 160}
                      height={modalSection.image.height || 160}
-                     className="relative rounded-2xl object-cover w-48 h-48 border border-zen-purple/20"
+                     className="relative rounded-2xl object-cover w-32 h-32 md:w-48 md:h-48 border border-zen-purple/20"
                    />
                  </div>
                )}
-               <h2 id="modal-title" className="text-4xl font-playfair font-light text-white mb-8 mt-2 relative z-10">
+               <h2 id="modal-title" className="text-3xl md:text-4xl font-playfair font-light text-white mb-6 md:mb-8 mt-2 relative z-10">
                  {modalSection.title}
                </h2>
-               <div className="prose prose-xl max-w-none relative z-10">
-                 <p className="text-xl leading-relaxed text-white/90 font-light">{modalSection.content}</p>
+               <div className="prose prose-lg md:prose-xl max-w-none relative z-10">
+                 <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">{modalSection.content}</p>
                </div>
              </div>
           </div>
