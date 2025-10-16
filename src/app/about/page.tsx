@@ -11,9 +11,9 @@ export default function About() {
   const data = aboutPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B]">
+    <div className="min-h-screen bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52]">
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] overflow-hidden">
+      <section className="relative py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />

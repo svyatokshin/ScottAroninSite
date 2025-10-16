@@ -142,7 +142,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
           >
             <span className="inline-block uppercase tracking-[0.35em] text-white/90 text-base md:text-lg font-medium bg-white/10 border border-zen-blue/60 rounded-full px-8 py-2 backdrop-blur-md shadow-md"
                   style={{letterSpacing: '0.25em', borderWidth: '1.5px', boxShadow: '0 2px 24px 0 rgba(56,189,248,0.10)'}}>
-              Holistic Wellness Coaching
+              Integrated Wellness Coaching
             </span>
           </motion.div>
           {/* Main Headline */}
@@ -210,14 +210,14 @@ export function HomePageClient({ data }: HomePageClientProps) {
              {/* About Section - Premium Design */}
                {data.aboutSection && (
           <motion.section
-            className="pt-16 pb-32 bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] relative overflow-hidden"
+            className="pt-16 pb-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] relative overflow-hidden"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Top fade-in for seamless hero transition */}
-            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#050A14] via-[#050A14]/90 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-[#0F1B2D] via-[#0F1B2D]/90 to-transparent" />
            {/* Premium space background effects */}
            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -262,11 +262,11 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    <div className="flex-1 space-y-8">
                      {data.aboutSection.title && (
                        <div className="space-y-4">
-                         <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase">
-                           <div className="w-8 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
-                           <span>Holistic Approach</span>
-                           <div className="w-8 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
-                         </div>
+                        <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase">
+                          <div className="w-8 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
+                          <span>Integrated Wellness & Fitness</span>
+                          <div className="w-8 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
+                        </div>
                          <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-tight tracking-tight">
                            {data.aboutSection.title}
                          </h2>
@@ -315,7 +315,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
 
              {/* Content Sections as Cards - Premium Dark Theme */}
        <motion.section
-         className="py-32 bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] relative overflow-hidden"
+         className="py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] relative overflow-hidden"
          initial={{ opacity: 0, y: 40 }}
          whileInView={{ opacity: 1, y: 0 }}
          transition={{ duration: 0.8 }}
@@ -466,7 +466,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
        </motion.section>
 
              {/* Main Sections - Premium Dark Theme */}
-       <div className="py-32 bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] relative overflow-hidden">
+       <div className="py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] relative overflow-hidden">
          {/* Premium space background effects */}
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
@@ -613,18 +613,18 @@ export function HomePageClient({ data }: HomePageClientProps) {
 
            {data.mainSectionThree && (
              <motion.section
-               className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20"
+               className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex flex-col lg:flex-row items-center gap-16 lg:gap-20' : 'max-w-4xl mx-auto text-center'}`}
                initial={{ opacity: 0, y: 40 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
                viewport={{ once: true }}
              >
-               <div className="flex-1 space-y-6">
+               <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex-1 space-y-6' : 'space-y-8'}`}>
                  {data.mainSectionThree.title && (
                    <div className="space-y-4">
                      <div className="inline-flex items-center gap-3 text-zen-blue-light/70 text-sm font-medium tracking-widest uppercase">
                        <div className="w-6 h-px bg-gradient-to-r from-zen-blue-light/40 to-transparent"></div>
-                       <span>Transformative Results</span>
+                       <span>Research & Evidence</span>
                        <div className="w-6 h-px bg-gradient-to-r from-transparent to-zen-blue-light/40"></div>
                      </div>
                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-tight tracking-tight">
@@ -632,44 +632,72 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      </h2>
                    </div>
                  )}
-                 <div className="prose prose-xl max-w-none">
-                   <p className="text-xl leading-relaxed text-white/85 font-light">{data.mainSectionThree.content}</p>
-                 </div>
-               </div>
-               <div className="flex-shrink-0 w-full lg:w-1/2">
-                 <div className="relative group">
-                   <div className="absolute -inset-4 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
-                   <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1">
-                     {data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url ? (
-                       <div className="relative aspect-video">
-                         <iframe
-                           src={getYouTubeEmbedUrl(data.mainSectionThree.video.url)}
-                           className="absolute inset-0 w-full h-full rounded-2xl"
-                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                           allowFullScreen
-                           title={data.mainSectionThree.title || 'Video content'}
-                         />
-                       </div>
-                     ) : data.mainSectionThree.image ? (
-                       <Image
-                         src={data.mainSectionThree.image.src}
-                         alt={data.mainSectionThree.image.alt}
-                         width={600}
-                         height={400}
-                         className="object-cover w-full h-full rounded-2xl group-hover:scale-105 transition-all duration-700"
-                         priority={false}
-                       />
-                     ) : null}
+                 <div className={`prose prose-xl max-w-none ${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? '' : 'prose-lg'}`}>
+                   <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'text-xl leading-relaxed text-white/85 font-light' : 'text-lg leading-relaxed text-white/90 font-light whitespace-pre-line'}`}>
+                     {typeof data.mainSectionThree.content === 'string' ? data.mainSectionThree.content.split('\n').map((line: string, index: number) => {
+                       if (line.includes('🧠 NEUROPLASTICITY') || line.includes('🛡️ IMMUNE SYSTEM') || line.includes('❤️ STRESS RESPONSE') || line.includes('🧘 QIGONG')) {
+                         return (
+                           <div key={index} className="mt-12 mb-8">
+                             <div className="w-full h-px bg-gradient-to-r from-transparent via-zen-blue/40 to-transparent mb-8"></div>
+                             <div className="text-2xl font-semibold text-zen-blue-light text-center">{line}</div>
+                           </div>
+                         );
+                       }
+                       return <div key={index} className="mb-4">{line}</div>;
+                     }) : data.mainSectionThree.content}
                    </div>
                  </div>
+                 <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'mt-8' : 'mt-12'}`}>
+                   <Link
+                     href="/research"
+                     className="inline-flex items-center gap-3 bg-white/10 border border-zen-blue/70 px-8 py-4 text-lg rounded-full font-semibold text-zen-blue-light shadow-xl hover:bg-zen-blue/10 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
+                     style={{boxShadow: '0 4px 32px 0 rgba(56,189,248,0.15)'}}
+                     aria-label="View More Research Articles"
+                     tabIndex={0}
+                   >
+                     More Research Articles
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-zen-blue-light group-hover:text-zen-blue transition-colors">
+                       <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                     </svg>
+                   </Link>
+                 </div>
                </div>
+               {(data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url)) && (
+                 <div className="flex-shrink-0 w-full lg:w-1/2">
+                   <div className="relative group">
+                     <div className="absolute -inset-4 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
+                     <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1">
+                       {data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url ? (
+                         <div className="relative aspect-video">
+                           <iframe
+                             src={getYouTubeEmbedUrl(data.mainSectionThree.video.url)}
+                             className="absolute inset-0 w-full h-full rounded-2xl"
+                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                             allowFullScreen
+                             title={data.mainSectionThree.title || 'Video content'}
+                           />
+                         </div>
+                       ) : data.mainSectionThree.image ? (
+                         <Image
+                           src={data.mainSectionThree.image.src}
+                           alt={data.mainSectionThree.image.alt}
+                           width={600}
+                           height={400}
+                           className="object-cover w-full h-full rounded-2xl group-hover:scale-105 transition-all duration-700"
+                           priority={false}
+                         />
+                       ) : null}
+                     </div>
+                   </div>
+                 </div>
+               )}
              </motion.section>
            )}
          </div>
        </div>
 
              {/* Newsletter Section - Premium Dark Theme */}
-       <section className="py-32 bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] relative overflow-hidden">
+       <section className="py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] relative overflow-hidden">
          {/* Premium space background effects */}
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-40" />
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />

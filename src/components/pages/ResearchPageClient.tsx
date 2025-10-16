@@ -36,7 +36,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B]">
+    <div className="relative bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52]">
       {/* Hero Section */}
       <motion.section 
         className="relative flex items-center justify-center min-h-[60vh] py-32 overflow-hidden"
