@@ -63,9 +63,12 @@ export default function Contact() {
               <AnimatedSection
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] p-10 rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
-              style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
+                className="relative"
               >
+                <div 
+                  className="bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] p-10 rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
+                  style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
+                >
                 {/* Space background effects */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -157,6 +160,7 @@ export default function Contact() {
                       </div>
                     </div>
                   )}
+                </div>
                 </div>
               </AnimatedSection>
             )}
