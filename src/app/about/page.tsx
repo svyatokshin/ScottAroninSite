@@ -79,11 +79,14 @@ export default function About() {
               )}
               {data.mainContent.bio && (
                 <div className="prose prose-xl max-w-none">
-                  {data.mainContent.bio.split('\n\n').map((paragraph: string, index: number) => (
-                    <p key={index} className="text-xl leading-relaxed text-white/90 font-light mb-8 tracking-wide">
-                      {paragraph}
-                    </p>
-                  ))}
+                  {typeof data.mainContent.bio === 'string' 
+                    ? data.mainContent.bio.split('\n\n').map((paragraph: string, index: number) => (
+                        <p key={index} className="text-xl leading-relaxed text-white/90 font-light mb-8 tracking-wide">
+                          {paragraph}
+                        </p>
+                      ))
+                    : <p className="text-xl leading-relaxed text-white/90 font-light mb-8 tracking-wide">{data.mainContent.bio}</p>
+                  }
                 </div>
               )}
             </AnimatedSection>
