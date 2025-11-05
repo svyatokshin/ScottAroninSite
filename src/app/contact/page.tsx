@@ -13,8 +13,8 @@ export default function Contact() {
   const data = contactPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52]">
-      <section className="relative py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]">
+      <section className="relative py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -35,22 +35,22 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
+            <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+              <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
               <span>Get in Touch</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-lg">
               {data.title}
             </h1>
             <div className="mb-12">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-3 bg-white/10 border border-zen-blue/70 px-12 py-4 text-xl rounded-full font-semibold text-zen-blue-light shadow-xl hover:bg-zen-blue/10 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
-                style={{boxShadow: '0 4px 32px 0 rgba(56,189,248,0.15)'}}
+                className="inline-flex items-center gap-3 bg-white/20 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
+                style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
               >
                 Book a Session - Free Consultation Available
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-zen-blue-light group-hover:text-zen-blue transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                 </svg>
               </a>
@@ -63,7 +63,8 @@ export default function Contact() {
               <AnimatedSection
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] p-8 rounded-2xl shadow-2xl border border-zen-purple/20 overflow-hidden"
+                className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] p-10 rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
+              style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
               >
                 {/* Space background effects */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
@@ -81,19 +82,19 @@ export default function Contact() {
                   <div className="space-y-6">
                     {data.contactInfo.email && (
                       <div>
-                        <h3 className="text-lg font-light mb-2 text-zen-blue-light">Email</h3>
+                        <h3 className="text-lg font-light mb-2 text-white">Email</h3>
                         <p className="text-white/90">{data.contactInfo.email}</p>
                       </div>
                     )}
                     {data.contactInfo.phone && (
                       <div>
-                        <h3 className="text-lg font-light mb-2 text-zen-blue-light">Phone</h3>
+                        <h3 className="text-lg font-light mb-2 text-white">Phone</h3>
                         <p className="text-white/90">{data.contactInfo.phone}</p>
                       </div>
                     )}
                     {data.contactInfo.address && data.contactInfo.address.street && (
                       <div>
-                        <h3 className="text-lg font-light mb-2 text-zen-blue-light">Location</h3>
+                        <h3 className="text-lg font-light mb-2 text-white">Location</h3>
                         <p className="text-white/90">
                           {[
                             data.contactInfo.address.street,
@@ -107,7 +108,7 @@ export default function Contact() {
                     )}
                     {data.contactInfo.socialLinks && data.contactInfo.socialLinks.length > 0 && (
                       <div>
-                        <h3 className="text-lg font-light mb-2 text-zen-blue-light">Social Media</h3>
+                        <h3 className="text-lg font-light mb-2 text-white">Social Media</h3>
                         <div className="flex gap-4">
                           {data.contactInfo.socialLinks.map((link, index) => (
                             <a
@@ -115,7 +116,7 @@ export default function Contact() {
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-zen-blue-light hover:text-white transition-colors"
+                              className="text-white hover:text-white/80 transition-colors"
                             >
                               {link.platform}
                             </a>
@@ -128,7 +129,7 @@ export default function Contact() {
                   {/* Business Hours */}
                   {data.businessHours && data.businessHours.length > 0 && (
                     <div className="mt-8">
-                      <h3 className="text-lg font-light mb-4 text-zen-blue-light">Business Hours</h3>
+                      <h3 className="text-lg font-light mb-4 text-white">Business Hours</h3>
                       <div className="space-y-2">
                         {data.businessHours.map((hours, index) => (
                           <div key={index} className="flex justify-between text-white/90">

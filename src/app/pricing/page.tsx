@@ -68,8 +68,8 @@ export default function Pricing() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52]">
-      <section className="relative py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]">
+      <section className="relative py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -91,29 +91,30 @@ export default function Pricing() {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
+            <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+              <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
               <span>Pricing Plans</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-lg">
               Simple, Transparent Pricing
             </h1>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto font-light">
+            <p className="text-xl text-white/95 max-w-3xl mx-auto font-light">
               Choose the plan that best fits your learning goals
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {pricingPlans.map((plan, index) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className={`relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-2xl shadow-2xl overflow-hidden border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] hover:scale-[1.02] ${
-                  plan.popular ? 'ring-2 ring-zen-blue-light' : ''
+                className={`relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl shadow-2xl overflow-hidden border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] ${
+                  plan.popular ? 'ring-2 ring-white/30 scale-105' : ''
                 }`}
+                style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
               >
                 {/* Space background effects */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
@@ -127,21 +128,21 @@ export default function Pricing() {
                 <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
                 
                 {plan.popular && (
-                  <div className="absolute top-0 right-0 bg-gradient-to-r from-zen-blue-light to-zen-purple-light text-[#050A14] px-4 py-1 text-sm font-medium rounded-bl-lg">
+                  <div className="absolute top-0 right-0 bg-gradient-to-r from-[#0D47A1] to-[#1565C0] text-white px-4 py-1 text-sm font-medium rounded-bl-lg">
                     Popular
                   </div>
                 )}
-                <div className="relative z-10 p-8">
-                  <h3 className="text-2xl font-light text-white mb-2">{plan.name}</h3>
-                  <p className="text-white/80 mb-6 font-light">{plan.description}</p>
-                  <div className="mb-8">
-                    <span className="text-4xl font-light text-zen-blue-light">${plan.price}</span>
+                <div className="relative z-10 p-10">
+                  <h3 className="text-2xl font-light text-white mb-3">{plan.name}</h3>
+                  <p className="text-white/80 mb-8 font-light">{plan.description}</p>
+                  <div className="mb-10">
+                    <span className="text-5xl font-light text-white">${plan.price}</span>
                     <span className="text-white/60">/month</span>
                   </div>
-                  <ul className="space-y-4 mb-8">
+                  <ul className="space-y-4 mb-10">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-center text-white/90">
-                        <FiCheck className="text-zen-yellow-light mr-2" />
+                        <FiCheck className="text-white mr-3" />
                         {feature}
                       </li>
                     ))}
@@ -151,8 +152,8 @@ export default function Pricing() {
                     disabled={isLoading && selectedPlan === plan.priceId}
                     className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
                       plan.popular
-                        ? 'bg-gradient-to-r from-zen-blue-light to-zen-purple-light text-[#050A14] hover:from-zen-blue to-zen-purple hover:scale-105'
-                        : 'bg-white/10 text-white border border-zen-blue/40 hover:bg-zen-blue/20 hover:border-zen-blue/60 hover:scale-105'
+                        ? 'bg-gradient-to-r from-[#0D47A1] to-[#1565C0] text-white hover:from-[#1565C0] hover:to-[#1976D2] hover:scale-105'
+                        : 'bg-white/20 text-white border border-white/50 hover:bg-white/30 hover:border-white/60 hover:scale-105'
                     }`}
                   >
                     {isLoading && selectedPlan === plan.priceId
@@ -170,7 +171,7 @@ export default function Pricing() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-24 text-center"
           >
-            <div className="relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl p-12 overflow-hidden shadow-2xl border border-zen-purple/20">
+            <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-12 md:p-16 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
               {/* Space background effects */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -189,7 +190,7 @@ export default function Pricing() {
                 </p>
                 <a
                   href="/contact"
-                  className="inline-block bg-gradient-to-r from-zen-blue-light to-zen-purple-light text-[#050A14] px-8 py-3 rounded-lg font-semibold hover:from-zen-blue to-zen-purple transition-all duration-300 hover:scale-105"
+                  className="inline-block bg-gradient-to-r from-[#0D47A1] to-[#1565C0] text-white px-8 py-3 rounded-lg font-semibold hover:from-[#1565C0] hover:to-[#1976D2] transition-all duration-300 hover:scale-105"
                 >
                   Book a Session - Free Consultation Available
                 </a>

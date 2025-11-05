@@ -40,7 +40,7 @@ export function ContactForm() {
     <AnimatedSection
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      className="relative bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] p-8 rounded-2xl shadow-2xl border border-zen-purple/20 overflow-hidden"
+      className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] p-8 rounded-2xl shadow-2xl border border-zen-purple/20 overflow-hidden"
     >
       {/* Space background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
@@ -57,7 +57,7 @@ export function ContactForm() {
         <h2 className="text-2xl font-light mb-6 text-white">Send a Message</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-zen-blue-light/80 mb-1">
+            <label htmlFor="name" className="block text-sm font-medium text-white/90 mb-1">
               Name
             </label>
             <input
@@ -67,12 +67,12 @@ export function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-zen-purple/40 rounded-lg focus:ring-2 focus:ring-zen-blue-light/60 focus:border-zen-blue-light/60 transition-all duration-300 bg-[#0A1428]/50 backdrop-blur-sm text-white placeholder-white/60"
+              className="w-full px-4 py-3 border border-zen-purple/40 rounded-lg focus:ring-2 focus:ring-zen-blue-light/60 focus:border-zen-blue-light/60 transition-all duration-300 bg-[#2E86AB]/50 backdrop-blur-sm text-white placeholder-white/60"
               placeholder="Your name"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-zen-blue-light/80 mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-1">
               Email
             </label>
             <input
@@ -82,12 +82,12 @@ export function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-zen-purple/40 rounded-lg focus:ring-2 focus:ring-zen-blue-light/60 focus:border-zen-blue-light/60 transition-all duration-300 bg-[#0A1428]/50 backdrop-blur-sm text-white placeholder-white/60"
+              className="w-full px-4 py-3 border border-zen-purple/40 rounded-lg focus:ring-2 focus:ring-zen-blue-light/60 focus:border-zen-blue-light/60 transition-all duration-300 bg-[#2E86AB]/50 backdrop-blur-sm text-white placeholder-white/60"
               placeholder="your.email@example.com"
             />
           </div>
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-zen-blue-light/80 mb-1">
+            <label htmlFor="subject" className="block text-sm font-medium text-white/90 mb-1">
               Subject
             </label>
             <input
@@ -97,12 +97,12 @@ export function ContactForm() {
               value={formData.subject}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-zen-purple/40 rounded-lg focus:ring-2 focus:ring-zen-blue-light/60 focus:border-zen-blue-light/60 transition-all duration-300 bg-[#0A1428]/50 backdrop-blur-sm text-white placeholder-white/60"
+              className="w-full px-4 py-3 border border-zen-purple/40 rounded-lg focus:ring-2 focus:ring-zen-blue-light/60 focus:border-zen-blue-light/60 transition-all duration-300 bg-[#2E86AB]/50 backdrop-blur-sm text-white placeholder-white/60"
               placeholder="What's this about?"
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-zen-blue-light/80 mb-1">
+            <label htmlFor="message" className="block text-sm font-medium text-white/90 mb-1">
               Message
             </label>
             <textarea
@@ -119,12 +119,12 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-zen-blue-light to-zen-purple-light text-[#050A14] px-6 py-3 rounded-lg font-semibold hover:from-zen-blue to-zen-purple transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 shadow-lg"
+            className="w-full bg-gradient-to-r from-[#0D47A1] to-[#1565C0] text-white px-6 py-3 rounded-lg font-semibold hover:from-[#1565C0] hover:to-[#1976D2] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 shadow-lg"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
           {submitStatus === 'success' && (
-            <p className="text-zen-blue-light text-center animate-fade-in font-light">Message sent successfully!</p>
+            <p className="text-white text-center animate-fade-in font-light">Message sent successfully!</p>
           )}
           {submitStatus === 'error' && (
             <p className="text-red-400 text-center animate-fade-in font-light">Failed to send message. Please try again.</p>

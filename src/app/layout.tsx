@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${quicksand.variable} ${cormorant.variable} font-sans antialiased`}>
         {/* Animated background elements */}
-        <div className="fixed inset-0 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52]" />
+        <div className="fixed inset-0 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]" />
         <div className="fixed inset-0 bg-zen-radial from-zen-blue-light/5 via-transparent to-transparent animate-zen-fade" />
         
         {/* Floating decorative elements */}
@@ -45,7 +45,7 @@ export default function RootLayout({
           </main>
           
           {/* Footer */}
-          <footer className="relative bg-gradient-to-b from-transparent via-[#1A2B42]/80 to-[#0F1B2D] py-16 mt-16">
+          <footer className="relative bg-gradient-to-br from-[#5DADE2] via-[#3498DB] to-[#2980B9] py-10 backdrop-blur-md border-t border-zen-purple/30">
             {/* Premium space background effects */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/10 via-transparent to-transparent opacity-40" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />
@@ -58,34 +58,34 @@ export default function RootLayout({
             
             <div className="container mx-auto px-4 relative z-10">
               <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                   {/* Company Info */}
                   <div className="text-center md:text-left">
-                    <h3 className="text-2xl font-playfair font-light text-white mb-4">Scott Aronin</h3>
-                    <p className="text-white/70 font-light leading-relaxed">
+                    <h3 className="text-xl font-playfair font-light text-white mb-3">Scott Aronin</h3>
+                    <p className="text-white/90 font-light leading-relaxed text-sm">
                       Transformative mind-body wellness coaching for lasting change and inner peace.
                     </p>
                   </div>
                   
                   {/* Quick Links */}
                   <div className="text-center md:text-left">
-                    <h4 className="text-lg font-light text-zen-blue-light mb-4">Quick Links</h4>
-                    <ul className="space-y-2">
-                      <li><a href="/about" className="text-white/70 hover:text-white transition-colors font-light">About</a></li>
-                      <li><a href="/services" className="text-white/70 hover:text-white transition-colors font-light">Services</a></li>
-                      <li><a href="/research" className="text-white/70 hover:text-white transition-colors font-light">Research</a></li>
-                      <li><a href="/contact" className="text-white/70 hover:text-white transition-colors font-light">Contact</a></li>
+                    <h4 className="text-base font-light text-white mb-3">Quick Links</h4>
+                    <ul className="space-y-1.5">
+                      <li><a href="/about" className="text-white/80 hover:text-white transition-colors font-light text-sm">About</a></li>
+                      <li><a href="/services" className="text-white/80 hover:text-white transition-colors font-light text-sm">Services</a></li>
+                      <li><a href="/research" className="text-white/80 hover:text-white transition-colors font-light text-sm">Research</a></li>
+                      <li><a href="/contact" className="text-white/80 hover:text-white transition-colors font-light text-sm">Contact</a></li>
                     </ul>
                   </div>
                   
                   {/* Contact Info */}
                   <div className="text-center md:text-left">
-                    <h4 className="text-lg font-light text-zen-blue-light mb-4">Get in Touch</h4>
-                    <div className="space-y-2">
-                      <p className="text-white/70 font-light">Book a free consultation</p>
+                    <h4 className="text-base font-light text-white mb-3">Get in Touch</h4>
+                    <div className="space-y-1.5">
+                      <p className="text-white/80 font-light text-sm">Book a free consultation</p>
                       <a 
                         href="/contact" 
-                        className="inline-flex items-center gap-2 text-zen-blue-light hover:text-white transition-colors font-light group"
+                        className="inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors font-light text-sm group"
                       >
                         Contact Us
                         <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,8 +97,8 @@ export default function RootLayout({
                 </div>
                 
                 {/* Bottom Bar */}
-                <div className="pt-8 border-t border-zen-purple/20 text-center">
-                  <p className="text-white/60 font-light">
+                <div className="pt-6 border-t border-zen-purple/20 text-center">
+                  <p className="text-white/70 font-light text-sm">
                     © {new Date().getFullYear()} Scott Aronin. All rights reserved.
                   </p>
                 </div>

@@ -11,9 +11,9 @@ export default function About() {
   const data = aboutPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52]">
+    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]">
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] overflow-hidden">
+      <section className="relative py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -34,22 +34,22 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
+            <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+              <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
               <span>About Scott</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-lg">
               {data.title}
             </h1>
             <div className="mb-12">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-3 bg-white/10 border border-zen-blue/70 px-12 py-4 text-xl rounded-full font-semibold text-zen-blue-light shadow-xl hover:bg-zen-blue/10 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
-                style={{boxShadow: '0 4px 32px 0 rgba(56,189,248,0.15)'}}
+                className="inline-flex items-center gap-3 bg-white/20 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
+                style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
               >
                 Book a Session - Free Consultation Available
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-zen-blue-light group-hover:text-zen-blue transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                 </svg>
               </a>
@@ -57,29 +57,33 @@ export default function About() {
           </AnimatedSection>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center mt-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-24 items-center mt-24">
             <AnimatedSection
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-10"
             >
               {data.mainContent.heading && (
                 <div className="space-y-4">
-                  <div className="inline-flex items-center gap-3 text-zen-blue-light/70 text-sm font-medium tracking-widest uppercase">
-                    <div className="w-6 h-px bg-gradient-to-r from-zen-blue-light/40 to-transparent"></div>
+                  <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
+                    <div className="w-6 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
                     <span>Personal Journey</span>
-                    <div className="w-6 h-px bg-gradient-to-r from-transparent to-zen-blue-light/40"></div>
+                    <div className="w-6 h-px bg-gradient-to-r from-transparent to-white/50"></div>
                   </div>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-tight tracking-tight">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
                     {data.mainContent.heading}
                   </h2>
                 </div>
               )}
               {data.mainContent.bio && (
                 <div className="prose prose-xl max-w-none">
-                  <p className="text-xl leading-relaxed text-white/85 font-light">{data.mainContent.bio}</p>
+                  {data.mainContent.bio.split('\n\n').map((paragraph: string, index: number) => (
+                    <p key={index} className="text-xl leading-relaxed text-white/90 font-light mb-8 tracking-wide">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
               )}
             </AnimatedSection>
@@ -93,13 +97,14 @@ export default function About() {
               {data.mainContent.profileImage ? (
                 <div className="relative w-full h-full">
                   <div className="absolute -inset-4 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1 h-full">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1.5 h-full">
                     <Image
                       src={data.mainContent.profileImage.src}
                       alt={data.mainContent.profileImage.alt}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 rounded-2xl"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700 rounded-2xl shadow-xl"
+                      style={{boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)'}}
                       priority
                     />
                   </div>
@@ -116,7 +121,7 @@ export default function About() {
           </div>
 
           {/* Mission Statement */}
-          <div className="relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl p-12 mb-24 overflow-hidden shadow-2xl border border-zen-purple/20 mt-20">
+          <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-12 md:p-16 mb-32 overflow-hidden shadow-2xl border border-white/20 mt-24" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
             {/* Space background effects */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
@@ -155,12 +160,12 @@ export default function About() {
               viewport={{ once: true }}
               className="prose prose-xl max-w-4xl mx-auto text-center"
             >
-              <div className="inline-flex items-center gap-3 text-zen-blue-light/70 text-sm font-medium tracking-widest uppercase mb-6">
-                <div className="w-8 h-px bg-gradient-to-r from-zen-blue-light/40 to-transparent"></div>
+              <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+                <div className="w-8 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
                 <span>Additional Insights</span>
-                <div className="w-8 h-px bg-gradient-to-r from-transparent to-zen-blue-light/40"></div>
+                <div className="w-8 h-px bg-gradient-to-r from-transparent to-white/50"></div>
               </div>
-              <p className="text-xl leading-relaxed text-white/85 font-light">{data.additionalContent}</p>
+              <p className="text-xl leading-relaxed text-white/90 font-light">{data.additionalContent}</p>
             </AnimatedSection>
           )}
         </div>

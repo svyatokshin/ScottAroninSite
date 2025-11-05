@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full bg-gradient-to-br from-[#1A2B42] via-[#2A3B52] to-[#3A4B62] backdrop-blur-md z-50 shadow-lg border-b border-zen-purple/30">
+    <nav className="fixed w-full bg-gradient-to-br from-[#5DADE2] via-[#3498DB] to-[#2980B9] backdrop-blur-md z-50 shadow-lg border-b border-zen-purple/30">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ const Navbar = () => {
                 />
                 <div className="absolute inset-0 rounded-full bg-zen-purple-light/20 animate-pulse-slow" />
               </div>
-              <span className="animate-fade-in group-hover:text-zen-blue-light transition-colors duration-300">Scott Aronin</span>
+              <span className="animate-fade-in group-hover:text-white/80 transition-colors duration-300">Scott Aronin</span>
             </Link>
           </div>
           
@@ -49,10 +49,10 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="relative text-white/90 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 group"
+                  className="relative text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 group"
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-zen-blue-light transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
                 </Link>
               ))}
             </div>
@@ -62,7 +62,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-zen-blue-light focus:outline-none transition-colors hover:bg-zen-blue-light/10"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white/80 focus:outline-none transition-colors hover:bg-white/20"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -78,14 +78,14 @@ const Navbar = () => {
           open: { opacity: 1, height: 'auto' },
           closed: { opacity: 0, height: 0 }
         }}
-        className="md:hidden bg-gradient-to-br from-[#1A2B42] via-[#2A3B52] to-[#3A4B62] backdrop-blur-md overflow-hidden border-b border-zen-purple/30"
+        className="md:hidden bg-gradient-to-br from-[#5DADE2] via-[#3498DB] to-[#2980B9] backdrop-blur-md overflow-hidden border-b border-zen-purple/30"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="block px-3 py-2 rounded-md text-base font-medium text-white/90 hover:text-white hover:bg-zen-blue-light/10 transition-all duration-300"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white/80 hover:bg-white/20 transition-all duration-300"
               onClick={() => setIsOpen(false)}
             >
               {item.name}

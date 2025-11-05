@@ -11,9 +11,9 @@ export default function Services() {
   const data = servicesPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52]">
+    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]">
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] overflow-hidden">
+      <section className="relative py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -34,22 +34,22 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase mb-6">
-              <div className="w-12 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
+            <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+              <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
               <span>Wellness Services</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-lg">
               {data.title}
             </h1>
             <div className="mb-12">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-3 bg-white/10 border border-zen-blue/70 px-12 py-4 text-xl rounded-full font-semibold text-zen-blue-light shadow-xl hover:bg-zen-blue/10 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
-                style={{boxShadow: '0 4px 32px 0 rgba(56,189,248,0.15)'}}
+                className="inline-flex items-center gap-3 bg-white/20 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
+                style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
               >
                 Book a Session - Free Consultation Available
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-zen-blue-light group-hover:text-zen-blue transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                 </svg>
               </a>
@@ -57,7 +57,7 @@ export default function Services() {
           </AnimatedSection>
 
           {/* Services List */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-24">
             {data.servicesList.map((service, index) => (
               <AnimatedSection
                 key={index}
@@ -65,7 +65,8 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="group relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl p-8 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)] border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-500 shadow-2xl overflow-hidden"
+                className="group relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-10 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] border border-white/20 hover:border-white/30 transition-all duration-500 shadow-2xl overflow-hidden"
+                style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
               >
                 {/* Space background effects */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
@@ -86,11 +87,12 @@ export default function Services() {
                         alt={service.icon.alt}
                         width={service.icon.width || 128}
                         height={service.icon.height || 128}
-                        className="w-32 h-32 animate-float rounded-2xl object-cover shadow-lg"
+                        className="w-32 h-32 animate-float rounded-2xl object-cover shadow-xl"
+                        style={{boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)'}}
                       />
                     </div>
                   )}
-                  <h3 className="text-2xl font-light text-white mb-4 group-hover:text-zen-yellow-light transition-colors duration-300">
+                  <h3 className={`text-2xl font-light text-white mb-4 group-hover:text-zen-yellow-light transition-colors duration-300 ${index < 3 ? 'text-center' : ''}`}>
                     {service.serviceTitle}
                   </h3>
                   {service.description && (
@@ -101,8 +103,8 @@ export default function Services() {
                   {service.features && service.features.length > 0 && (
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-2 text-zen-blue-light">
-                          <span className="text-zen-yellow-light mt-1">•</span>
+                        <li key={featureIndex} className="flex items-start gap-2 text-white">
+                          <span className="text-white mt-1">•</span>
                           <span className="text-white">{feature}</span>
                         </li>
                       ))}
@@ -123,17 +125,17 @@ export default function Services() {
             id="5-pillars-of-wellness"
           >
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-3 text-zen-blue-light/80 text-sm font-medium tracking-widest uppercase mb-6">
-                <div className="w-12 h-px bg-gradient-to-r from-zen-blue-light/50 to-transparent"></div>
+              <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+                <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
                 <span>Framework</span>
-                <div className="w-12 h-px bg-gradient-to-r from-transparent to-zen-blue-light/50"></div>
+                <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-tight tracking-tight mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-md">
                 5 Pillars of Wellness
               </h2>
             </div>
 
-            <div className="relative bg-gradient-to-br from-[#0F1B2D] via-[#1A2B42] to-[#2A3B52] rounded-3xl p-8 md:p-12 overflow-hidden shadow-2xl border border-zen-purple/20">
+            <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-10 md:p-16 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
               {/* Space background effects */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -161,7 +163,7 @@ export default function Services() {
                       "Kindness, compassion and your true self",
                       "Movement- fast, slow, meditative, attentive, with purpose"
                     ].map((pillar, index) => (
-                      <div key={index} className="bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-xl p-4 border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-300">
+                      <div key={index} className="bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-xl p-4 border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-300">
                         <div className="text-center">
                           <div className="w-8 h-8 bg-gradient-to-br from-zen-blue-light to-zen-purple rounded-full flex items-center justify-center text-white font-bold text-sm mx-auto mb-3">
                             {index + 1}
@@ -202,7 +204,7 @@ export default function Services() {
                       description: "Most modern people understand that there are many known, scientifically proven benefits of exercise. This is true. But there are so many ways to move, so many ways to focus the mind while doing it and so many different types of benefits to be had depending on how and how much you choose to move. Having movement as a pillar of mind-body wellbeing means not only doing 'mindless' Western exercise to get one's heart rate up or build one's muscular strength (though these are part of healthy movement.) It also means cultivating present moment awareness in your movements, making them meditative and also doing some slow movements like qigong, tai chi and yoga- or spontaneous movement done by letting your body guide you to what it feels like at the moment and moving accordingly- fast or slow, intense or gentle or any combination."
                     }
                   ].map((pillar, index) => (
-                    <div key={index} className="bg-gradient-to-br from-[#0A1428] via-[#0F1B2D] to-[#1E0B3B] rounded-2xl p-6 md:p-8 border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-300">
+                    <div key={index} className="bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-2xl p-6 md:p-8 border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-300">
                       <div className="flex items-start gap-4">
                         <div className="flex-shrink-0">
                           <div className="w-12 h-12 bg-gradient-to-br from-zen-blue-light to-zen-purple rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -233,7 +235,7 @@ export default function Services() {
             viewport={{ once: true }}
             className="mt-24 text-center"
           >
-            <div className="relative bg-gradient-to-br from-[#050A14] via-[#0F1B2D] to-[#1E0B3B] rounded-3xl p-12 overflow-hidden shadow-2xl border border-zen-purple/20">
+            <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-12 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
               {/* Space background effects */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
               <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
@@ -252,7 +254,7 @@ export default function Services() {
                 </p>
                 <a
                   href="/contact"
-                  className="inline-block bg-white text-zen-blue-dark px-8 py-3 rounded-lg font-light hover:bg-zen-blue-light/10 transition-all duration-300 hover:scale-105"
+                  className="inline-block bg-[#0D47A1] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#1565C0] transition-all duration-300 hover:scale-105"
                 >
                   Book a Session - Free Consultation Available
                 </a>
