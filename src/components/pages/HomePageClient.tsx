@@ -261,7 +261,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    )}
                    
                    <div className="flex-1 space-y-8">
-                     {data.aboutSection.title && (
+                     {data.aboutSection?.title && (
                        <div className="space-y-4">
                         <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
                           <div className="w-8 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
@@ -276,7 +276,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      
                      <div className="space-y-8">
                        {data.aboutSection?.content && typeof data.aboutSection.content === 'string' && (() => {
-                         const paragraphs = data.aboutSection.content.split('\n\n');
+                         const content = data.aboutSection!.content;
+                         const paragraphs = content.split('\n\n');
                          return (
                            <div className="prose prose-xl max-w-none">
                              <div className="text-lg md:text-xl leading-relaxed text-[#1565C0]/90 font-light">
@@ -748,7 +749,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                                  {topic.paragraphs.map((paragraph, pIndex) => (
                                    <p 
                                      key={pIndex} 
-                                     className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'text-lg md:text-xl' : 'text-base md:text-lg'} leading-relaxed text-white/90 font-light max-w-4xl mx-auto`}
+                                     className={`${data.mainSectionThree?.image || (data.mainSectionThree?.mediaType === 'video' && data.mainSectionThree?.video?.url) ? 'text-lg md:text-xl' : 'text-base md:text-lg'} leading-relaxed text-white/90 font-light max-w-4xl mx-auto`}
                                      style={{ lineHeight: '1.8' }}
                                    >
                                      {paragraph}
