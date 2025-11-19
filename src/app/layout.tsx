@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${quicksand.variable} ${cormorant.variable} font-sans antialiased`}>
         {/* Animated background elements */}
-        <div className="fixed inset-0 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]" />
+        <div className="fixed inset-0 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]" />
         <div className="fixed inset-0 bg-zen-radial from-zen-blue-light/5 via-transparent to-transparent animate-zen-fade" />
         
         {/* Floating decorative elements */}
@@ -45,7 +45,7 @@ export default function RootLayout({
           </main>
           
           {/* Footer */}
-          <footer className="relative bg-gradient-to-br from-[#5DADE2] via-[#3498DB] to-[#2980B9] py-10 backdrop-blur-md border-t border-zen-purple/30">
+          <footer className="relative bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] py-10 backdrop-blur-md border-t border-white/20">
             {/* Premium space background effects */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/10 via-transparent to-transparent opacity-40" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />

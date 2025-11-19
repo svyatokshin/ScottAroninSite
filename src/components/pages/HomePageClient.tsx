@@ -140,26 +140,26 @@ export function HomePageClient({ data }: HomePageClientProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1 }}
           >
-            <span className="inline-block uppercase tracking-[0.35em] text-white text-base md:text-lg font-medium bg-white/30 border border-white/40 rounded-full px-8 py-2 backdrop-blur-md shadow-md"
-                  style={{letterSpacing: '0.25em', borderWidth: '1.5px', boxShadow: '0 2px 24px 0 rgba(255,255,255,0.20)'}}>
+            <span className="inline-block uppercase tracking-[0.25em] sm:tracking-[0.35em] text-white text-xs sm:text-sm md:text-base lg:text-lg font-medium bg-white/30 border border-white/40 rounded-full px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 backdrop-blur-md shadow-md"
+                  style={{letterSpacing: '0.15em', borderWidth: '1.5px', boxShadow: '0 2px 24px 0 rgba(255,255,255,0.20)'}}>
               Integrated Wellness Coaching
             </span>
           </motion.div>
           {/* Main Headline */}
           <motion.h1 
-            className="text-[2.8rem] md:text-[5.5rem] leading-[1.05] font-playfair font-semibold text-white mb-8 drop-shadow-2xl"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[5.5rem] leading-[1.1] sm:leading-[1.05] font-playfair font-semibold text-white mb-6 sm:mb-8 px-4 drop-shadow-2xl"
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.25, ease: [0.6, -0.05, 0.01, 0.99] }}
             style={{ y: useTransform(scrollY, [0, 300], [0, -60]) }}
             key="hero-heading"
           >
-            Transform Your Life<br className="hidden md:block" />
+            Transform Your Life<br className="hidden sm:block" />
             Through <span className="bg-gradient-to-r from-[#87CEEB] via-[#5DADE2] to-[#3498DB] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(255,255,255,0.5)] font-semibold">Mind-Body Wellness</span>
           </motion.h1>
           {/* Subheading */}
           <motion.p 
-            className="text-lg md:text-xl font-light text-white/95 mb-12 max-w-3xl mx-auto drop-shadow-lg tracking-wide"
+            className="text-base sm:text-lg md:text-xl font-light text-white/95 mb-8 sm:mb-12 max-w-3xl mx-auto px-4 drop-shadow-lg tracking-wide"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.45, ease: [0.6, -0.05, 0.01, 0.99] }}
@@ -179,13 +179,13 @@ export function HomePageClient({ data }: HomePageClientProps) {
           >
             <Link 
               href={data.heroSection.ctaLink || "/contact"} 
-              className="inline-flex items-center gap-3 bg-white/30 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
+              className="inline-flex items-center gap-2 sm:gap-3 bg-white/30 border border-white/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
               style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
               aria-label="Book a Session - Free Consultation Available"
               tabIndex={0}
             >
-              Book a Session - Free Consultation Available
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
+              <span className="text-center">Book a Session - Free Consultation Available</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
               </svg>
             </Link>
@@ -197,12 +197,13 @@ export function HomePageClient({ data }: HomePageClientProps) {
       <motion.button
         key="scroll-top-button"
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-[#0D47A1] text-white p-4 rounded-full shadow-lg hover:bg-[#1565C0] transition-colors duration-300 z-50"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-[#0D47A1] text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-[#1565C0] transition-colors duration-300 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: showScrollTop ? 1 : 0, y: showScrollTop ? 0 : 20 }}
         transition={{ duration: 0.3 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
+        aria-label="Scroll to top"
       >
         <FaArrowUp className="w-5 h-5" />
       </motion.button>
@@ -210,7 +211,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
              {/* About Section - Premium Design */}
                {data.aboutSection && (
           <motion.section
-            className="pt-16 pb-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] relative overflow-hidden"
+            className="pt-16 pb-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] relative overflow-hidden"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -243,19 +244,27 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  <div className="relative z-10 flex flex-col lg:flex-row items-start gap-16 lg:gap-20">
                    {data.aboutSection?.image && (
                      <div className="flex-shrink-0 w-full lg:w-2/5">
-                       <div className="relative group">
-                         <div className="absolute -inset-4 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
-                         <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1.5">
-                           <Image
-                             src={data.aboutSection.image.src}
-                             alt={data.aboutSection.image.alt}
-                             width={data.aboutSection.image.width || 600}
-                             height={data.aboutSection.image.height || 600}
-                             className="object-cover w-full h-full rounded-2xl group-hover:scale-105 transition-all duration-700 shadow-xl"
-                       style={{boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)'}}
-                             priority={false}
-                           />
-                         </div>
+                       <div className="flex flex-col gap-4">
+                         {[
+                           { src: "/Lucid_Origin_A_highdefinition_photorealistic_scene_of_flowing__2.jpg", alt: "Flowing water scene - representing movement, transformation and natural flow", width: 600, height: 400 },
+                           { src: "/religion-3727463_1280.jpg", alt: "Hands holding glowing light - representing energy, spirituality and transformation", width: 600, height: 400 },
+                           { src: "/water-1761027_1280.jpg", alt: "Water surface with golden light reflections - representing flow, tranquility and inner peace", width: 600, height: 400 }
+                         ].map((img, index) => (
+                           <div key={index} className="relative group">
+                             <div className="absolute -inset-2 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
+                             <div className="relative rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1">
+                               <Image
+                                 src={img.src}
+                                 alt={img.alt}
+                                 width={img.width}
+                                 height={img.height}
+                                 className="object-cover w-full h-full rounded-xl group-hover:scale-105 transition-all duration-700 shadow-lg"
+                                 style={{boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)'}}
+                                 priority={index === 0}
+                               />
+                             </div>
+                           </div>
+                         ))}
                        </div>
                      </div>
                    )}
@@ -317,7 +326,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
 
              {/* Content Sections as Cards - Premium Dark Theme */}
        <motion.section
-          className="py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] relative overflow-hidden"
+          className="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] relative overflow-hidden"
          initial={{ opacity: 0, y: 40 }}
          whileInView={{ opacity: 1, y: 0 }}
          transition={{ duration: 0.8 }}
@@ -338,7 +347,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                 <span>Transformative Journey</span>
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-6 drop-shadow-md">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-4 sm:mb-6 drop-shadow-md px-4">
                 {data.cardSectionsTitle}
               </h2>
                <div className="w-24 h-px bg-gradient-to-r from-zen-purple/60 via-zen-blue/60 to-zen-yellow/60 mx-auto"></div>
@@ -355,7 +364,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  viewport={{ once: true }}
                >
                  <div 
-                  className="group relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-10 shadow-2xl border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] max-w-2xl mx-auto mb-4 overflow-hidden cursor-pointer"
+                  className="group relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] max-w-2xl mx-auto mb-4 overflow-hidden cursor-pointer"
                   onClick={() => handleOpenModal('cardSectionOne')}
                   style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
                 >
@@ -383,11 +392,11 @@ export function HomePageClient({ data }: HomePageClientProps) {
                        />
                      </div>
                    )}
-                   <h2 className="text-2xl font-playfair font-light text-white mb-4">
+                   <h2 className="text-xl sm:text-2xl font-playfair font-light text-white mb-3 sm:mb-4">
                      {data.cardSectionOne.title}
                    </h2>
                    <div className="prose prose-lg prose-invert max-w-none text-white/90">
-                     <p className="text-base leading-relaxed">{data.cardSectionOne.preview || data.cardSectionOne.content}</p>
+                     <p className="text-sm sm:text-base leading-relaxed">{data.cardSectionOne.preview || data.cardSectionOne.content}</p>
                    </div>
                    <div className="mt-6">
                      <div className="inline-flex items-center gap-2 text-white group-hover:text-white/80 transition-colors text-lg font-light group-hover:gap-3">
@@ -403,7 +412,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
              )}
 
              {/* Bottom Row - Two Cards Forming Triangle Base */}
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto pt-2">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto pt-2">
                {[
                  data.cardSectionTwo && { ...data.cardSectionTwo, key: 'cardSectionTwo' },
                  data.cardSectionThree && { ...data.cardSectionThree, key: 'cardSectionThree' },
@@ -418,7 +427,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      viewport={{ once: true }}
                    >
                      <div 
-                      className="group relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-10 shadow-2xl border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] overflow-hidden cursor-pointer h-full flex flex-col"
+                      className="group relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] overflow-hidden cursor-pointer h-full flex flex-col"
                       onClick={() => handleOpenModal(s.key)}
                       style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
                     >
@@ -468,11 +477,31 @@ export function HomePageClient({ data }: HomePageClientProps) {
                })}
              </div>
            </div>
+           
+           {/* CTA after cards */}
+           <motion.div
+             className="text-center mt-16"
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             transition={{ duration: 0.8 }}
+             viewport={{ once: true }}
+           >
+             <Link
+               href="/contact"
+               className="inline-flex items-center gap-2 sm:gap-3 bg-white/30 border border-white/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
+               style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+             >
+               <span className="text-center">Book a Session - Free Consultation Available</span>
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
+                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+               </svg>
+             </Link>
+           </motion.div>
          </div>
        </motion.section>
 
              {/* Main Sections - Premium Dark Theme */}
-        <div className="py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] relative overflow-hidden">
+        <div className="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] relative overflow-hidden">
          {/* Premium space background effects */}
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
@@ -480,7 +509,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
          {/* Star effects */}
          <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_15px_20px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_30px_50px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_40px_100px,#fff,rgba(0,0,0,0))] bg-[length:150px_150px] opacity-15" />
          
-         <div className="container mx-auto px-4 relative z-10 space-y-32">
+         <div className="container mx-auto px-4 sm:px-6 relative z-10 space-y-16 sm:space-y-24 md:space-y-32">
            {data.mainSectionOne && (
              <motion.section
                className="flex flex-col lg:flex-row items-center gap-20 lg:gap-24"
@@ -497,13 +526,13 @@ export function HomePageClient({ data }: HomePageClientProps) {
                       <span>Holistic Wellness</span>
                       <div className="w-6 h-px bg-gradient-to-r from-transparent to-white/50"></div>
                     </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
                       {data.mainSectionOne.title}
                     </h2>
                    </div>
                  )}
                  <div className="prose prose-xl max-w-none">
-                   <p className="text-xl leading-relaxed text-white/90 font-light tracking-wide">{data.mainSectionOne.content}</p>
+                   <p className="text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-light tracking-wide">{data.mainSectionOne.content}</p>
                  </div>
                  <div className="mt-8">
                    <Link
@@ -518,7 +547,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    </Link>
                  </div>
                </div>
-               <div className="flex-shrink-0 w-full lg:w-1/2">
+               <div className="flex-shrink-0 w-full lg:w-2/5 max-w-md mx-auto lg:mx-0">
                  <div className="relative group">
                    <div className="absolute -inset-4 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
                    <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1.5">
@@ -536,8 +565,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
                        <Image
                          src={data.mainSectionOne.image.src}
                          alt={data.mainSectionOne.image.alt}
-                         width={600}
-                         height={400}
+                         width={500}
+                         height={500}
                          className="object-cover w-full h-full rounded-2xl group-hover:scale-105 transition-all duration-700 shadow-xl"
                        style={{boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)'}}
                          priority={false}
@@ -549,9 +578,10 @@ export function HomePageClient({ data }: HomePageClientProps) {
              </motion.section>
            )}
 
+           <div className="space-y-0">
                    {data.mainSectionTwo && (
              <motion.section
-               className="flex flex-col lg:flex-row-reverse items-center gap-20 lg:gap-24"
+               className="flex flex-col lg:flex-row-reverse items-center gap-8 sm:gap-12 md:gap-20 lg:gap-24 py-8 sm:py-12 md:py-16 -mx-4 px-4 bg-gradient-to-br from-[#7EC8E3] via-[#87CEEB] to-[#87CEEB] rounded-t-3xl pb-4 sm:pb-6 md:pb-8"
                initial={{ opacity: 0, y: 40 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
@@ -565,19 +595,19 @@ export function HomePageClient({ data }: HomePageClientProps) {
                       <span>Mind-Body Connection</span>
                       <div className="w-6 h-px bg-gradient-to-r from-transparent to-white/50"></div>
                     </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
                       {data.mainSectionTwo.title}
                     </h2>
                    </div>
                  )}
                  <div className="prose prose-xl max-w-none">
-                   <div className="text-xl leading-relaxed text-white/90 font-light tracking-wide">
+                   <div className="text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-light tracking-wide">
                      {typeof data.mainSectionTwo.content === 'string' ? data.mainSectionTwo.content.split('\n\n**The 5 Pillars:**\n\n')[0] : data.mainSectionTwo.content}
                    </div>
                    {typeof data.mainSectionTwo.content === 'string' && data.mainSectionTwo.content.includes('**The 5 Pillars:**') && (
-                     <div className="mt-8">
-                       <h3 className="text-2xl font-playfair font-light text-white mb-6">The 5 Pillars:</h3>
-                       <ol className="text-xl leading-relaxed text-white/85 font-light space-y-3 list-decimal list-inside">
+                     <div className="mt-6 sm:mt-8">
+                       <h3 className="text-xl sm:text-2xl font-playfair font-light text-white mb-4 sm:mb-6">The 5 Pillars:</h3>
+                       <ol className="text-base sm:text-lg md:text-xl leading-relaxed text-white/85 font-light space-y-2 sm:space-y-3 list-decimal list-inside">
                          {data.mainSectionTwo.content.split('**The 5 Pillars:**\n\n')[1]?.split('\n').filter((item: string) => item.trim().match(/^\d+\./)).map((item: string, index: number) => (
                            <li key={index} className="ml-4">
                              {item.replace(/^\d+\.\s*/, '')}
@@ -633,13 +663,14 @@ export function HomePageClient({ data }: HomePageClientProps) {
 
            {data.mainSectionThree && (
              <motion.section
-               className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex flex-col lg:flex-row items-center gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}
+               className="py-8 sm:py-12 md:py-16 -mx-4 px-4 bg-gradient-to-br from-[#7EC8E3] via-[#87CEEB] to-[#87CEEB] rounded-b-3xl pt-4 sm:pt-6 md:pt-8"
                initial={{ opacity: 0, y: 40 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
                viewport={{ once: true }}
              >
-               <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex-1 space-y-8' : 'space-y-10'}`}>
+               <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex flex-col lg:flex-row items-center gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}>
+                 <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex-1 space-y-8' : 'space-y-10'}`}>
                  {data.mainSectionThree.title && (
                    <div className="space-y-6">
                     <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
@@ -647,7 +678,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                       <span>Research & Evidence</span>
                       <div className="w-6 h-px bg-gradient-to-r from-transparent to-white/50"></div>
                     </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
                       {data.mainSectionThree.title}
                     </h2>
                    </div>
@@ -781,7 +812,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                     </svg>
                   </Link>
                  </div>
-               </div>
+                 </div>
                {(data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url)) && (
                  <div className="flex-shrink-0 w-full lg:w-1/2">
                    <div className="relative group">
@@ -812,13 +843,37 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    </div>
                  </div>
                )}
+               </div>
              </motion.section>
+           )}
+           </div>
+           
+           {/* CTA after Research Section */}
+           {data.mainSectionThree && (
+             <motion.div
+               className="text-center mt-16"
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.8 }}
+               viewport={{ once: true }}
+             >
+               <Link
+                 href="/contact"
+                 className="inline-flex items-center gap-3 bg-white/30 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
+                 style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+               >
+                 Book a Session - Free Consultation Available
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
+                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                 </svg>
+               </Link>
+             </motion.div>
            )}
          </div>
        </div>
 
              {/* Newsletter Section - Premium Dark Theme */}
-       <section className="py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] relative overflow-hidden">
+       <section className="py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] relative overflow-hidden">
          {/* Premium space background effects */}
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-40" />
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />

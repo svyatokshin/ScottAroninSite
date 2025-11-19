@@ -36,7 +36,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]">
+    <div className="relative bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]">
       {/* Hero Section */}
       <motion.section 
         className="relative flex items-center justify-center min-h-[60vh] py-32 overflow-hidden"
@@ -251,6 +251,26 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
           </AnimatedSection>
         ))}
       </div>
+      
+      {/* CTA after Research Sections */}
+      <AnimatedSection
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="text-center mt-16"
+      >
+        <a
+          href="/contact"
+          className="inline-flex items-center gap-3 bg-white/30 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
+          style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+        >
+          Book a Session - Free Consultation Available
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+          </svg>
+        </a>
+      </AnimatedSection>
     </div>
   );
 } 

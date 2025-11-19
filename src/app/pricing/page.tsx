@@ -68,8 +68,8 @@ export default function Pricing() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]">
-      <section className="relative py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]">
+      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -84,7 +84,7 @@ export default function Pricing() {
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-blue/30 to-transparent" />
         
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,22 +96,22 @@ export default function Pricing() {
               <span>Pricing Plans</span>
               <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
               Simple, Transparent Pricing
             </h1>
-            <p className="text-xl text-white/95 max-w-3xl mx-auto font-light">
+            <p className="text-base sm:text-lg md:text-xl text-white/95 max-w-3xl mx-auto font-light px-4">
               Choose the plan that best fits your learning goals
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             {pricingPlans.map((plan, index) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className={`relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl shadow-2xl overflow-hidden border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] ${
+                className={`relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] ${
                   plan.popular ? 'ring-2 ring-white/30 scale-105' : ''
                 }`}
                 style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
@@ -132,12 +132,12 @@ export default function Pricing() {
                     Popular
                   </div>
                 )}
-                <div className="relative z-10 p-10">
-                  <h3 className="text-2xl font-light text-white mb-3">{plan.name}</h3>
-                  <p className="text-white/80 mb-8 font-light">{plan.description}</p>
-                  <div className="mb-10">
-                    <span className="text-5xl font-light text-white">${plan.price}</span>
-                    <span className="text-white/60">/month</span>
+                <div className="relative z-10 p-6 sm:p-8 md:p-10">
+                  <h3 className="text-xl sm:text-2xl font-light text-white mb-2 sm:mb-3">{plan.name}</h3>
+                  <p className="text-sm sm:text-base text-white/80 mb-6 sm:mb-8 font-light">{plan.description}</p>
+                  <div className="mb-8 sm:mb-10">
+                    <span className="text-4xl sm:text-5xl font-light text-white">${plan.price}</span>
+                    <span className="text-sm sm:text-base text-white/60">/month</span>
                   </div>
                   <ul className="space-y-4 mb-10">
                     {plan.features.map((feature) => (

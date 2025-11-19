@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full bg-gradient-to-br from-[#5DADE2] via-[#3498DB] to-[#2980B9] backdrop-blur-md z-50 shadow-lg border-b border-zen-purple/30">
+    <nav className="fixed w-full bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] backdrop-blur-md z-50 shadow-lg border-b border-white/20">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ const Navbar = () => {
           open: { opacity: 1, height: 'auto' },
           closed: { opacity: 0, height: 0 }
         }}
-        className="md:hidden bg-gradient-to-br from-[#5DADE2] via-[#3498DB] to-[#2980B9] backdrop-blur-md overflow-hidden border-b border-zen-purple/30"
+        className="md:hidden bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] backdrop-blur-md overflow-hidden border-b border-white/20"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navItems.map((item) => (

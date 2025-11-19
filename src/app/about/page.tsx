@@ -11,9 +11,9 @@ export default function About() {
   const data = aboutPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB]">
+    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]">
       {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-[#87CEEB] via-[#5DADE2] to-[#3498DB] overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -28,7 +28,7 @@ export default function About() {
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-blue/30 to-transparent" />
         
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <AnimatedSection 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -39,17 +39,17 @@ export default function About() {
               <span>About Scott</span>
               <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
               {data.title}
             </h1>
-            <div className="mb-12">
+            <div className="mb-8 sm:mb-12 px-4">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-3 bg-white/20 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-white/20 border border-white/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
                 style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
               >
-                Book a Session - Free Consultation Available
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
+                <span className="text-center">Book a Session - Free Consultation Available</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                 </svg>
               </a>
@@ -57,7 +57,7 @@ export default function About() {
           </AnimatedSection>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-24 items-center mt-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-24 items-center mt-12 sm:mt-16 md:mt-24">
             <AnimatedSection
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -72,7 +72,7 @@ export default function About() {
                     <span>Personal Journey</span>
                     <div className="w-6 h-px bg-gradient-to-r from-transparent to-white/50"></div>
                   </div>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
                     {data.mainContent.heading}
                   </h2>
                 </div>
@@ -81,14 +81,26 @@ export default function About() {
                 <div className="prose prose-xl max-w-none">
                   {typeof data.mainContent.bio === 'string' 
                     ? data.mainContent.bio.split('\n\n').map((paragraph: string, index: number) => (
-                        <p key={index} className="text-xl leading-relaxed text-white/90 font-light mb-8 tracking-wide">
+                        <p key={index} className="text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-light mb-6 sm:mb-8 tracking-wide">
                           {paragraph}
                         </p>
                       ))
-                    : <p className="text-xl leading-relaxed text-white/90 font-light mb-8 tracking-wide">{data.mainContent.bio}</p>
+                    : <p className="text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-light mb-6 sm:mb-8 tracking-wide">{data.mainContent.bio}</p>
                   }
                 </div>
               )}
+              <div className="mt-6 sm:mt-8 md:mt-10">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-white/30 border border-white/50 px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
+                  style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+                >
+                  <span className="text-center">Book a Session - Free Consultation Available</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                  </svg>
+                </a>
+              </div>
             </AnimatedSection>
             <AnimatedSection
               initial={{ opacity: 0, x: 20 }}
