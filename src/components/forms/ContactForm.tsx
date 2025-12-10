@@ -113,7 +113,7 @@ export function ContactForm() {
               required
               rows={4}
               className="w-full px-4 py-3 sm:py-3.5 border border-zen-purple/40 rounded-lg focus:ring-2 focus:ring-zen-blue-light/60 focus:border-zen-blue-light/60 transition-all duration-300 bg-[#0A1428]/50 backdrop-blur-sm text-white placeholder-white/60 resize-none text-base min-h-[120px]"
-              placeholder="Tell us more about your wellness journey..."
+              placeholder="Tell us more about your wellness goals. Would you like to book a free consult video chat?"
             />
           </div>
           <button

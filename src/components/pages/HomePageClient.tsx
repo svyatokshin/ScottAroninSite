@@ -244,27 +244,19 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  <div className="relative z-10 flex flex-col lg:flex-row items-start gap-16 lg:gap-20">
                    {data.aboutSection?.image && (
                      <div className="flex-shrink-0 w-full lg:w-2/5">
-                       <div className="flex flex-col gap-4">
-                         {[
-                           { src: "/Lucid_Origin_A_highdefinition_photorealistic_scene_of_flowing__2.jpg", alt: "Flowing water scene - representing movement, transformation and natural flow", width: 600, height: 400 },
-                           { src: "/religion-3727463_1280.jpg", alt: "Hands holding glowing light - representing energy, spirituality and transformation", width: 600, height: 400 },
-                           { src: "/water-1761027_1280.jpg", alt: "Water surface with golden light reflections - representing flow, tranquility and inner peace", width: 600, height: 400 }
-                         ].map((img, index) => (
-                           <div key={index} className="relative group">
-                             <div className="absolute -inset-2 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
-                             <div className="relative rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1">
-                               <Image
-                                 src={img.src}
-                                 alt={img.alt}
-                                 width={img.width}
-                                 height={img.height}
-                                 className="object-cover w-full h-full rounded-xl group-hover:scale-105 transition-all duration-700 shadow-lg"
-                                 style={{boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)'}}
-                                 priority={index === 0}
-                               />
-                             </div>
-                           </div>
-                         ))}
+                       <div className="relative group">
+                         <div className="absolute -inset-2 bg-gradient-to-r from-zen-blue/20 via-zen-purple/20 to-zen-yellow/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105" />
+                         <div className="relative rounded-2xl overflow-hidden shadow-xl bg-gradient-to-br from-zen-blue-light/10 to-zen-purple-light/10 p-1">
+                           <Image
+                             src={data.aboutSection.image.src}
+                             alt={data.aboutSection.image.alt}
+                             width={data.aboutSection.image.width || 1000}
+                             height={data.aboutSection.image.height || 1400}
+                             className="object-cover w-full h-full rounded-xl group-hover:scale-105 transition-all duration-700 shadow-lg"
+                             style={{boxShadow: '0 10px 30px -5px rgba(0,0,0,0.3)'}}
+                             priority
+                           />
+                         </div>
                        </div>
                      </div>
                    )}

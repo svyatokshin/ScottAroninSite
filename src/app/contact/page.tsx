@@ -59,11 +59,11 @@ export default function Contact() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
             {/* Contact Information */}
-            {(data.contactInfo.email || data.contactInfo.phone || data.contactInfo.address || (data.contactInfo.socialLinks && data.contactInfo.socialLinks.length > 0)) && (
+            {(data.contactInfo.email || (data.contactInfo.address && data.contactInfo.address.street)) && (
               <AnimatedSection
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="relative"
+                className="relative bg-transparent self-start"
               >
                 <div 
                   className="bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
@@ -89,12 +89,6 @@ export default function Contact() {
                         <p className="text-white/90">{data.contactInfo.email}</p>
                       </div>
                     )}
-                    {data.contactInfo.phone && (
-                      <div>
-                        <h3 className="text-lg font-light mb-2 text-white">Phone</h3>
-                        <p className="text-white/90">{data.contactInfo.phone}</p>
-                      </div>
-                    )}
                     {data.contactInfo.address && data.contactInfo.address.street && (
                       <div>
                         <h3 className="text-lg font-light mb-2 text-white">Location</h3>
@@ -109,57 +103,7 @@ export default function Contact() {
                         </p>
                       </div>
                     )}
-                    {data.contactInfo.socialLinks && data.contactInfo.socialLinks.length > 0 && (
-                      <div>
-                        <h3 className="text-lg font-light mb-2 text-white">Social Media</h3>
-                        <div className="flex gap-4">
-                          {data.contactInfo.socialLinks.map((link, index) => (
-                            <a
-                              key={index}
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-white hover:text-white/80 transition-colors"
-                            >
-                              {link.platform}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
-
-                  {/* Business Hours */}
-                  {data.businessHours && data.businessHours.length > 0 && (
-                    <div className="mt-8">
-                      <h3 className="text-lg font-light mb-4 text-white">Business Hours</h3>
-                      <div className="space-y-2">
-                        {data.businessHours.map((hours, index) => (
-                          <div key={index} className="flex justify-between text-white/90">
-                            <span className="capitalize">{hours.day}</span>
-                            <span>
-                              {hours.isOpen ? (
-                                <>
-                                  {hours.openTime && hours.closeTime ? (
-                                    `${hours.openTime} - ${hours.closeTime}`
-                                  ) : hours.openTime ? (
-                                    `Opens at ${hours.openTime}`
-                                  ) : hours.closeTime ? (
-                                    `Closes at ${hours.closeTime}`
-                                  ) : (
-                                    'Open'
-                                  )}
-                                </>
-                              ) : (
-                                'Closed'
-                              )}
-                              {hours.notes && ` (${hours.notes})`}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
                 </div>
               </AnimatedSection>

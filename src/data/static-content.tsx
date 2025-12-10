@@ -23,10 +23,10 @@ export const homePageData: HomePage = {
   aboutSection: {
     title: "Description Of Work",
     image: {
-      src: "/Meditation under tree.png",
-      alt: "Buddha meditating under a mystical glowing tree - representing integrated wellness and spiritual practice",
-      width: 600,
-      height: 600
+      src: "/TAICHIIMAGE.jpg",
+      alt: "Description of work - representing integrated wellness and holistic health practices",
+      width: 1000,
+      height: 1400
     },
     content: "I want you to be as healthy and happy as you can be.\n\nWhether your goals are physical, like fitness, athletics or weight loss, or you are focused on behavior change, like dietary change or quitting a damaging habit, or you want to improve internal experiences like mood, outlook or ability to focus, one common thread is your mind.\n\nEven while helping you with fitness and nutrition, I also focus on training the mind. I use both ancient wisdom techniques like meditation and qigong and also apply modern science and research-based practices shown to improve wellbeing and daily life. Done together, this may just help you find health and wellbeing results you didn't know possible.\n\nThis work is designed for the modern world that has people more connected but less rested than ever; mentally overstimulated, and possibly challenged by focusing deeply. It is designed to counter the effects of a society that never stops beeping and pinging and vibrating for your constant response. One of the goals is to help you break some of the addiction to devices, notifications, likes and views. To be healthy in this modern world, you have to be able to power down and disconnect- your mind- sometimes. You have to relax. And you can.\n\nThis is where it starts. Physical health and fitness, mental wellbeing, healthy eating, focus and joy, will emanate even more from a place of peace and quiet."
   },
@@ -125,11 +125,11 @@ export const aboutPageData: AboutPage = {
 }
 
 export const servicesPageData: ServicesPage = {
-  title: "Wellness Services",
+  title: "Wellness Services Offered",
   servicesList: [
     {
       serviceTitle: "One-on-One Coaching",
-      description: "Experience the power of personalized wellness coaching through comprehensive one-on-one sessions tailored specifically to your unique goals, challenges, and lifestyle. Our collaborative approach begins with an in-depth wellness assessment to understand your current state, health history, and aspirations. Together, we'll create a holistic transformation plan that integrates physical fitness, nutritional guidance, stress management, and mindfulness practices. Each session builds upon the last, providing you with practical tools, accountability, and expert support as you navigate your wellness journey. This intensive, personalized approach ensures rapid progress and sustainable results that fit seamlessly into your daily life.",
+      description: "Personalized expert coaching tailored to your wellness, health and fitness goals This professional guidance can be in the general categories of fitness and movement; nutrition, food and eating behavior; mind-body, meditation, mood, stress reduction and focus. Coaching and training you receive can be to help you reach fitness or athletic goals, dietary or weight goals, mood and wellbeing goals and/or can help improve health and facilitate healing. You'll first have a wellness assessment and evaluation based on your goals and concerns. Together we'll make a flexible plan and start this phase of your wellness journey. Through both your one on one work and a personalized program you may receive, you will learn and practice behaviors and techniques beneficial both to your health directly as well as to your understanding of your own health and wellness levels and what else you can do going forward to continue improving them. Depending on the level of engagement you choose, you may also have access to ongoing text or call support and periodic check-ins and updates to your program or sessions.",
              icon: {
          src: "/meditation5.jpg",
          alt: "Personal coaching",
@@ -148,8 +148,8 @@ export const servicesPageData: ServicesPage = {
       ]
     },
     {
-      serviceTitle: "Group Wellness Programs",
-      description: "Join a supportive community of like-minded individuals on similar wellness journeys through our carefully curated group programs. These dynamic sessions combine the benefits of professional guidance with the motivation and camaraderie that comes from shared experiences. Our small group format ensures personalized attention while fostering meaningful connections and mutual support. Each program focuses on specific wellness themes, allowing participants to dive deep into topics like stress management, healthy cooking, fitness fundamentals, or mindfulness practices. The group setting creates natural accountability, celebration of wins, and collective problem-solving that accelerates everyone's progress.",
+      serviceTitle: "Group Coaching or Training",
+      description: "For a more affordable, somewhat less personalized option, you can partner with 1-3 other people to get the benefit of this rare and specialized wellness work as a small group. The more each group member has in common in terms of goals, and maybe of experience and capacity, the more impactful the work can be. In this setting, group members are encouraged to support each other. While many of those details will be up to the group and reflect your priorities, comfort levels and availability, we'll at least give you some tips and steps to help each other in some proven behavior change ways. If you have a partner or family member, or a couple of them, who want to improve their health and wellbeing like you do, contact us and in a 30 minute free consultation we can discuss and propose ways you can work together as a group exploring this amazing work and reaching farther than you may have thought possible in your health and wellness journey.",
       icon: {
         src: "/workout2.jpg",
         alt: "Group programs",
@@ -168,8 +168,8 @@ export const servicesPageData: ServicesPage = {
       ]
     },
     {
-      serviceTitle: "Wellness Workshops",
-      description: "Expand your wellness knowledge and skills through our comprehensive educational workshops designed to empower you with practical tools and evidence-based strategies. These interactive learning experiences cover a wide range of topics, from foundational nutrition principles and meal planning to advanced mindfulness techniques and stress management strategies. Each workshop combines expert instruction with hands-on practice, ensuring you leave with actionable skills you can implement immediately. Whether you're just beginning your wellness journey or looking to deepen your existing knowledge, these workshops provide valuable insights and practical tools for sustainable lifestyle transformation.",
+      serviceTitle: "Workshops and Classes",
+      description: "For larger groups, institutions and workplaces, wellness, health and fitness workshops are available on a variety of topics. We will cater the details to your goals and specifications, but sample topics are available upon request. Workshops and classes can be one-time events or series of varying lengths. They may include take-home materials, recordings and assignments, as per your preferences. These are usually online, but there is some in-person availability we can schedule depending on location and group size.",
       icon: {
         src: "/nutrition2.jpg",
         alt: "Wellness workshops",
@@ -189,7 +189,7 @@ export const servicesPageData: ServicesPage = {
     }
   ],
   seo: {
-    metaTitle: "Wellness Services - Scott Aronin Holistic Coaching",
+    metaTitle: "Wellness Services Offered - Scott Aronin Holistic Coaching",
     metaDescription: "Explore Scott Aronin's wellness services including personal coaching, group programs, and educational workshops for holistic health."
   }
 }
@@ -197,8 +197,7 @@ export const servicesPageData: ServicesPage = {
 export const contactPageData: ContactPage = {
   title: "Contact Scott Aronin",
   contactInfo: {
-    email: "scott@scottaronin.com",
-    phone: "(555) 123-4567",
+    email: "info@scottaronin.com",
     address: {
       street: "Located in the Northeast PA area",
       city: "",
@@ -221,48 +220,7 @@ export const contactPageData: ContactPage = {
       }
     ]
   },
-  businessHours: [
-    {
-      day: "Monday",
-      isOpen: true,
-      openTime: "8:00 AM",
-      closeTime: "6:00 PM"
-    },
-    {
-      day: "Tuesday",
-      isOpen: true,
-      openTime: "8:00 AM",
-      closeTime: "6:00 PM"
-    },
-    {
-      day: "Wednesday",
-      isOpen: true,
-      openTime: "8:00 AM",
-      closeTime: "6:00 PM"
-    },
-    {
-      day: "Thursday",
-      isOpen: true,
-      openTime: "8:00 AM",
-      closeTime: "6:00 PM"
-    },
-    {
-      day: "Friday",
-      isOpen: true,
-      openTime: "8:00 AM",
-      closeTime: "5:00 PM"
-    },
-    {
-      day: "Saturday",
-      isOpen: true,
-      openTime: "9:00 AM",
-      closeTime: "3:00 PM"
-    },
-    {
-      day: "Sunday",
-      isOpen: false
-    }
-  ],
+  businessHours: [],
   seo: {
     metaTitle: "Contact Scott Aronin - Book Your Wellness Consultation",
     metaDescription: "Get in touch with Scott Aronin to book your wellness consultation and start your transformation journey today."
