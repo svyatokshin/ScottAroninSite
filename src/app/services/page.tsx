@@ -11,9 +11,9 @@ export default function Services() {
   const data = servicesPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]">
+    <div className="min-h-screen bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3">
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -34,22 +34,22 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
-              <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
+            <div className="inline-flex items-center gap-3 text-[#0046FF]/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+              <div className="w-12 h-px bg-gradient-to-r from-bgDark-2/50 to-transparent"></div>
               <span>Wellness Services</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-[#0046FF] leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
               {data.title}
             </h1>
             <div className="mb-8 sm:mb-12 px-4">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 sm:gap-3 bg-white/20 border border-white/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
-                style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+                className="inline-flex items-center gap-2 sm:gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-[#0046FF] shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 min-h-[44px] justify-center"
+                style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
               >
                 <span className="text-center">Book a Session - Free Consultation Available</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-[#0046FF] group-hover:text-[#0033cc] transition-colors flex-shrink-0">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                 </svg>
               </a>
@@ -68,12 +68,11 @@ export default function Services() {
                 className="group"
               >
                 <div 
-                  className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] border border-white/20 hover:border-white/30 transition-all duration-500 shadow-2xl overflow-hidden"
+                  className="group relative bg-gradient-to-br from-bgDark-1 via-bgDark-2 to-bgDark-3 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] overflow-hidden"
                   style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
                 >
                 {/* Space background effects */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
                 {/* Star effects */}
@@ -95,20 +94,20 @@ export default function Services() {
                       />
                     </div>
                   )}
-                  <h3 className={`text-2xl font-light text-white mb-4 group-hover:text-zen-yellow-light transition-colors duration-300 ${index < 3 ? 'text-center' : ''}`}>
+                  <h3 className={`text-2xl font-light text-[#0046FF] mb-4 group-hover:text-bgDark-2 transition-colors duration-300 ${index < 3 ? 'text-center' : ''}`}>
                     {service.serviceTitle}
                   </h3>
                   {service.description && (
                     <div className="mb-6">
-                      <p className="text-base leading-relaxed text-white/90">{service.description}</p>
+                      <p className="text-base leading-relaxed text-[#0046FF]">{service.description}</p>
                     </div>
                   )}
                   {service.features && service.features.length > 0 && (
                     <ul className="space-y-2">
                       {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-2 text-white">
-                          <span className="text-white mt-1">•</span>
-                          <span className="text-white">{feature}</span>
+                        <li key={featureIndex} className="flex items-start gap-2 text-[#0046FF]">
+                          <span className="text-[#0046FF] mt-1">•</span>
+                          <span className="text-[#0046FF]">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -129,11 +128,11 @@ export default function Services() {
           >
             <a
               href="/contact"
-              className="inline-flex items-center gap-3 bg-white/30 border border-white/50 px-12 py-4 text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60"
-              style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+              className="inline-flex items-center gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-[#0046FF] shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
+              style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
             >
               Book a Session - Free Consultation Available
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-white group-hover:text-white/80 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#0046FF] group-hover:text-[#0033cc] transition-colors">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
               </svg>
             </a>
@@ -149,17 +148,17 @@ export default function Services() {
             id="5-pillars-of-wellness"
           >
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
-                <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
+              <div className="inline-flex items-center gap-3 text-[#0046FF]/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+                <div className="w-12 h-px bg-gradient-to-r from-bgDark-2/50 to-transparent"></div>
                 <span>Framework</span>
-                <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
+                <div className="w-12 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-tight tracking-tight mb-8 drop-shadow-md">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-[#0046FF] leading-tight tracking-tight mb-8 drop-shadow-md">
                 5 Pillars of Wellness
               </h2>
             </div>
 
-            <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-10 md:p-16 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
+            <div className="relative bg-gradient-to-br from-bgDark-1 via-bgDark-2 to-bgDark-3 rounded-3xl p-10 md:p-16 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
               {/* Space background effects */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -174,7 +173,7 @@ export default function Services() {
               <div className="relative z-10 max-w-5xl mx-auto">
                 {/* Introduction */}
                 <div className="text-center mb-12">
-                  <p className="text-xl leading-relaxed text-white/90 font-light mb-8">
+                  <p className="text-xl leading-relaxed text-[#0046FF] font-light mb-8">
                     A framework for mind body work, personal transformation and spiritual pursuit. To discover and maximize your own potential to direct your mind, focus and mental power to change your experience of life as well as aspects of the material reality of your life, including your health and wellbeing. The training and coaching we do utilizes this framework in every category in which we help people.
                   </p>
                   
@@ -187,12 +186,12 @@ export default function Services() {
                       "Kindness, compassion and your true self",
                       "Movement- fast, slow, meditative, attentive, with purpose"
                     ].map((pillar, index) => (
-                      <div key={index} className="bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-xl p-4 border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-300">
+                      <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:border-white/40 transition-all duration-300">
                         <div className="text-center">
                           <div className="w-8 h-8 bg-gradient-to-br from-zen-blue-light to-zen-purple rounded-full flex items-center justify-center text-white font-bold text-sm mx-auto mb-3">
                             {index + 1}
                           </div>
-                          <p className="text-sm text-white/80 font-light leading-tight">{pillar}</p>
+                          <p className="text-sm text-[#0046FF] font-light leading-tight">{pillar}</p>
                         </div>
                       </div>
                     ))}
@@ -228,7 +227,7 @@ export default function Services() {
                       description: "Most modern people understand that there are many known, scientifically proven benefits of exercise. This is true. But there are so many ways to move, so many ways to focus the mind while doing it and so many different types of benefits to be had depending on how and how much you choose to move. Having movement as a pillar of mind-body wellbeing means not only doing 'mindless' Western exercise to get one's heart rate up or build one's muscular strength (though these are part of healthy movement.) It also means cultivating present moment awareness in your movements, making them meditative and also doing some slow movements like qigong, tai chi and yoga- or spontaneous movement done by letting your body guide you to what it feels like at the moment and moving accordingly- fast or slow, intense or gentle or any combination."
                     }
                   ].map((pillar, index) => (
-                    <div key={index} className="bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-2xl p-6 md:p-8 border border-zen-purple/20 hover:border-zen-purple/40 transition-all duration-300">
+                    <div key={index} className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 hover:border-white/40 transition-all duration-300">
                       <div className="flex items-start gap-4">
                         <div className="flex-shrink-0">
                           <div className="w-12 h-12 bg-gradient-to-br from-zen-blue-light to-zen-purple rounded-full flex items-center justify-center text-white font-bold text-lg">
@@ -236,10 +235,10 @@ export default function Services() {
                           </div>
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-playfair font-light text-white mb-4">
+                          <h3 className="text-xl font-playfair font-light text-[#0046FF] mb-4">
                             {pillar.title}
                           </h3>
-                          <p className="text-white/85 leading-relaxed font-light">
+                          <p className="text-[#0046FF] leading-relaxed font-light">
                             {pillar.description}
                           </p>
                         </div>
@@ -259,10 +258,9 @@ export default function Services() {
             viewport={{ once: true }}
             className="mt-24 text-center"
           >
-            <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-12 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
+            <div className="relative bg-gradient-to-br from-bgDark-1 via-bgDark-2 to-bgDark-3 rounded-3xl p-12 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
               {/* Space background effects */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-              <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
               {/* Star effects */}
@@ -272,15 +270,19 @@ export default function Services() {
               <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
               <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
               <div className="relative z-10">
-                <h2 className="text-3xl font-light text-white mb-6">Ready to Begin Your Journey?</h2>
-                <p className="text-white/90 text-xl mb-8 font-light">
+                <h2 className="text-3xl font-light text-[#0046FF] mb-6">Ready to Begin Your Journey?</h2>
+                <p className="text-[#0046FF] text-xl mb-8 font-light">
                   Take the first step towards holistic wellness and inner peace.
                 </p>
                 <a
                   href="/contact"
-                  className="inline-block bg-[#0D47A1] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#1565C0] transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-[#0046FF] shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
+                  style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
                 >
                   Book a Session - Free Consultation Available
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#0046FF] group-hover:text-[#0033cc] transition-colors">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                  </svg>
                 </a>
               </div>
             </div>

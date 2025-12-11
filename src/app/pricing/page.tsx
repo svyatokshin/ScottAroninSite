@@ -68,8 +68,8 @@ export default function Pricing() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]">
-      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3">
+      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -111,7 +111,7 @@ export default function Pricing() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className={`relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] ${
+                className={`relative bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] ${
                   plan.popular ? 'ring-2 ring-white/30 scale-105' : ''
                 }`}
                 style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
@@ -171,7 +171,7 @@ export default function Pricing() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="mt-24 text-center"
           >
-            <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-12 md:p-16 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
+            <div className="relative bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-3xl p-12 md:p-16 overflow-hidden shadow-2xl border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
               {/* Space background effects */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />

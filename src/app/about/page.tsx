@@ -34,22 +34,22 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
-              <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
+            <div className="inline-flex items-center gap-3 text-gray-800/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+              <div className="w-12 h-px bg-gradient-to-r from-bgDark-2/50 to-transparent"></div>
               <span>About Scott</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-gray-900 leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
               {data.title}
             </h1>
             <div className="mb-8 sm:mb-12 px-4">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 sm:gap-3 bg-white/20 border border-white/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
-                style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+                className="inline-flex items-center gap-2 sm:gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-gray-800 shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 min-h-[44px] justify-center"
+                style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
               >
                 <span className="text-center">Book a Session - Free Consultation Available</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800 group-hover:text-gray-600 transition-colors flex-shrink-0">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                 </svg>
               </a>
@@ -67,12 +67,12 @@ export default function About() {
             >
               {data.mainContent.heading && (
                 <div className="space-y-4">
-                  <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
-                    <div className="w-6 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
+                  <div className="inline-flex items-center gap-3 text-gray-800/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
+                    <div className="w-6 h-px bg-gradient-to-r from-bgDark-2/50 to-transparent"></div>
                     <span>Personal Journey</span>
-                    <div className="w-6 h-px bg-gradient-to-r from-transparent to-white/50"></div>
+                    <div className="w-6 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
                   </div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-white leading-[1.1] tracking-tight drop-shadow-md">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair font-light text-gray-900 leading-[1.1] tracking-tight drop-shadow-md">
                     {data.mainContent.heading}
                   </h2>
                 </div>
@@ -81,22 +81,22 @@ export default function About() {
                 <div className="prose prose-xl max-w-none">
                   {typeof data.mainContent.bio === 'string' 
                     ? data.mainContent.bio.split('\n\n').map((paragraph: string, index: number) => (
-                        <p key={index} className="text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-light mb-6 sm:mb-8 tracking-wide">
+                        <p key={index} className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-800/90 font-light mb-6 sm:mb-8 tracking-wide">
                           {paragraph}
                         </p>
                       ))
-                    : <p className="text-base sm:text-lg md:text-xl leading-relaxed text-white/90 font-light mb-6 sm:mb-8 tracking-wide">{data.mainContent.bio}</p>
+                    : <p className="text-base sm:text-lg md:text-xl leading-relaxed text-gray-800/90 font-light mb-6 sm:mb-8 tracking-wide">{data.mainContent.bio}</p>
                   }
                 </div>
               )}
               <div className="mt-6 sm:mt-8 md:mt-10">
                 <a
                   href="/contact"
-                  className="inline-flex items-center gap-2 sm:gap-3 bg-white/30 border border-white/50 px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-full font-semibold text-white shadow-xl hover:bg-white/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
-                  style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-full font-semibold text-gray-800 shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 min-h-[44px] justify-center"
+                  style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
                 >
                   <span className="text-center">Book a Session - Free Consultation Available</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-gray-800 group-hover:text-gray-600 transition-colors flex-shrink-0">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                   </svg>
                 </a>
@@ -136,7 +136,7 @@ export default function About() {
           </div>
 
           {/* Mission Statement */}
-          <div className="relative bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] rounded-3xl p-12 md:p-16 mb-32 overflow-hidden shadow-2xl border border-white/20 mt-24" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
+          <div className="relative bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-3xl p-12 md:p-16 mb-32 overflow-hidden shadow-2xl border border-white/20 mt-24" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
             {/* Space background effects */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
             <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
@@ -156,10 +156,10 @@ export default function About() {
               className="relative z-10 text-center"
             >
               {data.missionStatement.heading && (
-                <h2 className="text-3xl font-light text-white mb-8">{data.missionStatement.heading}</h2>
+                <h2 className="text-3xl font-light text-gray-900 mb-8">{data.missionStatement.heading}</h2>
               )}
               {data.missionStatement.content && (
-                <div className="prose prose-lg prose-invert max-w-3xl mx-auto text-white">
+                <div className="prose prose-lg max-w-3xl mx-auto text-gray-900">
                   <p className="text-lg leading-relaxed">{data.missionStatement.content}</p>
                 </div>
               )}
@@ -175,12 +175,12 @@ export default function About() {
               viewport={{ once: true }}
               className="prose prose-xl max-w-4xl mx-auto text-center"
             >
-              <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
-                <div className="w-8 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
+              <div className="inline-flex items-center gap-3 text-gray-800/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+                <div className="w-8 h-px bg-gradient-to-r from-bgDark-2/50 to-transparent"></div>
                 <span>Additional Insights</span>
-                <div className="w-8 h-px bg-gradient-to-r from-transparent to-white/50"></div>
+                <div className="w-8 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
               </div>
-              <p className="text-xl leading-relaxed text-white/90 font-light">{data.additionalContent}</p>
+              <p className="text-xl leading-relaxed text-gray-800/90 font-light">{data.additionalContent}</p>
             </AnimatedSection>
           )}
         </div>

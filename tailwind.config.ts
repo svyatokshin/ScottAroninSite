@@ -31,6 +31,18 @@ const config: Config = {
             dark: '#D69E2E',
           },
         },
+        // New background color palettes
+        bgLight: {
+          1: '#8CE4FF', // Light cyan
+          2: '#AEDEFC', // Light blue
+          3: '#AFDDFF', // Light blue
+          4: '#BBE9FF', // Very light blue
+        },
+        bgDark: {
+          1: '#001BB7', // Deep blue
+          2: '#0046FF', // Bright blue
+          3: '#1055C9', // Blue
+        },
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${quicksand.variable} ${cormorant.variable} font-sans antialiased`}>
         {/* Animated background elements */}
-        <div className="fixed inset-0 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]" />
+        <div className="fixed inset-0 bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2" />
         <div className="fixed inset-0 bg-zen-radial from-zen-blue-light/5 via-transparent to-transparent animate-zen-fade" />
         
         {/* Floating decorative elements */}
@@ -45,7 +45,7 @@ export default function RootLayout({
           </main>
           
           {/* Footer */}
-          <footer className="relative bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] py-10 backdrop-blur-md border-t border-white/20">
+          <footer className="relative bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2 py-10 backdrop-blur-md border-t border-gray-300/30">
             {/* Premium space background effects */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/10 via-transparent to-transparent opacity-40" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />
@@ -54,38 +54,38 @@ export default function RootLayout({
             <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_10px_15px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_25px_40px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_35px_80px,#fff,rgba(0,0,0,0))] bg-[length:100px_100px] opacity-10" />
             
             {/* Subtle border lines */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-bgDark-2/30 to-transparent" />
             
             <div className="container mx-auto px-4 relative z-10">
               <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                   {/* Company Info */}
                   <div className="text-center md:text-left">
-                    <h3 className="text-xl font-playfair font-light text-white mb-3">Scott Aronin</h3>
-                    <p className="text-white/90 font-light leading-relaxed text-sm">
+                    <h3 className="text-xl font-playfair font-light text-gray-900 mb-3">Scott Aronin</h3>
+                    <p className="text-gray-800/90 font-light leading-relaxed text-sm">
                       Transformative mind-body wellness coaching for lasting change and inner peace.
                     </p>
                   </div>
                   
                   {/* Quick Links */}
                   <div className="text-center md:text-left">
-                    <h4 className="text-base font-light text-white mb-3">Quick Links</h4>
+                    <h4 className="text-base font-light text-gray-900 mb-3">Quick Links</h4>
                     <ul className="space-y-1.5">
-                      <li><a href="/about" className="text-white/80 hover:text-white transition-colors font-light text-sm">About</a></li>
-                      <li><a href="/services" className="text-white/80 hover:text-white transition-colors font-light text-sm">Services</a></li>
-                      <li><a href="/research" className="text-white/80 hover:text-white transition-colors font-light text-sm">Research</a></li>
-                      <li><a href="/contact" className="text-white/80 hover:text-white transition-colors font-light text-sm">Contact</a></li>
+                      <li><a href="/about" className="text-gray-800/80 hover:text-bgDark-2 transition-colors font-light text-sm">About</a></li>
+                      <li><a href="/services" className="text-gray-800/80 hover:text-bgDark-2 transition-colors font-light text-sm">Services</a></li>
+                      <li><a href="/research" className="text-gray-800/80 hover:text-bgDark-2 transition-colors font-light text-sm">Research</a></li>
+                      <li><a href="/contact" className="text-gray-800/80 hover:text-bgDark-2 transition-colors font-light text-sm">Contact</a></li>
                     </ul>
                   </div>
                   
                   {/* Contact Info */}
                   <div className="text-center md:text-left">
-                    <h4 className="text-base font-light text-white mb-3">Get in Touch</h4>
+                    <h4 className="text-base font-light text-gray-900 mb-3">Get in Touch</h4>
                     <div className="space-y-1.5">
-                      <p className="text-white/80 font-light text-sm">Book a free consultation</p>
+                      <p className="text-gray-800/80 font-light text-sm">Book a free consultation</p>
                       <a 
                         href="/contact" 
-                        className="inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors font-light text-sm group"
+                        className="inline-flex items-center gap-2 text-gray-800 hover:text-bgDark-2 transition-colors font-light text-sm group"
                       >
                         Contact Us
                         <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,8 +97,8 @@ export default function RootLayout({
                 </div>
                 
                 {/* Bottom Bar */}
-                <div className="pt-6 border-t border-zen-purple/20 text-center">
-                  <p className="text-white/70 font-light text-sm">
+                <div className="pt-6 border-t border-gray-300/30 text-center">
+                  <p className="text-gray-700/70 font-light text-sm">
                     © {new Date().getFullYear()} Scott Aronin. All rights reserved.
                   </p>
                 </div>

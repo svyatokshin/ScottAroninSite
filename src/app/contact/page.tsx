@@ -13,8 +13,8 @@ export default function Contact() {
   const data = contactPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]">
-      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-bgLight-1 via-bgLight-2 to-bgLight-3">
+      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-bgLight-1 via-bgLight-2 to-bgLight-3 overflow-hidden">
         {/* Premium space background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
@@ -35,22 +35,22 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-20"
           >
-            <div className="inline-flex items-center gap-3 text-white/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
-              <div className="w-12 h-px bg-gradient-to-r from-white/50 to-transparent"></div>
+            <div className="inline-flex items-center gap-3 text-[#0046ff]/90 text-sm font-medium tracking-widest uppercase mb-6 drop-shadow-sm">
+              <div className="w-12 h-px bg-gradient-to-r from-bgDark-2/50 to-transparent"></div>
               <span>Get in Touch</span>
-              <div className="w-12 h-px bg-gradient-to-r from-transparent to-white/50"></div>
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-white leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-[#0046ff] leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
               {data.title}
             </h1>
             <div className="mb-8 sm:mb-12 px-4">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 sm:gap-3 bg-white/20 border border-white/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-white shadow-xl hover:bg-white/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/60 min-h-[44px] justify-center"
-                style={{boxShadow: '0 4px 32px 0 rgba(255,255,255,0.25)'}}
+                className="inline-flex items-center gap-2 sm:gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-[#0046ff] shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 min-h-[44px] justify-center"
+                style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
               >
                 <span className="text-center">Book a Session - Free Consultation Available</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-white/80 transition-colors flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-[#0046ff] group-hover:text-[#0033cc] transition-colors flex-shrink-0">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                 </svg>
               </a>
@@ -66,7 +66,7 @@ export default function Contact() {
                 className="relative bg-transparent self-start"
               >
                 <div 
-                  className="bg-gradient-to-br from-[#2E86AB] via-[#1B4F72] to-[#1A5490] p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
+                  className="bg-gradient-to-br from-bgDark-1 via-bgDark-3 to-bgDark-2 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
                   style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
                 >
                 {/* Space background effects */}
@@ -81,18 +81,18 @@ export default function Contact() {
                 <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
                 
                 <div className="relative z-10">
-                  <h2 className="text-2xl font-light text-white mb-6">Get in Touch</h2>
+                  <h2 className="text-2xl font-light text-[#0046ff] mb-6">Get in Touch</h2>
                   <div className="space-y-6">
                     {data.contactInfo.email && (
                       <div>
-                        <h3 className="text-lg font-light mb-2 text-white">Email</h3>
-                        <p className="text-white/90">{data.contactInfo.email}</p>
+                        <h3 className="text-lg font-light mb-2 text-[#0046ff]">Email</h3>
+                        <p className="text-[#0046ff]">{data.contactInfo.email}</p>
                       </div>
                     )}
                     {data.contactInfo.address && data.contactInfo.address.street && (
                       <div>
-                        <h3 className="text-lg font-light mb-2 text-white">Location</h3>
-                        <p className="text-white/90">
+                        <h3 className="text-lg font-light mb-2 text-[#0046ff]">Location</h3>
+                        <p className="text-[#0046ff]">
                           {[
                             data.contactInfo.address.street,
                             data.contactInfo.address.city,
