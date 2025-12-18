@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
 import { ResearchPage } from '@/types';
 import { AnimatedSection } from '@/components/animations/AnimatedSection';
 
@@ -15,12 +15,22 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { scrollY } = useScroll();
+  const [heroHeight, setHeroHeight] = useState(600);
 
   useEffect(() => {
     console.log('ResearchPageClient useEffect - data:', data);
     if (isInView) {
       controls.start('visible');
     }
+    
+    // Set hero height based on viewport
+    const updateHeight = () => {
+      setHeroHeight(Math.max(window.innerHeight * 0.7, 600));
+    };
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
   }, [controls, isInView, data]);
 
   const fadeInUp = {
@@ -36,30 +46,21 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-bgLight-2 via-bgLight-3 to-bgLight-4">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <motion.section 
-        className="relative flex items-center justify-center min-h-[60vh] py-32 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{ height: heroHeight }}
+        key="hero-section"
       >
-        {/* Premium space background effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_50%)]" />
-        {/* Star effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-20" />
-        <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-        {/* Nebula effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-40 mix-blend-screen" />
-        <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.08),rgba(147,51,234,0.08),rgba(56,189,248,0.08))] opacity-25" />
-        {/* Subtle border lines */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-blue/30 to-transparent" />
-        
         {data.heroSection.heroImage && (
-          <div className="absolute inset-0 z-0">
+          <motion.div 
+            className="absolute inset-0 z-0"
+            style={{
+              y: useTransform(scrollY, [0, 300], [0, 100]),
+              scale: useTransform(scrollY, [0, 300], [1, 1.1])
+            }}
+          >
             <Image
               src={data.heroSection.heroImage.src}
               alt={data.heroSection.heroImage.alt}
@@ -67,8 +68,15 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/60" />
-          </div>
+            {/* Luxury overlay: dark vignette + gold gradient */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/40" />
+            <div className="absolute inset-0 pointer-events-none" style={{background: 'radial-gradient(ellipse at center, rgba(255,215,102,0.10) 0%, rgba(0,0,0,0.0) 70%)'}} />
+            {/* Seamless transition overlay for water-to-space blend */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bgLight-4/90" />
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bgLight-4 via-bgLight-4/95 via-bgLight-4/80 via-bgLight-3/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bgLight-3 via-bgLight-3/90 via-bgLight-3/70 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-bgLight-2 via-bgLight-2/80 to-transparent" />
+          </motion.div>
         )}
         <div className="relative z-10 container mx-auto px-4 text-center">
           <motion.h1 
@@ -90,8 +98,22 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
         </div>
       </motion.section>
 
-      {/* Research Sections */}
-      <div className="container mx-auto px-4 py-32 space-y-28">
+      {/* Research Sections - Light Blue Background */}
+      <motion.section 
+        className="pt-24 pb-24 -mb-16 relative overflow-hidden z-10"
+        style={{background: 'linear-gradient(to bottom right, #AEDEFC, #AFDDFF, #BBE9FF)'}}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* Bottom fade-out - Blue to White - Extended and smoother - Blends with footer - starts later */}
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white via-white/95 via-white/85 via-white/75 via-white/65 via-white/55 via-bgNeutral-eggshell/50 via-bgNeutral-cream/40 via-bgLight-3/30 via-bgLight-4/60 via-bgLight-4/80 via-bgLight-3/95 to-transparent z-0 pointer-events-none" />
+        {/* Premium space background effects - starting below transition area */}
+        <div className="absolute top-0 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
+        <div className="absolute top-0 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
+        <div className="absolute top-0 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
+        
+        <div className="container mx-auto px-4 py-32 space-y-28 relative z-20">
         {data.researchSections.map((section, index) => (
           <AnimatedSection
             key={section.title}
@@ -101,21 +123,15 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative bg-gradient-to-br from-bgDark-2 via-bgDark-1 to-bgDark-3 rounded-3xl p-10 md:p-14 shadow-2xl overflow-hidden border border-white/20" style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}>
-              {/* Space background effects */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
-              {/* Star effects */}
-              <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-              <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
-              {/* Nebula effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
-              <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
+            <div className="relative bg-white rounded-3xl p-10 md:p-14 shadow-2xl overflow-hidden border border-gray-200/50" style={{boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}>
+              {/* Subtle background effects for white cards */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.03),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(0,0,0,0.02),transparent_50%)]" />
               
               {/* Category Badge */}
               <div className="absolute top-6 right-6 z-10">
-                <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-white/20 text-[#1055c9] border border-white/40">
+                <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-bgDark-2/20 text-[#1055c9] border border-bgDark-2/50">
                   {section.category.charAt(0).toUpperCase() + section.category.slice(1)}
                 </span>
               </div>
@@ -140,7 +156,8 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                     {section.keyFindings.map((finding, idx) => (
                       <div 
                         key={idx}
-                        className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 backdrop-blur-sm"
+                        className="rounded-xl p-6 border border-bgDark-2/20 shadow-lg"
+                        style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
                       >
                         <h4 className="text-lg font-medium text-[#1055c9] mb-3">
                           {finding.finding}
@@ -167,7 +184,8 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                     {section.statistics.map((stat, idx) => (
                       <div 
                         key={idx}
-                        className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 backdrop-blur-sm"
+                        className="text-center p-6 rounded-xl border border-bgDark-2/20 shadow-lg"
+                        style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
                       >
                         <div className="text-3xl font-light text-[#1055c9] mb-3">
                           {stat.statistic}
@@ -192,7 +210,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {section.visualData.map((visual, idx) => (
-                      <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-white/20 backdrop-blur-sm" style={{boxShadow: '0 8px 24px -8px rgba(0,0,0,0.25)'}}>
+                      <div key={idx} className="rounded-xl overflow-hidden shadow-lg border border-bgDark-2/20" style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}>
                         {visual.image && (
                           <div className="relative aspect-video">
                             <Image
@@ -230,8 +248,8 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                 href={study.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-colors duration-300 backdrop-blur-sm"
-                style={{boxShadow: '0 8px 24px -8px rgba(0,0,0,0.25)'}}
+                className="block p-6 rounded-xl border border-bgDark-2/20 transition-all duration-300 hover:scale-[1.02]"
+                style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
               >
                         <h4 className="text-lg font-medium text-[#1055c9] mb-2">
                           {study.title}
@@ -250,27 +268,22 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
             </div>
           </AnimatedSection>
         ))}
-      </div>
-      
-      {/* CTA after Research Sections */}
-      <AnimatedSection
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="text-center mt-16 pb-16"
-      >
-        <a
-          href="/contact"
-          className="inline-flex items-center gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-[#1055c9] shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
-          style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
-        >
-          Book a Session - Free Consultation Available
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#1055c9] group-hover:text-[#0d47a1] transition-colors">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-          </svg>
-        </a>
-      </AnimatedSection>
+        </div>
+        
+        {/* CTA Button within Light Blue Section */}
+        <div className="text-center relative z-20">
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-3 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-[#1055c9] shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 bg-white"
+            style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
+          >
+            Book a Session - Free Consultation Available
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#1055c9] group-hover:text-[#0d47a1] transition-colors">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+            </svg>
+          </a>
+        </div>
+      </motion.section>
     </div>
   );
 } 

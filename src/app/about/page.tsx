@@ -1,7 +1,10 @@
+'use client'
+
 import { AboutPage } from '@/types'
 import { aboutPageData } from '@/data/static-content'
 import Image from 'next/image'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
+import { motion } from 'framer-motion'
 
 /**
  * About page component - now using static data instead of Sanity CMS
@@ -11,24 +14,23 @@ export default function About() {
   const data = aboutPageData
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3]">
-      {/* Hero Section */}
-      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-br from-[#87CEEB] via-[#87CEEB] to-[#7EC8E3] overflow-hidden">
-        {/* Premium space background effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_50%)]" />
-        {/* Star effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-20" />
-        <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-        {/* Nebula effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-40 mix-blend-screen" />
-        <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.08),rgba(147,51,234,0.08),rgba(56,189,248,0.08))] opacity-25" />
-        {/* Subtle border lines */}
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-blue/30 to-transparent" />
+    <div className="min-h-screen">
+      {/* First Section - Light Blue Background - Hero + Main Content */}
+      <motion.section 
+        className="pt-24 pb-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden z-10"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        {/* Bottom fade-out - Blue to White - Extended and smoother */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/70 via-bgNeutral-eggshell/40 via-bgNeutral-cream/15 to-transparent z-0 pointer-events-none" />
+        {/* Premium space background effects - starting below transition area */}
+        <div className="absolute top-0 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
+        <div className="absolute top-0 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
+        <div className="absolute top-0 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-20">
           <AnimatedSection 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,37 +136,59 @@ export default function About() {
               )}
             </AnimatedSection>
           </div>
+        </div>
+      </motion.section>
 
+      {/* Second Section - White Background - Mission Statement + Additional Content */}
+      <motion.section 
+        className="py-16 sm:py-24 md:py-32 -mt-16 relative overflow-hidden z-10"
+        style={{ background: 'linear-gradient(to bottom right, #FFFFFF, #F5F5F0, #FAFAF5)' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        {/* Top fade-in - Blue to White - Extended and smoother - starts with blue to cover blue section immediately */}
+        <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-bgLight-4 via-bgLight-4/80 via-bgLight-3/60 via-white/40 via-white/70 via-white/90 to-white z-0 pointer-events-none" />
+        {/* Premium space background effects - starting below transition area */}
+        <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-40" />
+        <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />
+        <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-20">
           {/* Mission Statement */}
-          <div className="relative bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-3xl p-12 md:p-16 mb-32 overflow-hidden shadow-2xl border border-white/20 mt-24" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
-            {/* Space background effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-            <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.05] mix-blend-overlay" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
-            {/* Star effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-            <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
-            {/* Nebula effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
-            <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
-            <AnimatedSection
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative z-10 text-center"
+          <AnimatedSection
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <div 
+              className="relative rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl border border-bgDark-2/20 overflow-hidden max-w-4xl mx-auto"
+              style={{
+                background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+                boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
+              }}
             >
-              {data.missionStatement.heading && (
-                <h2 className="text-3xl font-light text-gray-900 mb-8">{data.missionStatement.heading}</h2>
-              )}
-              {data.missionStatement.content && (
-                <div className="prose prose-lg max-w-3xl mx-auto text-gray-900">
-                  <p className="text-lg leading-relaxed">{data.missionStatement.content}</p>
+              {/* Light blue background effects */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
+              
+              <div className="relative z-10 text-center">
+                <div className="inline-flex items-center gap-3 text-gray-800/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm mb-8">
+                  <div className="w-6 h-px bg-gradient-to-r from-bgDark-2/50 to-transparent"></div>
+                  <span>My Mission</span>
+                  <div className="w-6 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
                 </div>
-              )}
-            </AnimatedSection>
-          </div>
+                {data.missionStatement.content && (
+                  <div className="prose prose-lg max-w-3xl mx-auto text-gray-800/90">
+                    <p className="text-lg leading-relaxed font-light">{data.missionStatement.content}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </AnimatedSection>
 
           {/* Additional Content */}
           {data.additionalContent && (
@@ -184,7 +208,7 @@ export default function About() {
             </AnimatedSection>
           )}
         </div>
-      </section>
+      </motion.section>
     </div>
   )
 } 

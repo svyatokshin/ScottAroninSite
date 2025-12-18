@@ -43,6 +43,11 @@ const config: Config = {
           2: '#0046FF', // Bright blue
           3: '#1055C9', // Blue
         },
+        bgNeutral: {
+          white: '#FFFFFF', // Pure white
+          eggshell: '#F5F5F0', // Eggshell/off-white
+          cream: '#FAFAF5', // Cream white
+        },
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

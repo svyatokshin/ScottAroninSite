@@ -40,24 +40,21 @@ export function ContactForm() {
     <AnimatedSection
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      className="relative bg-gradient-to-br from-bgDark-1 via-bgDark-3 to-bgDark-2 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
+      className="relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-hidden border border-bgDark-2/20"
+      style={{
+        background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+        boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
+      }}
     >
-      {/* Space background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-50" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
-      {/* Star effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-      <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
-      {/* Nebula effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
-      <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
+      {/* Light blue background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
       
       <div className="relative z-10">
-        <h2 className="text-xl sm:text-2xl font-light mb-4 sm:mb-6 text-[#0046ff]">Send a Message</h2>
+        <h2 className="text-xl sm:text-2xl font-light mb-4 sm:mb-6 text-gray-900">Send a Message</h2>
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-[#0046ff] mb-1">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-1">
               Name
             </label>
             <input
@@ -67,12 +64,12 @@ export function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/80 backdrop-blur-sm text-[#0046ff] placeholder-gray-500/60 text-base min-h-[44px]"
+              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px]"
               placeholder="Your name"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-[#0046ff] mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-1">
               Email
             </label>
             <input
@@ -82,12 +79,12 @@ export function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/80 backdrop-blur-sm text-[#0046ff] placeholder-gray-500/60 text-base min-h-[44px]"
+              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px]"
               placeholder="your.email@example.com"
             />
           </div>
           <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-[#0046ff] mb-1">
+            <label htmlFor="subject" className="block text-sm font-medium text-gray-900 mb-1">
               Subject
             </label>
             <input
@@ -97,12 +94,12 @@ export function ContactForm() {
               value={formData.subject}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/80 backdrop-blur-sm text-[#0046ff] placeholder-gray-500/60 text-base min-h-[44px]"
+              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px]"
               placeholder="What's this about?"
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-[#0046ff] mb-1">
+            <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-1">
               Message
             </label>
             <textarea
@@ -112,19 +109,20 @@ export function ContactForm() {
               onChange={handleChange}
               required
               rows={4}
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/80 backdrop-blur-sm text-[#0046ff] placeholder-gray-500/60 resize-none text-base min-h-[120px]"
+              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 resize-none text-base min-h-[120px]"
               placeholder="Tell us more about your wellness goals. Would you like to book a free consult video chat?"
             />
           </div>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-bgDark-2/20 border border-bgDark-2/50 text-[#0046ff] px-6 py-3 sm:py-3.5 rounded-lg font-semibold hover:bg-bgDark-2/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 shadow-lg min-h-[44px] text-base sm:text-lg"
+            className="w-full border border-bgDark-2/50 text-gray-900 px-6 py-3 sm:py-3.5 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 shadow-lg min-h-[44px] text-base sm:text-lg"
+            style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)'}}
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
           {submitStatus === 'success' && (
-            <p className="text-[#0046ff] text-center animate-fade-in font-light">Message sent successfully!</p>
+            <p className="text-gray-900 text-center animate-fade-in font-light">Message sent successfully!</p>
           )}
           {submitStatus === 'error' && (
             <p className="text-red-600 text-center animate-fade-in font-light">Failed to send message. Please try again.</p>

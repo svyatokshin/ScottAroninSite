@@ -126,10 +126,10 @@ export function HomePageClient({ data }: HomePageClientProps) {
              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/40" />
              <div className="absolute inset-0 pointer-events-none" style={{background: 'radial-gradient(ellipse at center, rgba(255,215,102,0.10) 0%, rgba(0,0,0,0.0) 70%)'}} />
              {/* Seamless transition overlay for water-to-space blend */}
-             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bgLight-4/80" />
-             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bgLight-4 via-bgLight-4/90 to-transparent" />
-             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-bgLight-3 via-bgLight-3/80 to-transparent" />
-             <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-bgLight-2 via-bgLight-2/60 to-transparent" />
+             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bgLight-4/90" />
+             <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-bgLight-4 via-bgLight-4/95 via-bgLight-4/80 via-bgLight-3/60 to-transparent" />
+             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bgLight-3 via-bgLight-3/90 via-bgLight-3/70 to-transparent" />
+             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-bgLight-2 via-bgLight-2/80 to-transparent" />
           </motion.div>
         )}
         <div className="relative z-10 container mx-auto px-4 text-center flex flex-col items-center justify-center h-full">
@@ -208,38 +208,34 @@ export function HomePageClient({ data }: HomePageClientProps) {
         <FaArrowUp className="w-5 h-5" />
       </motion.button>
 
-             {/* About Section - Premium Design */}
+             {/* About Section - Premium Design - Light Blue Background */}
                {data.aboutSection && (
           <motion.section
-            className="pt-16 pb-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden"
+            className="pt-24 pb-32 -mt-16 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden z-10"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
             {/* Top fade-in for seamless hero transition */}
-            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-bgLight-4 via-bgLight-4/90 to-transparent" />
-           {/* Premium space background effects */}
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_50%)]" />
-           {/* Star effects */}
-           <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-20" />
-           <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-           {/* Nebula effect */}
-           <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-40 mix-blend-screen" />
-           <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.08),rgba(147,51,234,0.08),rgba(56,189,248,0.08))] opacity-25" />
-           {/* Subtle border lines */}
-           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-purple/30 to-transparent" />
-           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zen-blue/30 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-bgLight-4 via-bgLight-4/95 via-bgLight-4/80 via-bgLight-3/60 via-bgLight-3/30 to-transparent z-0 pointer-events-none" />
+            {/* Bottom fade-out - Blue to White - Extended and smoother */}
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/70 via-bgNeutral-eggshell/40 via-bgNeutral-cream/15 to-transparent z-0 pointer-events-none" />
+            {/* Premium space background effects - starting below transition area */}
+            <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/20 via-transparent to-transparent opacity-60" />
+            <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
+            <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_50%)]" />
+            {/* Star effects - starting below transition area */}
+            <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-20" />
+            <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
+            {/* Nebula effect - starting below transition area */}
+            <div className="absolute top-64 inset-x-0 bottom-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-40 mix-blend-screen" />
+            {/* Conic gradient removed to prevent white tint bleeding into hero */}
            
-           <div className="container mx-auto px-4 relative z-10">
+           <div className="container mx-auto px-4 relative z-30">
              <div className="max-w-7xl mx-auto">
-                 <div className="relative bg-bgDark-3/90 backdrop-blur-sm rounded-[2rem] p-12 md:p-20 shadow-2xl overflow-hidden border border-white/20" style={{boxShadow: '0 20px 60px -12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)'}}>
-                 {/* Premium card background matching space theme */}
-                 <div className="absolute inset-0 bg-gradient-to-br from-bgDark-3 via-bgDark-2/95 to-bgDark-1/90" />
-                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.12),transparent_40%)]" />
-                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(147,51,234,0.08),transparent_40%)]" />
+                 <div className="relative rounded-[2rem] p-12 md:p-20 shadow-2xl overflow-hidden border border-bgDark-2/20" style={{background: 'linear-gradient(to bottom right, #AEDEFC, #AFDDFF, #BBE9FF)', boxShadow: '0 20px 60px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'}}>
+                 {/* Solid blue card background - no gradients, no effects from section overlays */}
                  
                  <div className="relative z-10 flex flex-col lg:flex-row items-start gap-16 lg:gap-20">
                    {data.aboutSection?.image && (
@@ -316,20 +312,24 @@ export function HomePageClient({ data }: HomePageClientProps) {
          </motion.section>
        )}
 
-             {/* Content Sections as Cards - Premium Dark Theme */}
+             {/* Content Sections as Cards - Premium Dark Theme - White Background */}
        <motion.section
-          className="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden"
+          className="py-16 sm:py-24 md:py-32 -mt-16 relative overflow-hidden z-10 bg-white"
          initial={{ opacity: 0, y: 40 }}
          whileInView={{ opacity: 1, y: 0 }}
          transition={{ duration: 0.8 }}
          viewport={{ once: true }}
        >
-         {/* Premium space background effects */}
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
-         {/* Star effects */}
-         <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_15px_20px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_30px_50px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_40px_100px,#fff,rgba(0,0,0,0))] bg-[length:150px_150px] opacity-15" />
+         {/* Top fade-in - Blue to White - Extended and smoother - starts with blue to cover blue section immediately */}
+         <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-bgLight-4 via-bgLight-4/80 via-bgLight-3/60 via-white/40 via-white/70 via-white/90 to-white z-0 pointer-events-none" />
+         {/* Bottom fade-out - White to Blue - Extended and smoother */}
+         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/60 via-bgNeutral-eggshell/35 via-bgNeutral-cream/15 to-transparent z-0 pointer-events-none" />
+         {/* Premium space background effects - starting below transition area */}
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
+         {/* Star effects - starting below transition area */}
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(1px_1px_at_15px_20px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_30px_50px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_40px_100px,#fff,rgba(0,0,0,0))] bg-[length:150px_150px] opacity-15" />
          
          <div className="container mx-auto px-4 relative z-10">
            {data.cardSectionsTitle && (
@@ -356,20 +356,16 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  viewport={{ once: true }}
                >
                  <div 
-                  className="group relative bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] max-w-2xl mx-auto mb-4 overflow-hidden cursor-pointer"
+                  className="group relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-bgDark-2/20 hover:border-bgDark-2/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,70,201,0.2),0_0_0_1px_rgba(0,70,201,0.15)] hover:scale-[1.02] max-w-2xl mx-auto mb-4 overflow-hidden cursor-pointer"
                   onClick={() => handleOpenModal('cardSectionOne')}
-                  style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
+                  style={{
+                    background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+                    boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
+                  }}
                 >
-                 {/* Space background effects */}
-                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
-                 {/* Star effects */}
-                 <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-                 <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
-                 {/* Nebula effect */}
-                 <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
-                 <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
+                 {/* Light blue background effects */}
+                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
                  
                  <div className="relative z-10 flex flex-col items-center text-center h-full">
                    {data.cardSectionOne.image && (
@@ -419,20 +415,16 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      viewport={{ once: true }}
                    >
                      <div 
-                      className="group relative bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-white/20 hover:border-white/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.15)] hover:scale-[1.02] overflow-hidden cursor-pointer h-full flex flex-col"
+                      className="group relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl border border-bgDark-2/20 hover:border-bgDark-2/30 transition-all duration-500 hover:shadow-[0_20px_60px_-12px_rgba(0,70,201,0.2),0_0_0_1px_rgba(0,70,201,0.15)] hover:scale-[1.02] overflow-hidden cursor-pointer h-full flex flex-col"
                       onClick={() => handleOpenModal(s.key)}
-                      style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
+                      style={{
+                        background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+                        boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
+                      }}
                     >
-                     {/* Space background effects */}
-                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.15),transparent_70%)]" />
-                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.15),transparent_50%)]" />
-                     {/* Star effects */}
-                     <div className="absolute inset-0 bg-[radial-gradient(2px_2px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_40px_70px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_50px_160px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_90px_40px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_130px_80px,#fff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_160px_120px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-30" />
-                     <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_25px_5px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_50px_23px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_125px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_50px_93px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_16px_80px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_33px_43px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_83px_4px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_34px_66px,#fff,rgba(0,0,0,0))] bg-[length:200px_200px] opacity-40" />
-                     {/* Nebula effect */}
-                     <div className="absolute inset-0 bg-gradient-to-br from-zen-purple/10 via-transparent to-zen-blue/10 opacity-50 mix-blend-screen" />
-                     <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.1),rgba(147,51,234,0.1),rgba(56,189,248,0.1))] opacity-30" />
+                     {/* Light blue background effects */}
+                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
                      
                      <div className="relative z-10 flex flex-col items-center text-center h-full">
                        {s.image && (
@@ -492,24 +484,29 @@ export function HomePageClient({ data }: HomePageClientProps) {
          </div>
        </motion.section>
 
-             {/* Main Sections - Premium Dark Theme */}
-        <div className="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden">
-         {/* Premium space background effects */}
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
-         {/* Star effects */}
-         <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_15px_20px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_30px_50px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_40px_100px,#fff,rgba(0,0,0,0))] bg-[length:150px_150px] opacity-15" />
+             {/* Main Sections - Alternating Backgrounds */}
+        <div className="relative overflow-hidden">
+         {/* Premium space background effects - removed to prevent overlap issues */}
          
-         <div className="container mx-auto px-4 sm:px-6 relative z-10 space-y-16 sm:space-y-24 md:space-y-32">
+         <div className="relative z-10">
            {data.mainSectionOne && (
              <motion.section
-               className="flex flex-col lg:flex-row items-center gap-20 lg:gap-24"
+               className="py-16 sm:py-24 md:py-32 -mt-16 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden z-10"
                initial={{ opacity: 0, y: 40 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
                viewport={{ once: true }}
              >
+               {/* Top fade-in - White to Blue - Extended and smoother - starts with white to cover white section immediately */}
+               <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-white via-white/80 via-white/60 via-bgNeutral-eggshell/40 via-bgLight-3/30 via-bgLight-4/60 via-bgLight-4/80 to-transparent z-0 pointer-events-none" />
+               {/* Bottom fade-out - Blue to White - Extended and smoother */}
+               <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/60 via-bgNeutral-eggshell/35 via-bgNeutral-cream/15 to-transparent z-0 pointer-events-none" />
+               {/* Premium space background effects - starting below transition area */}
+               <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
+               <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
+               <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
+               <div className="container mx-auto px-4 sm:px-6 relative z-20">
+                 <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-24">
                <div className="flex-1 space-y-8">
                  {data.mainSectionOne.title && (
                    <div className="space-y-6">
@@ -567,19 +564,30 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    </div>
                  </div>
                </div>
+                 </div>
+               </div>
              </motion.section>
            )}
 
-           <div className="space-y-0">
-                   {data.mainSectionTwo && (
+           {data.mainSectionTwo && (
              <motion.section
-               className="flex flex-col lg:flex-row-reverse items-center gap-8 sm:gap-12 md:gap-20 lg:gap-24 py-8 sm:py-12 md:py-16 -mx-4 px-4 bg-gradient-to-br from-bgLight-3 via-bgLight-4 to-bgLight-4 rounded-t-3xl pb-4 sm:pb-6 md:pb-8"
+               className="py-16 sm:py-24 md:py-32 -mt-16 relative overflow-hidden z-10 bg-white"
                initial={{ opacity: 0, y: 40 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
                viewport={{ once: true }}
              >
-               <div className="flex-1 space-y-8">
+               {/* Top fade-in - Blue to White - Extended and smoother - starts with blue to cover blue section immediately */}
+               <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-bgLight-4 via-bgLight-4/80 via-bgLight-3/60 via-white/40 via-white/70 via-white/90 to-white z-0 pointer-events-none" />
+               {/* Bottom fade-out - White to Blue - Extended and smoother - transitions directly to blue */}
+               <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-bgLight-4 via-bgLight-4/90 via-bgLight-4/75 via-bgLight-3/55 via-white/35 via-white/55 via-white/75 to-white z-0 pointer-events-none" />
+               {/* Premium space background effects - starting below transition area */}
+               <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
+               <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
+               <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
+               <div className="container mx-auto px-4 sm:px-6 relative z-20">
+                 <div className={`${data.mainSectionTwo.image || (data.mainSectionTwo.mediaType === 'video' && data.mainSectionTwo.video?.url) ? 'flex flex-col lg:flex-row-reverse items-center gap-8 sm:gap-12 md:gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}>
+                   <div className="flex-1 space-y-8">
                  {data.mainSectionTwo.title && (
                    <div className="space-y-6">
                     <div className="inline-flex items-center gap-3 text-gray-800/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
@@ -650,18 +658,29 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    </div>
                  </div>
                </div>
+                 </div>
+               </div>
              </motion.section>
            )}
 
            {data.mainSectionThree && (
              <motion.section
-               className="py-8 sm:py-12 md:py-16 -mx-4 px-4 bg-gradient-to-br from-bgLight-3 via-bgLight-4 to-bgLight-4 rounded-b-3xl pt-4 sm:pt-6 md:pt-8"
+               className="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden z-10"
                initial={{ opacity: 0, y: 40 }}
                whileInView={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.8 }}
                viewport={{ once: true }}
              >
-               <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex flex-col lg:flex-row items-center gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}>
+               {/* Top fade-in - White to Blue - Extended and smoother - starts with white to cover white section immediately */}
+               <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-white via-white/95 via-white/85 via-white/70 via-white/50 via-bgNeutral-eggshell/35 via-bgLight-3/50 via-bgLight-4/80 via-bgLight-4/95 to-transparent z-0 pointer-events-none" />
+               {/* Bottom fade-out - Blue to White - Extended and smoother */}
+               <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/60 via-bgNeutral-eggshell/35 via-bgNeutral-cream/15 to-transparent z-0 pointer-events-none" />
+               {/* Premium space background effects - starting below transition area */}
+               <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-50" />
+               <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
+               <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
+               <div className="container mx-auto px-4 sm:px-6 relative z-20">
+                 <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex flex-col lg:flex-row items-center gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}>
                  <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex-1 space-y-8' : 'space-y-10'}`}>
                  {data.mainSectionThree.title && (
                    <div className="space-y-6">
@@ -754,12 +773,13 @@ export function HomePageClient({ data }: HomePageClientProps) {
             {topics.map((topic, topicIndex) => (
             <div
               key={topicIndex}
-              className="relative w-full bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-3xl p-10 md:p-14 shadow-2xl border border-white/20 overflow-hidden"
-              style={{boxShadow: '0 10px 40px -10px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)'}}
+              className="relative w-full bg-white rounded-3xl p-10 md:p-14 shadow-2xl border border-gray-200/50 overflow-hidden"
+              style={{boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
             >
-                             {/* Space background effects */}
-                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.1),transparent_70%)]" />
-                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_50%)]" />
+                             {/* Subtle background effects for white cards */}
+                             <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white" />
+                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.03),transparent_70%)]" />
+                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(0,0,0,0.02),transparent_50%)]" />
                              
                              <div className="relative z-10">
                                {/* Header */}
@@ -767,17 +787,60 @@ export function HomePageClient({ data }: HomePageClientProps) {
                                  {topic.header}
                                </h3>
                                
-                               {/* Paragraphs */}
+                               {/* Paragraphs - Bulleted items in one nested card */}
                                <div className="space-y-6">
-                                 {topic.paragraphs.map((paragraph, pIndex) => (
-                                   <p 
-                                     key={pIndex} 
-                                     className={`${data.mainSectionThree?.image || (data.mainSectionThree?.mediaType === 'video' && data.mainSectionThree?.video?.url) ? 'text-lg md:text-xl' : 'text-base md:text-lg'} leading-relaxed text-gray-800/90 font-light max-w-4xl mx-auto`}
-                                     style={{ lineHeight: '1.8' }}
-                                   >
-                                     {paragraph}
-                                   </p>
-                                 ))}
+                                 {(() => {
+                                   // Separate bulleted and non-bulleted paragraphs
+                                   const bulletedItems: string[] = [];
+                                   const regularParagraphs: Array<{ content: string; index: number }> = [];
+                                   
+                                   topic.paragraphs.forEach((paragraph, pIndex) => {
+                                     if (paragraph.trim().startsWith('•')) {
+                                       bulletedItems.push(paragraph.trim());
+                                     } else {
+                                       regularParagraphs.push({ content: paragraph, index: pIndex });
+                                     }
+                                   });
+                                   
+                                   // Render regular paragraphs first, then bulleted items in one card
+                                   return (
+                                     <>
+                                       {regularParagraphs.map(({ content, index }) => (
+                                         <p 
+                                           key={`regular-${index}`} 
+                                           className={`${data.mainSectionThree?.image || (data.mainSectionThree?.mediaType === 'video' && data.mainSectionThree?.video?.url) ? 'text-lg md:text-xl' : 'text-base md:text-lg'} leading-relaxed text-gray-800/90 font-light max-w-4xl mx-auto`}
+                                           style={{ lineHeight: '1.8' }}
+                                         >
+                                           {content}
+                                         </p>
+                                       ))}
+                                       {bulletedItems.length > 0 && (
+                                         <div
+                                           className="relative rounded-xl p-6 md:p-8 border border-bgDark-2/20 overflow-hidden"
+                                           style={{
+                                             background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+                                             boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
+                                           }}
+                                         >
+                                           {/* Light blue background effects */}
+                                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+                                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
+                                           <div className="relative z-10 space-y-4">
+                                             {bulletedItems.map((item, itemIndex) => (
+                                               <p 
+                                                 key={`bullet-${itemIndex}`}
+                                                 className="text-base md:text-lg leading-relaxed text-gray-900 font-light"
+                                                 style={{ lineHeight: '1.8' }}
+                                               >
+                                                 {item}
+                                               </p>
+                                             ))}
+                                           </div>
+                                         </div>
+                                       )}
+                                     </>
+                                   );
+                                 })()}
                                </div>
                              </div>
                            </div>
@@ -835,43 +898,39 @@ export function HomePageClient({ data }: HomePageClientProps) {
                    </div>
                  </div>
                )}
+                 </div>
+               
+               {/* CTA after Research Section */}
+               <div className="text-center mt-16 pb-8">
+                 <Link
+                   href="/contact"
+                   className="inline-flex items-center gap-3 bg-bgDark-2/30 border border-bgDark-2/50 px-12 py-4 text-xl rounded-full font-semibold text-gray-800 shadow-xl hover:bg-bgDark-2/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
+                   style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
+                 >
+                   Book a Session - Free Consultation Available
+                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-gray-800 group-hover:text-gray-600 transition-colors">
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                   </svg>
+                 </Link>
+               </div>
                </div>
              </motion.section>
-           )}
-           </div>
-           
-           {/* CTA after Research Section */}
-           {data.mainSectionThree && (
-             <motion.div
-               className="text-center mt-16"
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.8 }}
-               viewport={{ once: true }}
-             >
-               <Link
-                 href="/contact"
-                 className="inline-flex items-center gap-3 bg-bgDark-2/30 border border-bgDark-2/50 px-12 py-4 text-xl rounded-full font-semibold text-gray-800 shadow-xl hover:bg-bgDark-2/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
-                 style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
-               >
-                 Book a Session - Free Consultation Available
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-gray-800 group-hover:text-gray-600 transition-colors">
-                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                 </svg>
-               </Link>
-             </motion.div>
            )}
          </div>
        </div>
 
-             {/* Newsletter Section - Premium Dark Theme */}
-       <section className="py-32 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3 relative overflow-hidden">
-         {/* Premium space background effects */}
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-40" />
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
-         {/* Star effects */}
-         <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_10px_15px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_25px_40px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_35px_80px,#fff,rgba(0,0,0,0))] bg-[length:100px_100px] opacity-10" />
+             {/* Newsletter Section - White Background */}
+       <section className="py-32 -mt-16 relative overflow-hidden z-10 bg-white">
+         {/* Top fade-in - Blue to White - Extended and smoother - starts with blue to cover blue section immediately */}
+         <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-bgLight-4 via-bgLight-4/80 via-bgLight-3/60 via-white/40 via-white/70 via-white/90 to-white z-0 pointer-events-none" />
+         {/* Bottom fade-out - White to Footer Blue - Extended and smoother */}
+         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/60 via-bgNeutral-eggshell/35 via-bgNeutral-cream/15 to-transparent z-0 pointer-events-none" />
+         {/* Premium space background effects - starting below transition area */}
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/15 via-transparent to-transparent opacity-40" />
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
+         {/* Star effects - starting below transition area */}
+         <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(1px_1px_at_10px_15px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_25px_40px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_35px_80px,#fff,rgba(0,0,0,0))] bg-[length:100px_100px] opacity-10" />
          
          <div className="container mx-auto px-4 relative z-10">
            <motion.div 
