@@ -40,17 +40,20 @@ export function ContactForm() {
     <AnimatedSection
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      className="relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-hidden border border-bgDark-2/20"
-      style={{
-        background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
-        boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
-      }}
+      className="relative"
     >
-      {/* Light blue background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
-      
-      <div className="relative z-10">
+      <div
+        className="relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 overflow-hidden border border-bgDark-2/20"
+        style={{
+          background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+          boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
+        }}
+      >
+        {/* Light blue background effects */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
+        
+        <div className="relative z-10">
         <h2 className="text-xl sm:text-2xl font-light mb-4 sm:mb-6 text-gray-900">Send a Message</h2>
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div>
@@ -128,6 +131,7 @@ export function ContactForm() {
             <p className="text-red-600 text-center animate-fade-in font-light">Failed to send message. Please try again.</p>
           )}
         </form>
+        </div>
       </div>
     </AnimatedSection>
   )
