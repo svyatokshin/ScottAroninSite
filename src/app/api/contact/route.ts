@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>', // You'll need to verify a domain in Resend for production
       to: ['slavaok11@gmail.com'], // Test email address
-      replyTo: email, // So you can reply directly to the sender
+      reply_to: email, // So you can reply directly to the sender
       subject: `Contact Form: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
