@@ -268,20 +268,20 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
             </div>
           </AnimatedSection>
         ))}
-        </div>
-        
+      </div>
+      
         {/* CTA Button within Light Blue Section */}
         <div className="text-center relative z-20">
-          <a
-            href="/contact"
+        <a
+          href="/contact"
             className="inline-flex items-center gap-3 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-[#1055c9] shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 bg-white"
             style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
-          >
-            Book a Session - Free Consultation Available
+        >
+          Book a Session - Free Consultation Available
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#1055c9] group-hover:text-[#0d47a1] transition-colors">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-            </svg>
-          </a>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+          </svg>
+        </a>
         </div>
       </motion.section>
     </div>

@@ -15,6 +15,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white">
       <section className="relative py-16 sm:py-24 md:py-32 bg-white overflow-hidden">
+        {/* Bottom fade-out to blend with footer */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bgLight-4 via-bgLight-4/80 via-bgLight-3/60 via-white/40 via-white/70 to-white z-0 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
           <AnimatedSection 
             initial={{ opacity: 0, y: 20 }}
@@ -60,56 +62,54 @@ export default function Contact() {
             <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(56,189,248,0.08),rgba(147,51,234,0.08),rgba(56,189,248,0.08))] opacity-25" />
             
             <div className="relative z-10">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
-                {/* Contact Information */}
-                {(data.contactInfo.email || (data.contactInfo.address && data.contactInfo.address.street)) && (
-                  <AnimatedSection
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="relative self-start"
-                  >
-                    <div 
+          <div className="flex flex-col gap-6 sm:gap-8 md:gap-12">
+            {/* Contact Information */}
+            <AnimatedSection
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="relative w-full"
+            >
+                <div 
                       className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 overflow-hidden border border-bgDark-2/20"
                       style={{
                         background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
                         boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
                       }}
-                    >
+                >
                       {/* Light blue background effects */}
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
-                      
-                      <div className="relative z-10">
-                        <h2 className="text-2xl font-light text-gray-900 mb-6">Get in Touch</h2>
-                        <div className="space-y-6">
-                          {data.contactInfo.email && (
-                            <div>
-                              <h3 className="text-lg font-light mb-2 text-gray-900">Email</h3>
-                              <p className="text-gray-900">{data.contactInfo.email}</p>
-                            </div>
-                          )}
-                          {data.contactInfo.address && data.contactInfo.address.street && (
-                            <div>
-                              <h3 className="text-lg font-light mb-2 text-gray-900">Location</h3>
-                              <p className="text-gray-900">
-                                {[
-                                  data.contactInfo.address.street,
-                                  data.contactInfo.address.city,
-                                  data.contactInfo.address.state,
-                                  data.contactInfo.address.postalCode,
-                                  data.contactInfo.address.country
-                                ].filter(Boolean).join(', ')}
-                              </p>
-                            </div>
-                          )}
-                        </div>
+                
+                <div className="relative z-10">
+                        <h2 className="text-2xl font-light text-gray-900 mb-6 text-center">Get in Touch</h2>
+                  <div className="space-y-6 text-center">
+                    {data.contactInfo.email && (
+                      <div>
+                              <h3 className="text-lg font-light mb-4 text-gray-900">Email me directly or fill the contact form below</h3>
+                              <a 
+                                href={`mailto:${data.contactInfo.email}`}
+                                className="inline-block text-2xl sm:text-3xl md:text-4xl font-bold text-black hover:text-gray-700 transition-all duration-300 transform hover:scale-105 drop-shadow-lg"
+                                style={{
+                                  letterSpacing: '0.02em',
+                                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                                }}
+                              >
+                                {data.contactInfo.email}
+                              </a>
                       </div>
+                    )}
+                    <div>
+                      <p className="text-gray-900">
+                        Most sessions are online. Some people in Northeast Pennsylvania can also schedule in-person sessions.
+                      </p>
                     </div>
-                  </AnimatedSection>
-                )}
+                  </div>
+                    </div>
+                </div>
+              </AnimatedSection>
 
-                {/* Contact Form */}
-                <ContactForm />
+            {/* Contact Form */}
+            <ContactForm />
               </div>
             </div>
           </div>

@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-quicksand)'],
+        sans: ['var(--font-lato)', 'sans-serif'],
         serif: ['var(--font-cormorant)'],
-        playfair: ['var(--font-playfair)'],
+        playfair: ['var(--font-cormorant)'],
       },
       colors: {
         zen: {
@@ -30,23 +30,6 @@ const config: Config = {
             DEFAULT: '#F6E05E',
             dark: '#D69E2E',
           },
-        },
-        // New background color palettes
-        bgLight: {
-          1: '#8CE4FF', // Light cyan
-          2: '#AEDEFC', // Light blue
-          3: '#AFDDFF', // Light blue
-          4: '#BBE9FF', // Very light blue
-        },
-        bgDark: {
-          1: '#001BB7', // Deep blue
-          2: '#0046FF', // Bright blue
-          3: '#1055C9', // Blue
-        },
-        bgNeutral: {
-          white: '#FFFFFF', // Pure white
-          eggshell: '#F5F5F0', // Eggshell/off-white
-          cream: '#FAFAF5', // Cream white
         },
       },
       animation: {

@@ -20,11 +20,24 @@ export function ContactForm() {
     setSubmitStatus(null)
 
     try {
-      // TODO: Implement form submission
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Simulated API call
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
     } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -52,9 +65,9 @@ export function ContactForm() {
         {/* Light blue background effects */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
-        
-        <div className="relative z-10">
-        <h2 className="text-xl sm:text-2xl font-light mb-4 sm:mb-6 text-gray-900">Send a Message</h2>
+      
+      <div className="relative z-10">
+        <h2 className="text-xl sm:text-2xl font-light mb-4 sm:mb-6 text-gray-900 text-center">Send a Message</h2>
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-1">

@@ -27,14 +27,14 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-gray-800 flex items-center gap-2 hover:opacity-80 transition-opacity group">
-              <div className="relative">
+            <Link href="/" className="text-2xl sm:text-3xl font-bold text-gray-800 flex items-center gap-2 hover:opacity-80 transition-opacity group min-h-[44px]">
+              <div className="relative flex-shrink-0">
                 <Image  
                   src="/logo3.png" 
                   alt="Scott Aronin" 
                   width={60} 
                   height={60} 
-                  className="rounded-full animate-float group-hover:animate-glow transition-all duration-300" 
+                  className="rounded-full animate-float group-hover:animate-glow transition-all duration-300 w-12 h-12 sm:w-[60px] sm:h-[60px]" 
                 />
                 <div className="absolute inset-0 rounded-full bg-zen-purple-light/20 animate-pulse-slow" />
               </div>
@@ -62,7 +62,10 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-gray-600 focus:outline-none transition-colors hover:bg-gray-200/50"
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              className="inline-flex items-center justify-center p-3 rounded-md text-gray-800 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 transition-colors hover:bg-gray-200/50 min-w-[44px] min-h-[44px]"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -72,6 +75,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       <motion.div
+        id="mobile-menu"
         initial={false}
         animate={isOpen ? 'open' : 'closed'}
         variants={{
@@ -85,7 +89,7 @@ const Navbar = () => {
             <Link
               key={item.name}
               href={item.href}
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-200/50 transition-all duration-300"
+              className="block px-4 py-3 rounded-md text-base font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-200/50 transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
               onClick={() => setIsOpen(false)}
             >
               {item.name}

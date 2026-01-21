@@ -157,11 +157,11 @@ export default function About() {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-20">
           {/* Mission Statement */}
-          <AnimatedSection
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            <AnimatedSection
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             className="mb-16"
           >
             <div 
@@ -181,14 +181,14 @@ export default function About() {
                   <span>My Mission</span>
                   <div className="w-6 h-px bg-gradient-to-r from-transparent to-bgDark-2/50"></div>
                 </div>
-                {data.missionStatement.content && (
+              {data.missionStatement.content && (
                   <div className="prose prose-lg max-w-3xl mx-auto text-gray-800/90">
                     <p className="text-lg leading-relaxed font-light">{data.missionStatement.content}</p>
-                  </div>
-                )}
+                </div>
+              )}
               </div>
             </div>
-          </AnimatedSection>
+            </AnimatedSection>
 
           {/* Additional Content */}
           {data.additionalContent && (

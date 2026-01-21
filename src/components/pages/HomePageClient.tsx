@@ -166,7 +166,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             style={{ y: useTransform(scrollY, [0, 300], [0, -30]) }}
             key="hero-subheading"
           >
-            Experience personalized wellness coaching that harmonizes mind, body, and spirit for lasting transformation.
+            {data.heroSection.subheading}
           </motion.p>
           {/* CTA Button */}
           <motion.div
@@ -563,13 +563,13 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      ) : null}
                    </div>
                  </div>
-               </div>
+                   </div>
                  </div>
                </div>
              </motion.section>
            )}
 
-           {data.mainSectionTwo && (
+                   {data.mainSectionTwo && (
              <motion.section
                className="py-16 sm:py-24 md:py-32 -mt-16 relative overflow-hidden z-10 bg-white"
                initial={{ opacity: 0, y: 40 }}
@@ -587,7 +587,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                <div className="absolute top-48 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
                <div className="container mx-auto px-4 sm:px-6 relative z-20">
                  <div className={`${data.mainSectionTwo.image || (data.mainSectionTwo.mediaType === 'video' && data.mainSectionTwo.video?.url) ? 'flex flex-col lg:flex-row-reverse items-center gap-8 sm:gap-12 md:gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}>
-                   <div className="flex-1 space-y-8">
+               <div className="flex-1 space-y-8">
                  {data.mainSectionTwo.title && (
                    <div className="space-y-6">
                     <div className="inline-flex items-center gap-3 text-gray-800/90 text-sm font-medium tracking-widest uppercase drop-shadow-sm">
@@ -657,7 +657,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      ) : null}
                    </div>
                  </div>
-               </div>
+                   </div>
                  </div>
                </div>
              </motion.section>
@@ -680,7 +680,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.10),transparent_70%)]" />
                <div className="absolute top-64 inset-x-0 bottom-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.05),transparent_50%)]" />
                <div className="container mx-auto px-4 sm:px-6 relative z-20">
-                 <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex flex-col lg:flex-row items-center gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}>
+               <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex flex-col lg:flex-row items-center gap-20 lg:gap-24' : 'max-w-4xl mx-auto text-center'}`}>
                  <div className={`${data.mainSectionThree.image || (data.mainSectionThree.mediaType === 'video' && data.mainSectionThree.video?.url) ? 'flex-1 space-y-8' : 'space-y-10'}`}>
                  {data.mainSectionThree.title && (
                    <div className="space-y-6">
@@ -806,11 +806,11 @@ export function HomePageClient({ data }: HomePageClientProps) {
                                    return (
                                      <>
                                        {regularParagraphs.map(({ content, index }) => (
-                                         <p 
+                                   <p 
                                            key={`regular-${index}`} 
                                            className={`${data.mainSectionThree?.image || (data.mainSectionThree?.mediaType === 'video' && data.mainSectionThree?.video?.url) ? 'text-lg md:text-xl' : 'text-base md:text-lg'} leading-relaxed text-gray-800/90 font-light max-w-4xl mx-auto`}
-                                           style={{ lineHeight: '1.8' }}
-                                         >
+                                     style={{ lineHeight: '1.8' }}
+                                   >
                                            {content}
                                          </p>
                                        ))}
@@ -833,8 +833,8 @@ export function HomePageClient({ data }: HomePageClientProps) {
                                                  style={{ lineHeight: '1.8' }}
                                                >
                                                  {item}
-                                               </p>
-                                             ))}
+                                   </p>
+                                 ))}
                                            </div>
                                          </div>
                                        )}
@@ -897,21 +897,21 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      </div>
                    </div>
                  </div>
-               )}
-                 </div>
-               
-               {/* CTA after Research Section */}
+           )}
+           </div>
+           
+           {/* CTA after Research Section */}
                <div className="text-center mt-16 pb-8">
-                 <Link
-                   href="/contact"
+               <Link
+                 href="/contact"
                    className="inline-flex items-center gap-3 bg-bgDark-2/30 border border-bgDark-2/50 px-12 py-4 text-xl rounded-full font-semibold text-gray-800 shadow-xl hover:bg-bgDark-2/40 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
                    style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
-                 >
-                   Book a Session - Free Consultation Available
+               >
+                 Book a Session - Free Consultation Available
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-gray-800 group-hover:text-gray-600 transition-colors">
-                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                   </svg>
-                 </Link>
+                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                 </svg>
+               </Link>
                </div>
                </div>
              </motion.section>
@@ -990,16 +990,20 @@ export function HomePageClient({ data }: HomePageClientProps) {
             onClick={handleCloseModal}
           >
                          <div
-               className="bg-gradient-to-br from-bgDark-3 via-bgDark-2 to-bgDark-1 rounded-3xl shadow-2xl p-8 md:p-10 max-w-4xl w-full mx-6 md:mx-8 max-h-[90vh] overflow-y-auto relative flex flex-col items-center text-center border border-zen-purple/30 backdrop-blur-sm"
+               className="rounded-3xl shadow-2xl p-8 md:p-10 max-w-4xl w-full mx-6 md:mx-8 max-h-[90vh] overflow-y-auto relative flex flex-col items-center text-center border border-bgDark-2/20 backdrop-blur-sm"
                onClick={e => e.stopPropagation()}
+               style={{
+                 background: 'linear-gradient(to bottom right, rgba(187, 233, 255, 0.95), rgba(187, 233, 255, 0.95), rgba(175, 221, 255, 0.95))',
+                 boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)'
+               }}
              >
-               {/* Premium background effects */}
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.08),transparent_40%)]" />
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(147,51,234,0.05),transparent_40%)]" />
+               {/* Light blue background effects */}
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
                
               <button
                 onClick={handleCloseModal}
-                className="absolute top-6 right-6 text-white hover:text-white/80 text-3xl font-bold focus:outline-none transition-colors z-10"
+                className="absolute top-6 right-6 text-gray-900 hover:text-gray-700 text-3xl font-bold focus:outline-none transition-colors z-10"
                 aria-label="Close modal"
               >
                 ×
@@ -1012,15 +1016,15 @@ export function HomePageClient({ data }: HomePageClientProps) {
                      alt={modalSection.image.alt}
                      width={modalSection.image.width || 160}
                      height={modalSection.image.height || 160}
-                     className="relative rounded-2xl object-cover w-32 h-32 md:w-48 md:h-48 border border-zen-purple/20"
+                     className="relative rounded-2xl object-cover w-32 h-32 md:w-48 md:h-48 border border-bgDark-2/20"
                    />
                  </div>
                )}
-               <h2 id="modal-title" className="text-3xl md:text-4xl font-playfair font-light text-white mb-6 md:mb-8 mt-2 relative z-10">
+               <h2 id="modal-title" className="text-3xl md:text-4xl font-playfair font-light text-gray-900 mb-6 md:mb-8 mt-2 relative z-10">
                  {modalSection.title}
                </h2>
                <div className="prose prose-lg md:prose-xl max-w-none relative z-10">
-                 <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">{modalSection.content}</p>
+                 <p className="text-lg md:text-xl leading-relaxed text-gray-800/90 font-light">{modalSection.content}</p>
                </div>
              </div>
           </div>

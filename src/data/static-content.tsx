@@ -10,7 +10,7 @@ export const homePageData: HomePage = {
   titleSection: "Transform Your Life Through Mind-Body Wellness",
   heroSection: {
     heading: "Transform Your Life Through Mind-Body Wellness",
-    subheading: "Experience personalized wellness coaching that harmonizes mind, body, and spirit for lasting transformation.",
+    subheading: "Experience personalized online wellness coaching that harmonizes mind, body, and spirit for lasting transformation.",
     heroImage: {
       src: "/meditation1.jpeg",
       alt: "Meditation and mindfulness - Wellness Coach",
@@ -23,7 +23,7 @@ export const homePageData: HomePage = {
   aboutSection: {
     title: "Description Of Work",
     image: {
-      src: "/TAICHIIMAGE.jpg",
+      src: "/TAICHI2.png",
       alt: "Description of work - representing integrated wellness and holistic health practices",
       width: 1000,
       height: 1400
@@ -36,7 +36,7 @@ export const homePageData: HomePage = {
     content: "So much can be called meditation. Many different types of static techniques including mindfulness techniques like focus on the breath or a repeating affirmation or mantra. There are energetic practices using the mind to circulate or cultivate life energy. There are guided meditations to experience certain mind states or outlooks. There are also traditional moving meditative techniques like tai chi, some qigong and sometimes yoga. And there are also ways to train the mind to focus to make any movement meditative- going for a run, playing tennis, walking from the store to the car, washing the dishes etc etc. And there is the broader concept, with training in this genre, of understanding and potentially unwinding mental patterns that cause suffering and of cultivating personality traits and psycho-behavioral patterns that bring more joy, clarity and accomplishment. Truly changing for the better. We can work on any or all of these aspects of mind-body training to help you enhance your life experience and health.",
     preview: "Many things can be called meditation and every way you use your mind affects your wellbeing. Let us teach you simple ways to train your mind for better health and wellbeing.",
     image: {
-      src: "/zenstonesand.jpg",
+      src: "/SCOTTWITHROCK.png",
       alt: "Zen garden with meditating figure - representing mindful meditation practice and inner peace",
       width: 400,
       height: 300

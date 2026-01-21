@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
-import { Cormorant_Garamond, Quicksand } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
+import { Cormorant_Garamond, Lato } from 'next/font/google';
 import '@/assets/globals.css';
 import Navbar from '@/components/layout/Navbar';
 
-const quicksand = Quicksand({ 
+const lato = Lato({ 
   subsets: ['latin'], 
-  variable: '--font-quicksand',
-  weight: ['300', '400', '500', '600', '700']
+  weight: ['300', '400', '700', '900'],
+  display: 'swap',
+  variable: '--font-lato',
 });
 const cormorant = Cormorant_Garamond({ 
   subsets: ['latin'], 
@@ -19,14 +20,21 @@ export const metadata: Metadata = {
   description: 'Discover inner peace and balance through our transformative mind-body wellness programs.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${quicksand.variable} ${cormorant.variable} font-sans antialiased`}>
+    <html lang="en" className={`${lato.variable} ${cormorant.variable}`}>
+      <body className={`${lato.className} antialiased`}>
         {/* Animated background elements */}
         <div className="fixed inset-0 bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2" />
         <div className="fixed inset-0 bg-zen-radial from-zen-blue-light/5 via-transparent to-transparent animate-zen-fade" />
@@ -45,7 +53,7 @@ export default function RootLayout({
           </main>
           
           {/* Footer */}
-          <footer className="relative bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2 pt-20 pb-10 backdrop-blur-md border-t border-gray-300/30 -mt-16 overflow-hidden">
+          <footer className="relative bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2 pt-20 pb-10 backdrop-blur-md -mt-16 overflow-hidden">
             {/* Top fade-in - White to Blue - Extended and smoother */}
             <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-white via-white/60 via-bgNeutral-eggshell/35 via-bgLight-3/20 via-bgLight-4/50 to-transparent z-0 pointer-events-none" />
             {/* Premium space background effects */}
@@ -54,9 +62,6 @@ export default function RootLayout({
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.03),transparent_50%)]" />
             {/* Star effects */}
             <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_10px_15px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_25px_40px,#fff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_35px_80px,#fff,rgba(0,0,0,0))] bg-[length:100px_100px] opacity-10" />
-            
-            {/* Subtle border lines */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-bgDark-2/30 to-transparent" />
             
             <div className="container mx-auto px-4 relative z-10">
               <div className="max-w-6xl mx-auto">
