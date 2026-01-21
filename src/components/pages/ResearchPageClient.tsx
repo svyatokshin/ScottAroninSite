@@ -131,25 +131,25 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
               
               {/* Category Badge */}
               <div className="absolute top-6 right-6 z-10">
-                <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-bgDark-2/20 text-[#1055c9] border border-bgDark-2/50">
+                <span className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-bgDark-2/20 text-black border border-bgDark-2/50">
                   {section.category.charAt(0).toUpperCase() + section.category.slice(1)}
                 </span>
               </div>
 
               {/* Section Title */}
-              <h2 className="text-3xl md:text-4xl font-playfair font-light text-[#1055c9] mb-8 pr-32 relative z-10">
+              <h2 className="text-3xl md:text-4xl font-playfair font-light text-black mb-8 pr-32 relative z-10">
                 {section.title}
               </h2>
 
               {/* Research Summary */}
-              <div className="prose prose-lg max-w-none text-[#1055c9] mb-12 relative z-10">
+              <div className="prose prose-lg max-w-none text-black mb-12 relative z-10">
                 <p className="text-lg leading-relaxed font-light">{section.summary}</p>
               </div>
 
               {/* Key Findings */}
               {section.keyFindings.length > 0 && (
                 <div className="mb-12 relative z-10">
-                  <h3 className="text-2xl font-playfair font-light text-[#1055c9] mb-6">
+                  <h3 className="text-2xl font-playfair font-light text-black mb-6">
                     Key Findings
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -159,13 +159,13 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                         className="rounded-xl p-6 border border-bgDark-2/20 shadow-lg"
                         style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
                       >
-                        <h4 className="text-lg font-medium text-[#1055c9] mb-3">
+                        <h4 className="text-lg font-medium text-black mb-3">
                           {finding.finding}
                         </h4>
-                        <p className="text-[#1055c9] mb-4 font-light">
+                        <p className="text-black mb-4 font-light">
                           {finding.description}
                         </p>
-                        <p className="text-sm text-[#1055c9]">
+                        <p className="text-sm text-black">
                           Source: {finding.source}
                         </p>
                       </div>
@@ -177,7 +177,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
               {/* Statistics */}
               {section.statistics.length > 0 && (
                 <div className="mb-12 relative z-10">
-                  <h3 className="text-2xl font-playfair font-light text-[#1055c9] mb-6">
+                  <h3 className="text-2xl font-playfair font-light text-black mb-6">
                     Key Statistics
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -187,13 +187,13 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                         className="text-center p-6 rounded-xl border border-bgDark-2/20 shadow-lg"
                         style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
                       >
-                        <div className="text-3xl font-light text-[#1055c9] mb-3">
+                        <div className="text-3xl font-light text-black mb-3">
                           {stat.statistic}
                         </div>
-                        <p className="text-[#1055c9] mb-2 font-light">
+                        <p className="text-black mb-2 font-light">
                           {stat.context}
                         </p>
-                        <p className="text-sm text-[#1055c9]">
+                        <p className="text-sm text-black">
                           Source: {stat.source}
                         </p>
                       </div>
@@ -205,7 +205,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
               {/* Visual Data */}
               {section.visualData && section.visualData.length > 0 && (
                 <div className="mb-12 relative z-10">
-                  <h3 className="text-2xl font-playfair font-light text-[#1055c9] mb-6">
+                  <h3 className="text-2xl font-playfair font-light text-black mb-6">
                     Visual Data
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -222,10 +222,10 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                           </div>
                         )}
                         <div className="p-6">
-                          <h4 className="text-xl font-medium text-[#1055c9] mb-3">
+                          <h4 className="text-xl font-medium text-black mb-3">
                             {visual.title}
                           </h4>
-                          <p className="text-[#1055c9] font-light">
+                          <p className="text-black font-light">
                             {visual.description}
                           </p>
                         </div>
@@ -238,7 +238,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
               {/* Related Studies */}
               {section.relatedStudies.length > 0 && (
                 <div className="relative z-10">
-                  <h3 className="text-2xl font-playfair font-light text-[#1055c9] mb-6">
+                  <h3 className="text-2xl font-playfair font-light text-black mb-6">
                     Related Studies
                   </h3>
                   <div className="space-y-4">
@@ -251,13 +251,13 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                 className="block p-6 rounded-xl border border-bgDark-2/20 transition-all duration-300 hover:scale-[1.02]"
                 style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
               >
-                        <h4 className="text-lg font-medium text-[#1055c9] mb-2">
+                        <h4 className="text-lg font-medium text-black mb-2">
                           {study.title}
                         </h4>
-                        <p className="text-[#1055c9] mb-2 font-light">
+                        <p className="text-black mb-2 font-light">
                           {study.authors} ({study.year})
                         </p>
-                        <p className="text-sm text-[#1055c9]">
+                        <p className="text-sm text-black">
                           {study.journal}
                         </p>
                       </a>
@@ -274,11 +274,11 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
         <div className="text-center relative z-20">
         <a
           href="/contact"
-            className="inline-flex items-center gap-3 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-[#1055c9] shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 bg-white"
+            className="inline-flex items-center gap-3 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-black shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 bg-white"
             style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
         >
           Book a Session - Free Consultation Available
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-[#1055c9] group-hover:text-[#0d47a1] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-black group-hover:text-gray-700 transition-colors">
             <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
           </svg>
         </a>
