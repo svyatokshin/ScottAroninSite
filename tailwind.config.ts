@@ -14,6 +14,19 @@ const config: Config = {
         playfair: ['var(--font-cormorant)'],
       },
       colors: {
+        bgLight: {
+          1: '#BBE9FF',
+          2: '#AFDDFF',
+          3: '#AEDEFC',
+          4: '#9DD0EB',
+        },
+        bgDark: {
+          1: '#0D47A1',
+          2: '#1565C0',
+          3: '#0046C9',
+        },
+        'bgNeutral-cream': '#FAFAF5',
+        'bgNeutral-eggshell': '#F5F5F0',
         zen: {
           blue: {
             light: '#E6F3FF',
