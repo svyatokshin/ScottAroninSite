@@ -3,20 +3,19 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
 /**
- * User dashboard. Redirects to onboarding if not completed.
+ * User dashboard. Shows enrolled courses. Redirects to onboarding if not completed.
  */
 export default async function DashboardPage() {
   const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { data: { user } } = await supabase.auth.getUser();
+
   if (!user) {
     redirect('/login?redirect=/dashboard');
   }
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('full_name, onboarding_completed_at')
+    .select('onboarding_completed_at, full_name')
     .eq('id', user.id)
     .single();
 
@@ -28,59 +27,62 @@ export default async function DashboardPage() {
     .from('course_enrollments')
     .select(`
       enrolled_at,
-      courses (id, title, slug, description)
+      courses (
+        id,
+        title,
+        slug,
+        description
+      )
     `)
     .eq('user_id', user.id)
     .order('enrolled_at', { ascending: false });
 
-  const courses = (enrollments ?? [])
-    .map((e) => {
-      const c = Array.isArray(e.courses) ? e.courses[0] : e.courses;
-      return c ? { ...c, enrolled_at: e.enrolled_at } : null;
-    })
-    .filter(Boolean) as Array<{
-    id: string;
-    title: string;
-    slug: string;
-    description: string | null;
-    enrolled_at: string;
-  }>;
+  const enrolledCourses = (enrollments ?? [])
+    .map((e) => ({ ...e.courses, enrolled_at: e.enrolled_at }))
+    .filter((c) => c?.id);
 
-  const displayName =
-    profile?.full_name ?? user.user_metadata?.full_name ?? user.email?.split('@')[0] ?? 'there';
+  const displayName = profile?.full_name?.trim() || 'there';
 
   return (
     <div className="min-h-screen py-16 sm:py-24">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-3xl font-serif font-semibold text-gray-900 mb-2">
+        <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-gray-900 mb-2">
           Welcome back, {displayName}
         </h1>
-        <p className="text-gray-600 mb-10">Your courses and learning progress.</p>
+        <p className="text-gray-600 mb-10">
+          Continue your learning journey.
+        </p>
 
         <section>
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">My Courses</h2>
-          {courses.length > 0 ? (
-            <div className="space-y-4">
-              {courses.map((course) => (
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            My Courses
+          </h2>
+          {enrolledCourses.length > 0 ? (
+            <div className="grid gap-4 sm:grid-cols-2">
+              {enrolledCourses.map((course) => (
                 <Link
                   key={course.id}
                   href={`/courses/${course.slug}`}
-                  className="block rounded-xl border border-bgDark-2/20 bg-white p-6 shadow-sm hover:shadow-lg hover:border-bgDark-2/30 transition-all"
+                  className="group rounded-xl border border-bgDark-2/20 bg-white p-6 shadow-sm hover:shadow-lg hover:border-bgDark-2/30 transition-all"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900">{course.title}</h3>
+                  <h3 className="font-semibold text-gray-900 group-hover:text-bgDark-2 transition-colors">
+                    {course.title}
+                  </h3>
                   {course.description && (
-                    <p className="mt-2 text-gray-600 line-clamp-2">{course.description}</p>
+                    <p className="mt-2 text-sm text-gray-600 line-clamp-2">
+                      {course.description}
+                    </p>
                   )}
-                  <p className="mt-3 text-sm text-bgDark-2 font-medium">
-                    Continue course →
-                  </p>
+                  <span className="mt-4 inline-block text-sm text-bgDark-2 font-medium group-hover:underline">
+                    Continue →
+                  </span>
                 </Link>
               ))}
             </div>
           ) : (
             <div className="rounded-xl border border-bgDark-2/20 bg-white p-8 text-center">
               <p className="text-gray-600 mb-4">
-                You&apos;re not enrolled in any courses yet. Browse our courses to get started.
+                You&apos;re not enrolled in any courses yet.
               </p>
               <Link
                 href="/courses"
@@ -88,6 +90,9 @@ export default async function DashboardPage() {
               >
                 Browse Courses
               </Link>
+              <p className="mt-4 text-sm text-gray-500">
+                Contact us if you need to be enrolled in a course.
+              </p>
             </div>
           )}
         </section>

@@ -31,26 +31,20 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  await supabase.auth.getUser();
 
   const isAdminRoute = request.nextUrl.pathname.startsWith('/admin');
   const isAdminLogin = request.nextUrl.pathname.startsWith('/admin/login');
-  const isDashboardOrOnboarding =
-    request.nextUrl.pathname === '/dashboard' || request.nextUrl.pathname === '/onboarding';
 
-  if (isAdminRoute && !isAdminLogin && !user) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/admin/login';
-    return NextResponse.redirect(url);
-  }
-
-  if (isDashboardOrOnboarding && !user) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/login';
-    url.searchParams.set('redirect', request.nextUrl.pathname);
-    return NextResponse.redirect(url);
+  if (isAdminRoute && !isAdminLogin) {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) {
+      const url = request.nextUrl.clone();
+      url.pathname = '/admin/login';
+      return NextResponse.redirect(url);
+    }
   }
 
   return supabaseResponse;

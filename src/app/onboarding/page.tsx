@@ -1,46 +1,98 @@
-import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
-import OnboardingFlow from '@/components/onboarding/OnboardingFlow';
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { completeOnboarding } from '@/app/actions/onboarding';
+
+const STEPS = [
+  {
+    title: 'Welcome',
+    content: 'Welcome to your learning journey. We’ll help you get started with our mind-body wellness courses.',
+  },
+  {
+    title: 'Getting Started',
+    content: 'Your enrolled courses will appear on your dashboard. You can access lessons, track progress, and learn at your own pace.',
+  },
+  {
+    title: 'You’re All Set',
+    content: 'Click below to go to your dashboard and begin your first lesson.',
+  },
+];
 
 /**
- * Onboarding page for new users. Redirects to dashboard if already completed.
+ * Onboarding wizard for first-time users. Redirects to dashboard when complete.
  */
-export default async function OnboardingPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) {
-    redirect('/login?redirect=/onboarding');
-  }
+export default function OnboardingPage() {
+  const router = useRouter();
+  const [step, setStep] = useState(0);
+  const [isCompleting, setIsCompleting] = useState(false);
 
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('onboarding_completed_at, full_name')
-    .eq('id', user.id)
-    .single();
+  const isLastStep = step === STEPS.length - 1;
 
-  if (profile?.onboarding_completed_at) {
-    redirect('/dashboard');
-  }
+  const handleNext = async () => {
+    if (isLastStep) {
+      setIsCompleting(true);
+      const result = await completeOnboarding();
+      if (result.error) {
+        alert(result.error);
+        setIsCompleting(false);
+        return;
+      }
+      router.push('/dashboard');
+      router.refresh();
+    } else {
+      setStep((s) => s + 1);
+    }
+  };
 
-  const { data: enrollments } = await supabase
-    .from('course_enrollments')
-    .select('course_id, courses(title, slug)')
-    .eq('user_id', user.id);
-
-  const enrolledCourses = (enrollments ?? []).map((e) => {
-    const c = Array.isArray(e.courses) ? e.courses[0] : e.courses;
-    return c ? { title: c.title, slug: c.slug } : null;
-  }).filter(Boolean) as { title: string; slug: string }[];
+  const handleBack = () => setStep((s) => Math.max(0, s - 1));
 
   return (
-    <div className="min-h-screen py-16 sm:py-24 flex items-center justify-center px-4">
-      <div className="w-full max-w-xl">
-        <OnboardingFlow
-          userName={profile?.full_name ?? user.user_metadata?.full_name ?? user.email?.split('@')[0] ?? 'there'}
-          enrolledCourses={enrolledCourses}
-        />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2 p-4">
+      <div className="w-full max-w-lg">
+        <div className="rounded-2xl border border-bgDark-2/20 bg-white/90 backdrop-blur-sm shadow-xl p-8">
+          {/* Progress */}
+          <div className="flex gap-2 mb-8" aria-label="Progress">
+            {STEPS.map((_, i) => (
+              <div
+                key={i}
+                className={`h-1 flex-1 rounded-full transition-colors ${
+                  i <= step ? 'bg-[#0D47A1]' : 'bg-gray-200'
+                }`}
+              />
+            ))}
+          </div>
+
+          <h1 className="text-2xl font-serif font-semibold text-gray-900 mb-2">
+            {STEPS[step].title}
+          </h1>
+          <p className="text-gray-600 mb-8">{STEPS[step].content}</p>
+
+          <div className="flex gap-3 justify-end">
+            {step > 0 && (
+              <button
+                type="button"
+                onClick={handleBack}
+                disabled={isCompleting}
+                className="px-6 py-3 rounded-lg font-semibold text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors min-h-[44px]"
+              >
+                Back
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={handleNext}
+              disabled={isCompleting}
+              className="px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors disabled:opacity-50 min-h-[44px]"
+            >
+              {isCompleting
+                ? 'Loading...'
+                : isLastStep
+                  ? 'Go to Dashboard'
+                  : 'Next'}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

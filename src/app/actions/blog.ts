@@ -3,6 +3,12 @@
 import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 
+/** Single source link entry */
+export interface BlogSourceLink {
+  url: string;
+  label?: string;
+}
+
 /** Blog post for create/update */
 export interface BlogPostInput {
   title: string;
@@ -12,6 +18,7 @@ export interface BlogPostInput {
   featured_image_path?: string | null;
   published?: boolean;
   published_at?: string | null;
+  source_links?: BlogSourceLink[];
 }
 
 /**
@@ -25,6 +32,7 @@ export async function createBlogPost(input: BlogPostInput) {
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
   if (profile?.role !== 'admin') return { error: 'Forbidden' };
 
+  const sourceLinks = (input.source_links ?? []).filter((s) => s?.url?.trim());
   const { data, error } = await supabase
     .from('blog_posts')
     .insert({
@@ -35,6 +43,7 @@ export async function createBlogPost(input: BlogPostInput) {
       featured_image_path: input.featured_image_path ?? null,
       published: input.published ?? false,
       published_at: input.published ? new Date().toISOString() : null,
+      source_links: sourceLinks,
       updated_at: new Date().toISOString(),
     })
     .select('id')
@@ -57,6 +66,7 @@ export async function updateBlogPost(id: string, input: BlogPostInput) {
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
   if (profile?.role !== 'admin') return { error: 'Forbidden' };
 
+  const sourceLinks = (input.source_links ?? []).filter((s) => s?.url?.trim());
   const updatePayload: Record<string, unknown> = {
     title: input.title,
     slug: input.slug,
@@ -64,6 +74,7 @@ export async function updateBlogPost(id: string, input: BlogPostInput) {
     content: input.content ?? null,
     featured_image_path: input.featured_image_path ?? null,
     published: input.published ?? false,
+    source_links: sourceLinks,
     updated_at: new Date().toISOString(),
   };
   if (input.published && !input.published_at) {

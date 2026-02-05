@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import MarkdownContent from '@/components/blog/MarkdownContent';
 
 /**
  * Public blog post single page.
@@ -68,11 +69,29 @@ export default async function BlogPostPage({
           </div>
         )}
 
-        <div className="prose prose-lg max-w-none">
-          <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
-            {post.content ?? ''}
-          </div>
+        <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed">
+          <MarkdownContent content={post.content ?? ''} />
         </div>
+
+        {Array.isArray(post.source_links) && post.source_links.length > 0 && (
+          <section className="mt-12 pt-8 border-t border-gray-200" aria-label="Sources">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3">Sources</h2>
+            <ul className="space-y-2">
+              {(post.source_links as Array<{ url: string; label?: string }>).map((s, i) => (
+                <li key={i}>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#1C6ED5] hover:underline"
+                  >
+                    {s.label?.trim() || s.url}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </article>
     </div>
   );

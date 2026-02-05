@@ -35,6 +35,7 @@ export default async function EditBlogPostPage({
           featured_image_path: post.featured_image_path ?? '',
           published: post.published,
           published_at: post.published_at ?? '',
+          source_links: Array.isArray(post.source_links) ? post.source_links : [],
         }}
       />
     </div>
