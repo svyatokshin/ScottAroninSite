@@ -29,6 +29,9 @@ export default async function AdminDashboardPage() {
     { count: enrollmentsCount },
     { data: enrollmentsData },
     { data: recentEnrollmentsData },
+    { data: lessonProgressData },
+    { data: lessonsWithModulesData },
+    { data: quizAttemptsData },
   ] = await Promise.all([
     supabase
       .from('profiles')
@@ -50,12 +53,17 @@ export default async function AdminDashboardPage() {
     supabase.from('lessons').select('*', { count: 'exact', head: true }),
     supabase.from('blog_posts').select('id, published'),
     supabase.from('course_enrollments').select('*', { count: 'exact', head: true }),
-    supabase.from('course_enrollments').select('course_id'),
+    supabase.from('course_enrollments').select('user_id, course_id'),
     supabase
       .from('course_enrollments')
       .select('id, enrolled_at, courses(title), profiles(full_name)')
       .order('enrolled_at', { ascending: false })
       .limit(10),
+    supabase.from('lesson_progress').select('user_id, lesson_id'),
+    supabase
+      .from('lessons')
+      .select('id, module_id, modules(course_id)'),
+    supabase.from('quiz_attempts').select('id, is_correct'),
   ]);
 
   const coursesPublished = coursesData?.filter((c) => c.published).length ?? 0;
@@ -114,6 +122,62 @@ export default async function AdminDashboardPage() {
     created_at: u.created_at,
   }));
 
+  // Build lesson -> course map
+  const lessonToCourse = new Map<string, string>();
+  for (const l of lessonsWithModulesData ?? []) {
+    const mod = l.modules as { course_id: string } | { course_id: string }[] | null;
+    const courseId = Array.isArray(mod) ? mod[0]?.course_id : mod?.course_id;
+    if (courseId) lessonToCourse.set(l.id, courseId);
+  }
+
+  // Total lessons per course
+  const totalLessonsByCourse = new Map<string, number>();
+  for (const [, courseId] of Array.from(lessonToCourse)) {
+    totalLessonsByCourse.set(
+      courseId,
+      (totalLessonsByCourse.get(courseId) ?? 0) + 1
+    );
+  }
+
+  // Completed count per (user, course)
+  const completedByUserCourse = new Map<string, number>();
+  for (const p of lessonProgressData ?? []) {
+    const courseId = lessonToCourse.get(p.lesson_id);
+    if (!courseId) continue;
+    const key = `${p.user_id}-${courseId}`;
+    completedByUserCourse.set(key, (completedByUserCourse.get(key) ?? 0) + 1);
+  }
+
+  // For each course: enrollments, how many completed all lessons
+  const courseCompletion = (coursesData ?? []).map((course) => {
+    const enrollments = enrollmentsData?.filter((e) => e.course_id === course.id) ?? [];
+    const totalLessons = totalLessonsByCourse.get(course.id) ?? 0;
+    let completed = 0;
+    for (const e of enrollments) {
+      const key = `${e.user_id}-${course.id}`;
+      const progressCount = completedByUserCourse.get(key) ?? 0;
+      if (totalLessons > 0 && progressCount >= totalLessons) completed++;
+    }
+    return {
+      id: course.id,
+      title: course.title,
+      slug: course.slug,
+      enrollments: enrollments.length,
+      completed,
+      totalLessons,
+      completionRate:
+        enrollments.length > 0 && totalLessons > 0
+          ? Math.round((completed / enrollments.length) * 100)
+          : 0,
+    };
+  });
+
+  const quizAttempts = quizAttemptsData ?? [];
+  const quizCorrect = quizAttempts.filter((a) => a.is_correct).length;
+  const quizTotal = quizAttempts.length;
+  const quizSuccessRate =
+    quizTotal > 0 ? Math.round((quizCorrect / quizTotal) * 100) : 0;
+
   return (
     <div>
       <h1 className="text-2xl font-serif font-semibold text-gray-900 mb-8">
@@ -131,6 +195,8 @@ export default async function AdminDashboardPage() {
         enrollmentsByCourse={enrollmentsByCourse}
         recentEnrollments={recentEnrollments}
         recentUsers={recentUsers}
+        courseCompletion={courseCompletion}
+        quizStats={{ total: quizTotal, correct: quizCorrect, successRate: quizSuccessRate }}
       />
     </div>
   );

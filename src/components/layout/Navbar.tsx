@@ -2,12 +2,17 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Image from 'next/image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname() ?? '';
+
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -15,8 +20,6 @@ const Navbar = () => {
     { name: 'Services', href: '/services' },
     { name: 'Research', href: '/research' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Courses', href: '/courses' },
-    { name: 'Dashboard', href: '/dashboard' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -46,19 +49,35 @@ const Navbar = () => {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex md:items-center md:gap-4">
             <div className="ml-10 flex items-center space-x-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="relative text-gray-800 hover:text-gray-600 px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 group"
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full" />
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 group ${
+                      active ? 'text-bgDark-2 font-semibold' : 'text-gray-800 hover:text-gray-600'
+                    }`}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    {item.name}
+                    <span
+                      className={`absolute bottom-0 left-0 h-0.5 bg-gray-800 transition-all duration-300 ${
+                        active ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                    />
+                  </Link>
+                );
+              })}
             </div>
+            <Link
+              href="/login"
+              className="ml-4 px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] inline-flex items-center justify-center"
+            >
+              Login / Sign up
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -88,16 +107,31 @@ const Navbar = () => {
         className="md:hidden bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2 backdrop-blur-md overflow-hidden border-b border-white/20"
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="block px-4 py-3 rounded-md text-base font-medium text-gray-800 hover:text-gray-600 hover:bg-gray-200/50 transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`block px-4 py-3 rounded-md text-base font-medium transition-all duration-300 min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 ${
+                  active
+                    ? 'text-bgDark-2 font-semibold bg-gray-200/50'
+                    : 'text-gray-800 hover:text-gray-600 hover:bg-gray-200/50'
+                }`}
+                aria-current={active ? 'page' : undefined}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+          <Link
+            href="/login"
+            className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] text-center"
+            onClick={() => setIsOpen(false)}
+          >
+            Login / Sign up
+          </Link>
         </div>
       </motion.div>
     </nav>

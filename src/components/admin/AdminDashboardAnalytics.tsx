@@ -26,10 +26,30 @@ export interface RecentUserRow {
   created_at: string;
 }
 
+/** Course completion analytics */
+export interface CourseCompletionRow {
+  id: string;
+  title: string;
+  slug: string;
+  enrollments: number;
+  completed: number;
+  totalLessons: number;
+  completionRate: number;
+}
+
+/** Quiz attempt stats */
+export interface QuizStats {
+  total: number;
+  correct: number;
+  successRate: number;
+}
+
 interface AdminDashboardAnalyticsProps {
   enrollmentsByCourse: CourseEnrollmentRow[];
   recentEnrollments: RecentEnrollmentRow[];
   recentUsers: RecentUserRow[];
+  courseCompletion: CourseCompletionRow[];
+  quizStats: QuizStats;
 }
 
 /**
@@ -52,6 +72,8 @@ export default function AdminDashboardAnalytics({
   enrollmentsByCourse,
   recentEnrollments,
   recentUsers,
+  courseCompletion,
+  quizStats,
 }: AdminDashboardAnalyticsProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
@@ -101,6 +123,60 @@ export default function AdminDashboardAnalytics({
             ))}
           </ul>
         )}
+      </section>
+
+      {/* Course completion rates */}
+      <section
+        className="rounded-xl border border-bgDark-2/20 bg-white p-6 shadow-sm"
+        aria-labelledby="course-completion"
+      >
+        <h2
+          id="course-completion"
+          className="text-lg font-semibold text-gray-900 mb-4"
+        >
+          Course Completion
+        </h2>
+        {courseCompletion.length === 0 ? (
+          <p className="text-gray-500 text-sm py-4">No course data yet.</p>
+        ) : (
+          <ul className="space-y-3" role="list">
+            {courseCompletion.map((row) => (
+              <li
+                key={row.id}
+                className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0"
+              >
+                <span className="text-gray-800 font-medium truncate flex-1 min-w-0 mr-3">
+                  {row.title}
+                </span>
+                <span className="text-bgDark-1 font-semibold tabular-nums shrink-0">
+                  {row.completed}/{row.enrollments} ({row.completionRate}%)
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {/* Quiz analytics */}
+      <section
+        className="rounded-xl border border-bgDark-2/20 bg-white p-6 shadow-sm"
+        aria-labelledby="quiz-stats"
+      >
+        <h2
+          id="quiz-stats"
+          className="text-lg font-semibold text-gray-900 mb-4"
+        >
+          Quiz Attempts
+        </h2>
+        <div className="space-y-2">
+          <p className="text-gray-800">
+            <span className="font-semibold">{quizStats.total}</span> total attempts
+          </p>
+          <p className="text-gray-800">
+            <span className="font-semibold">{quizStats.correct}</span> correct (
+            {quizStats.successRate}% success rate)
+          </p>
+        </div>
       </section>
 
       {/* Recent activity: enrollments + users */}

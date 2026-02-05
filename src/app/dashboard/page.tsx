@@ -1,9 +1,10 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { getLessonProgressForEnrolledCourses } from '@/app/actions/lessonProgress';
 
 /**
- * User dashboard. Shows enrolled courses. Redirects to onboarding if not completed.
+ * User dashboard. Shows enrolled courses with progress. Redirects to onboarding if not completed.
  */
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -23,23 +24,34 @@ export default async function DashboardPage() {
     redirect('/onboarding');
   }
 
-  const { data: enrollments } = await supabase
-    .from('course_enrollments')
-    .select(`
-      enrolled_at,
-      courses (
-        id,
-        title,
-        slug,
-        description
-      )
-    `)
-    .eq('user_id', user.id)
-    .order('enrolled_at', { ascending: false });
+  const [enrollmentsRes, { progress }] = await Promise.all([
+    supabase
+      .from('course_enrollments')
+      .select(`
+        enrolled_at,
+        courses (
+          id,
+          title,
+          slug,
+          description
+        )
+      `)
+      .eq('user_id', user.id)
+      .order('enrolled_at', { ascending: false }),
+    getLessonProgressForEnrolledCourses(),
+  ]);
 
-  const enrolledCourses = (enrollments ?? [])
-    .map((e) => ({ ...e.courses, enrolled_at: e.enrolled_at }))
-    .filter((c) => c?.id);
+  const enrollments = enrollmentsRes.data ?? [];
+  const enrolledCourses = enrollments
+    .map((e) => {
+      const raw = e.courses as { id: string; title: string; slug: string; description?: string } | { id: string; title: string; slug: string; description?: string }[] | null;
+      const c = Array.isArray(raw) ? raw[0] : raw;
+      if (!c?.id) return null;
+      return { ...c, enrolled_at: e.enrolled_at };
+    })
+    .filter(Boolean) as { id: string; title: string; slug: string; description?: string; enrolled_at: string }[];
+
+  const progressByCourse = new Map(progress.map((p) => [p.courseId, p]));
 
   const displayName = profile?.full_name?.trim() || 'there';
 
@@ -59,25 +71,48 @@ export default async function DashboardPage() {
           </h2>
           {enrolledCourses.length > 0 ? (
             <div className="grid gap-4 sm:grid-cols-2">
-              {enrolledCourses.map((course) => (
-                <Link
-                  key={course.id}
-                  href={`/courses/${course.slug}`}
-                  className="group rounded-xl border border-bgDark-2/20 bg-white p-6 shadow-sm hover:shadow-lg hover:border-bgDark-2/30 transition-all"
-                >
-                  <h3 className="font-semibold text-gray-900 group-hover:text-bgDark-2 transition-colors">
-                    {course.title}
-                  </h3>
-                  {course.description && (
-                    <p className="mt-2 text-sm text-gray-600 line-clamp-2">
-                      {course.description}
-                    </p>
-                  )}
-                  <span className="mt-4 inline-block text-sm text-bgDark-2 font-medium group-hover:underline">
-                    Continue →
-                  </span>
-                </Link>
-              ))}
+              {enrolledCourses.map((course) => {
+                const prog = progressByCourse.get(course.id);
+                const completedCount = prog?.completedCount ?? 0;
+                const totalCount = prog?.totalCount ?? 0;
+                const pct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+                const continueHref = prog?.nextLesson
+                  ? `/courses/${course.slug}#lesson-${prog.nextLesson.id}`
+                  : `/courses/${course.slug}`;
+
+                return (
+                  <Link
+                    key={course.id}
+                    href={continueHref}
+                    className="group rounded-xl border border-bgDark-2/20 bg-white p-6 shadow-sm hover:shadow-lg hover:border-bgDark-2/30 transition-all"
+                  >
+                    <h3 className="font-semibold text-gray-900 group-hover:text-bgDark-2 transition-colors">
+                      {course.title}
+                    </h3>
+                    {course.description && (
+                      <p className="mt-2 text-sm text-gray-600 line-clamp-2">
+                        {course.description}
+                      </p>
+                    )}
+                    {totalCount > 0 && (
+                      <div className="mt-3" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${completedCount} of ${totalCount} lessons completed`}>
+                        <div className="h-2 rounded-full bg-gray-200 overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-[#0D47A1] transition-all"
+                            style={{ width: `${pct}%` }}
+                          />
+                        </div>
+                        <p className="mt-1 text-xs text-gray-500">
+                          {completedCount} of {totalCount} lessons
+                        </p>
+                      </div>
+                    )}
+                    <span className="mt-4 inline-block text-sm text-bgDark-2 font-medium group-hover:underline">
+                      {prog?.nextLesson ? 'Continue →' : totalCount > 0 ? 'Review course →' : 'View course →'}
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             <div className="rounded-xl border border-bgDark-2/20 bg-white p-8 text-center">

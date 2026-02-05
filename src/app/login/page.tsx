@@ -18,13 +18,29 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const validate = (): boolean => {
+    const next: Record<string, string> = {};
+    if (!email.trim()) next.email = 'Email is required';
+    else if (!EMAIL_REGEX.test(email)) next.email = 'Enter a valid email address';
+    if (!password) next.password = 'Password is required';
+    else if (mode === 'signup' && password.length < 6)
+      next.password = 'Password must be at least 6 characters';
+    if (mode === 'signup' && !fullName.trim()) next.fullName = 'Name is required';
+    setFieldErrors(next);
+    return Object.keys(next).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setMessage(null);
+    if (!validate()) return;
     setIsLoading(true);
 
     try {
@@ -71,6 +87,7 @@ function LoginForm() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
               <div
+                id="form-error"
                 className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800"
                 role="alert"
               >
@@ -95,11 +112,21 @@ function LoginForm() {
                   id="fullName"
                   type="text"
                   value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  className={inputClass}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                    if (fieldErrors.fullName) setFieldErrors((p) => ({ ...p, fullName: '' }));
+                  }}
+                  aria-invalid={!!fieldErrors.fullName}
+                  aria-describedby={fieldErrors.fullName ? 'fullName-error' : undefined}
+                  className={`${inputClass} ${fieldErrors.fullName ? 'border-red-500' : ''}`}
                   placeholder="Your name"
                   disabled={isLoading}
                 />
+                {fieldErrors.fullName && (
+                  <p id="fullName-error" className="mt-1 text-sm text-red-600" role="alert">
+                    {fieldErrors.fullName}
+                  </p>
+                )}
               </div>
             )}
 
@@ -111,13 +138,23 @@ function LoginForm() {
                 id="email"
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (fieldErrors.email) setFieldErrors((p) => ({ ...p, email: '' }));
+                }}
                 required
                 autoComplete="email"
-                className={inputClass}
+                aria-invalid={!!fieldErrors.email}
+                aria-describedby={fieldErrors.email ? 'email-error' : error ? 'form-error' : undefined}
+                className={`${inputClass} ${fieldErrors.email ? 'border-red-500' : ''}`}
                 placeholder="you@example.com"
                 disabled={isLoading}
               />
+              {fieldErrors.email && (
+                <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
+                  {fieldErrors.email}
+                </p>
+              )}
             </div>
 
             <div>
@@ -128,15 +165,25 @@ function LoginForm() {
                 id="password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (fieldErrors.password) setFieldErrors((p) => ({ ...p, password: '' }));
+                }}
                 required
                 minLength={6}
                 autoComplete={mode === 'signin' ? 'current-password' : 'new-password'}
-                className={inputClass}
+                aria-invalid={!!fieldErrors.password}
+                aria-describedby={fieldErrors.password ? 'password-error' : undefined}
+                className={`${inputClass} ${fieldErrors.password ? 'border-red-500' : ''}`}
                 disabled={isLoading}
               />
-              {mode === 'signup' && (
+              {mode === 'signup' && !fieldErrors.password && (
                 <p className="mt-1 text-xs text-gray-500">At least 6 characters</p>
+              )}
+              {fieldErrors.password && (
+                <p id="password-error" className="mt-1 text-sm text-red-600" role="alert">
+                  {fieldErrors.password}
+                </p>
               )}
             </div>
 

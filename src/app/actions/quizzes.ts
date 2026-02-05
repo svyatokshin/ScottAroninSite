@@ -101,3 +101,42 @@ export async function deleteQuizQuestion(id: string) {
   revalidatePath('/admin/courses');
   return {};
 }
+
+/**
+ * Submits a quiz answer for the current user. Learners only.
+ */
+export async function submitQuizAttempt(
+  quizQuestionId: string,
+  selectedOptionIndex: number
+): Promise<{ error?: string; isCorrect?: boolean }> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { error: 'Unauthorized' };
+
+  const { data: question } = await supabase
+    .from('quiz_questions')
+    .select('options')
+    .eq('id', quizQuestionId)
+    .single();
+
+  if (!question?.options) return { error: 'Question not found' };
+
+  const options = question.options as { text: string; is_correct: boolean }[];
+  const option = options[selectedOptionIndex];
+  if (!option) return { error: 'Invalid option' };
+
+  const isCorrect = !!option.is_correct;
+
+  const { error } = await supabase.from('quiz_attempts').insert({
+    user_id: user.id,
+    quiz_question_id: quizQuestionId,
+    selected_option_index: selectedOptionIndex,
+    is_correct: isCorrect,
+  });
+
+  if (error) return { error: error.message };
+  revalidatePath('/courses');
+  return { isCorrect };
+}

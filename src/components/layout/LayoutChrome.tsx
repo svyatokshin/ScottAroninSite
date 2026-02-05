@@ -26,8 +26,15 @@ export default function LayoutChrome({
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#0D47A1] focus:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:w-auto focus:h-auto focus:m-0 focus:overflow-visible focus:[clip:auto]"
+      >
+        Skip to main content
+      </a>
       {showSiteChrome && <Navbar />}
       <main
+        id="main-content"
         className={`min-h-screen ${showSiteChrome ? 'pt-16' : 'pt-0'}`}
       >
         <div className="animate-fade-in">{children}</div>

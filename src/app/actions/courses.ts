@@ -18,6 +18,7 @@ export interface CourseInput {
   slug: string;
   description?: string | null;
   published?: boolean;
+  self_enroll_enabled?: boolean;
   featured_image_path?: string | null;
   default_media_type?: 'video' | 'audio' | 'mixed' | null;
 }
@@ -50,6 +51,7 @@ export async function createCourse(input: CourseInput) {
       slug: input.slug,
       description: input.description ?? null,
       published: input.published ?? false,
+      self_enroll_enabled: input.self_enroll_enabled ?? false,
       featured_image_path: input.featured_image_path ?? null,
       default_media_type: input.default_media_type ?? null,
     })
@@ -73,6 +75,7 @@ export async function updateCourse(id: string, input: CourseInput) {
       slug: input.slug,
       description: input.description ?? null,
       published: input.published ?? false,
+      self_enroll_enabled: input.self_enroll_enabled ?? false,
       featured_image_path: input.featured_image_path ?? null,
       default_media_type: input.default_media_type ?? null,
     })

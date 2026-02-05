@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,13 +13,27 @@ export function ContactForm() {
     message: ''
   })
 
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
 
+  const validate = (): boolean => {
+    const next: Record<string, string> = {}
+    if (!formData.name.trim()) next.name = 'Name is required'
+    if (!formData.email.trim()) next.email = 'Email is required'
+    else if (!EMAIL_REGEX.test(formData.email)) next.email = 'Enter a valid email address'
+    if (!formData.subject.trim()) next.subject = 'Subject is required'
+    if (!formData.message.trim()) next.message = 'Message is required'
+    setErrors(next)
+    return Object.keys(next).length === 0
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validate()) return
     setIsSubmitting(true)
     setSubmitStatus(null)
+    setErrors({})
 
     try {
       const response = await fetch('/api/contact', {
@@ -47,6 +63,7 @@ export function ContactForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
   return (
@@ -80,9 +97,18 @@ export function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px]"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? 'name-error' : undefined}
+              className={`w-full px-4 py-3 sm:py-3.5 border rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px] ${
+                errors.name ? 'border-red-500' : 'border-bgDark-2/50'
+              }`}
               placeholder="Your name"
             />
+            {errors.name && (
+              <p id="name-error" className="mt-1 text-sm text-red-600" role="alert">
+                {errors.name}
+              </p>
+            )}
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-1">
@@ -95,9 +121,18 @@ export function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px]"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+              className={`w-full px-4 py-3 sm:py-3.5 border rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px] ${
+                errors.email ? 'border-red-500' : 'border-bgDark-2/50'
+              }`}
               placeholder="your.email@example.com"
             />
+            {errors.email && (
+              <p id="email-error" className="mt-1 text-sm text-red-600" role="alert">
+                {errors.email}
+              </p>
+            )}
           </div>
           <div>
             <label htmlFor="subject" className="block text-sm font-medium text-gray-900 mb-1">
@@ -110,9 +145,18 @@ export function ContactForm() {
               value={formData.subject}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px]"
+              aria-invalid={!!errors.subject}
+              aria-describedby={errors.subject ? 'subject-error' : undefined}
+              className={`w-full px-4 py-3 sm:py-3.5 border rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 text-base min-h-[44px] ${
+                errors.subject ? 'border-red-500' : 'border-bgDark-2/50'
+              }`}
               placeholder="What's this about?"
             />
+            {errors.subject && (
+              <p id="subject-error" className="mt-1 text-sm text-red-600" role="alert">
+                {errors.subject}
+              </p>
+            )}
           </div>
           <div>
             <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-1">
@@ -125,9 +169,18 @@ export function ContactForm() {
               onChange={handleChange}
               required
               rows={4}
-              className="w-full px-4 py-3 sm:py-3.5 border border-bgDark-2/50 rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 resize-none text-base min-h-[120px]"
+              aria-invalid={!!errors.message}
+              aria-describedby={errors.message ? 'message-error' : undefined}
+              className={`w-full px-4 py-3 sm:py-3.5 border rounded-lg focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 transition-all duration-300 bg-white/90 backdrop-blur-sm text-gray-900 placeholder-gray-500/60 resize-none text-base min-h-[120px] ${
+                errors.message ? 'border-red-500' : 'border-bgDark-2/50'
+              }`}
               placeholder="Tell us more about your wellness goals. Would you like to book a free consult video chat?"
             />
+            {errors.message && (
+              <p id="message-error" className="mt-1 text-sm text-red-600" role="alert">
+                {errors.message}
+              </p>
+            )}
           </div>
           <button
             type="submit"

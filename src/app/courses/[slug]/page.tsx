@@ -2,6 +2,8 @@ import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import CourseContent from '@/components/courses/CourseContent';
+import EnrollButton from '@/components/courses/EnrollButton';
+import { getLessonProgressForCourse } from '@/app/actions/lessonProgress';
 
 /**
  * Public course detail. Shows modules/lessons.
@@ -17,7 +19,7 @@ export default async function CourseDetailPage({
 
   const { data: course } = await supabase
     .from('courses')
-    .select('id, title, slug, description')
+    .select('id, title, slug, description, self_enroll_enabled')
     .eq('slug', slug)
     .eq('published', true)
     .single();
@@ -50,30 +52,58 @@ export default async function CourseDetailPage({
         media_type,
         media_path,
         duration_sec,
-        sort_order
+        sort_order,
+        quiz_questions (
+          id,
+          question_text,
+          question_type,
+          options,
+          sort_order
+        )
       )
     `)
     .eq('course_id', course.id)
     .order('sort_order', { ascending: true });
 
-  const modulesWithLessons = (modules ?? []).map((m) => ({
-    ...m,
-    lessons: (m.lessons ?? []).sort(
-      (a: { sort_order: number }, b: { sort_order: number }) => a.sort_order - b.sort_order
-    ),
-  }));
+  const modulesWithLessons = (modules ?? []).map((m) => {
+    const rawLessons = (m.lessons ?? []) as {
+      id: string;
+      title: string;
+      slug: string;
+      content: string | null;
+      media_type: string | null;
+      media_path: string | null;
+      duration_sec: number | null;
+      sort_order: number;
+      quiz_questions?: { id: string; question_text: string; question_type: 'multiple_choice' | 'true_false'; options: { text: string; is_correct: boolean }[]; sort_order: number }[];
+    }[];
+    const sortedLessons = rawLessons
+      .sort((a, b) => a.sort_order - b.sort_order)
+      .map((l) => ({
+        ...l,
+        quiz_questions: (l.quiz_questions ?? []).sort(
+          (a, b) => a.sort_order - b.sort_order
+        ),
+      }));
+    return { ...m, lessons: sortedLessons };
+  });
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
+  const { progress } = isEnrolled ? await getLessonProgressForCourse(course.id) : { progress: null };
+  const completedLessonIds = progress?.completedLessonIds ?? [];
 
   return (
     <div className="min-h-screen py-16 sm:py-24">
       <div className="container mx-auto px-4 max-w-4xl">
-        <Link
-          href="/courses"
-          className="inline-flex items-center text-bgDark-2 hover:underline text-sm mb-8"
-        >
-          ← Back to Courses
-        </Link>
+        <nav aria-label="Breadcrumb" className="mb-8">
+          <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
+            <li><Link href="/" className="hover:text-bgDark-2">Home</Link></li>
+            <li aria-hidden>/</li>
+            <li><Link href="/courses" className="hover:text-bgDark-2">Courses</Link></li>
+            <li aria-hidden>/</li>
+            <li className="text-gray-900 font-medium" aria-current="page">{course.title}</li>
+          </ol>
+        </nav>
 
         <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-gray-900 mb-4">
           {course.title}
@@ -85,14 +115,31 @@ export default async function CourseDetailPage({
         {!isEnrolled && (
           <div className="rounded-xl border border-bgDark-2/20 bg-white p-6 mb-10">
             <p className="text-gray-700">
-              Sign in and enroll to access lesson content, including audio and video.
+              {user
+                ? course.self_enroll_enabled
+                  ? 'Enroll to access lesson content, including audio and video.'
+                  : 'Contact us to be enrolled in this course.'
+                : 'Sign in and enroll to access lesson content, including audio and video.'}
             </p>
-            <Link
-              href="/login"
-              className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors"
-            >
-              Sign In
-            </Link>
+            {user ? (
+              course.self_enroll_enabled ? (
+                <EnrollButton courseId={course.id} />
+              ) : (
+                <Link
+                  href="/contact"
+                  className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors"
+                >
+                  Contact Us
+                </Link>
+              )
+            ) : (
+              <Link
+                href="/login"
+                className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         )}
 
@@ -100,6 +147,8 @@ export default async function CourseDetailPage({
           modules={modulesWithLessons}
           isEnrolled={isEnrolled}
           supabaseUrl={supabaseUrl}
+          completedLessonIds={completedLessonIds}
+          courseSlug={course.slug}
         />
       </div>
     </div>
