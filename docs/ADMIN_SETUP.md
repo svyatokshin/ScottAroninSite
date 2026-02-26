@@ -8,15 +8,16 @@ Complete guide for setting up and using the Scott Aronin admin dashboard.
 
 1. [Prerequisites](#prerequisites)
 2. [Environment Variables](#environment-variables)
-3. [Database Migrations](#database-migrations)
-4. [Storage Buckets](#storage-buckets)
-5. [Create First Admin](#create-first-admin)
-6. [Admin Routes and Features](#admin-routes-and-features)
-7. [Content Management](#content-management)
-8. [Preview and QA](#preview-and-qa)
-9. [View as User / Admin Panel Switching](#view-as-user--admin-panel-switching)
-10. [Troubleshooting](#troubleshooting)
-11. [Security Notes](#security-notes)
+3. [Forgot Password (Auth URLs)](#forgot-password-auth-urls)
+4. [Database Migrations](#database-migrations)
+5. [Storage Buckets](#storage-buckets)
+6. [Create First Admin](#create-first-admin)
+7. [Admin Routes and Features](#admin-routes-and-features)
+8. [Content Management](#content-management)
+9. [Preview and QA](#preview-and-qa)
+10. [View as User / Admin Panel Switching](#view-as-user--admin-panel-switching)
+11. [Troubleshooting](#troubleshooting)
+12. [Security Notes](#security-notes)
 
 ---
 
@@ -54,6 +55,25 @@ Create `.env.local` in the project root with the following variables.
 | `RESEND_API_KEY` | Contact form email (Resend) |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe payments |
 | `STRIPE_SECRET_KEY` | Stripe payments |
+
+---
+
+## Forgot Password (Auth URLs)
+
+For forgot-password to work, configure Supabase Auth:
+
+1. **Supabase Dashboard** → **Authentication** → **URL Configuration**
+2. Set **Site URL** to your app URL (e.g. `https://yoursite.com` or `http://localhost:3000`)
+3. Add these to **Redirect URLs**:
+   - `http://localhost:3000/auth/confirm` (local dev)
+   - `https://yoursite.com/auth/confirm` (production)
+   - `http://localhost:3000/auth/update-password`
+   - `https://yoursite.com/auth/update-password`
+
+4. **Authentication** → **Email Templates** → **Reset Password**: Ensure the link uses the confirm route. Example:
+   ```
+   {{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery&next=/auth/update-password
+   ```
 
 ---
 
