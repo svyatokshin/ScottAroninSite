@@ -61,6 +61,7 @@ export async function enrollSelf(courseId: string) {
   }
   revalidatePath('/courses');
   revalidatePath('/dashboard');
+  revalidatePath('/dashboard/courses');
   return {};
 }
 

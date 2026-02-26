@@ -3,23 +3,47 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import MarkdownContent from '@/components/blog/MarkdownContent';
+import PreviewBanner from '@/components/admin/PreviewBanner';
 
 /**
  * Public blog post single page.
+ * Admins can use ?preview=true to view draft content.
  */
 export default async function BlogPostPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ preview?: string; returnTo?: string }>;
 }) {
   const { slug } = await params;
+  const { preview, returnTo } = await searchParams;
   const supabase = await createClient();
-  const { data: post } = await supabase
+
+  const isPreview = preview === 'true';
+  let isAdmin = false;
+  if (isPreview) {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single();
+      isAdmin = profile?.role === 'admin';
+    }
+  }
+
+  const postQuery = supabase
     .from('blog_posts')
     .select('*')
-    .eq('slug', slug)
-    .eq('published', true)
-    .single();
+    .eq('slug', slug);
+
+  if (!isPreview || !isAdmin) {
+    postQuery.eq('published', true);
+  }
+
+  const { data: post } = await postQuery.single();
 
   if (!post) notFound();
 
@@ -27,9 +51,12 @@ export default async function BlogPostPage({
   const imageUrl = post.featured_image_path
     ? `${supabaseUrl}/storage/v1/object/public/blog-images/${post.featured_image_path}`
     : null;
+  const showPreviewBanner = isPreview && isAdmin;
+  const returnHref = (returnTo && returnTo.startsWith('/admin')) ? returnTo : `/admin/blog/${post.id}/edit`;
 
   return (
     <div className="min-h-screen py-16 sm:py-24">
+      {showPreviewBanner && <PreviewBanner returnHref={returnHref} />}
       <article className="container mx-auto px-4 max-w-3xl">
         <Link
           href="/blog"

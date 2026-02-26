@@ -100,12 +100,14 @@ export default function LessonForm({
     setError(null);
     setIsSubmitting(true);
     try {
+      /** Use pasted URL if present (e.g. YouTube link); otherwise use uploaded path */
+      const effectiveMediaPath = mediaUrl.trim() || mediaPath || null;
       const payload = {
         title,
         slug: slug || slugify(title),
         content: content || null,
         media_type: mediaType,
-        media_path: mediaPath || null,
+        media_path: effectiveMediaPath,
         duration_sec: durationSec ? parseInt(durationSec, 10) : null,
         sort_order: initialData?.sort_order ?? sortOrder,
       };
@@ -246,7 +248,7 @@ export default function LessonForm({
               const url = (e.target as HTMLInputElement).value.trim();
               if (url && mediaType) setMediaPath(url);
             }}
-            placeholder="https://example.com/video.mp4 or direct media URL"
+            placeholder="https://youtube.com/watch?v=... or direct video/audio URL"
             className={inputClass}
             disabled={isSubmitting}
           />

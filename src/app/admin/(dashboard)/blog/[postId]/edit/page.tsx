@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import BlogPostForm from '@/components/admin/BlogPostForm';
 
 /**
@@ -20,11 +21,24 @@ export default async function EditBlogPostPage({
 
   if (!post) notFound();
 
+  const previewUrl = `/blog/${post.slug}?preview=true&returnTo=/admin/blog/${postId}/edit`;
+
   return (
     <div>
-      <h1 className="text-2xl font-serif font-semibold text-gray-900 mb-8">
-        Edit Blog Post
-      </h1>
+      <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+        <h1 className="text-2xl font-serif font-semibold text-gray-900">
+          Edit Blog Post
+        </h1>
+        <Link
+          href={previewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-[#1C6ED5] hover:underline inline-flex items-center gap-1 min-h-[44px] items-center"
+          aria-label="Preview blog post as users would see it"
+        >
+          Preview
+        </Link>
+      </div>
       <BlogPostForm
         postId={post.id}
         initialData={{

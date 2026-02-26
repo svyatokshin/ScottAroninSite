@@ -6,12 +6,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 
 const navItems = [
-  { href: '/admin', label: 'Dashboard' },
-  { href: '/admin/modules', label: 'Modules' },
-  { href: '/admin/courses', label: 'Courses' },
-  { href: '/admin/blog', label: 'Blog' },
-  { href: '/admin/enrollments', label: 'Enrollments' },
-  { href: '/admin/account', label: 'Account' },
+  { href: '/dashboard', label: 'Dashboard' },
+  { href: '/dashboard/courses', label: 'Browse Courses' },
+  { href: '/dashboard/account', label: 'Account' },
 ];
 
 /** Hamburger icon (three lines). */
@@ -54,12 +51,17 @@ function CloseIcon({ className }: { className?: string }) {
   );
 }
 
+interface UserSidebarProps {
+  /** Logged-in user's display name (from profile.full_name). */
+  displayName?: string;
+}
+
 /**
- * Admin sidebar with navigation and logout.
+ * User dashboard sidebar with navigation and logout.
  * On mobile: fixed header with hamburger; sidebar slides in as drawer with overlay.
  * On md+: static sidebar as usual.
  */
-export default function AdminSidebar() {
+export default function UserSidebar({ displayName = 'User' }: UserSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,7 +82,7 @@ export default function AdminSidebar() {
   const handleLogout = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push('/admin/login');
+    router.push('/');
     router.refresh();
   };
 
@@ -91,13 +93,13 @@ export default function AdminSidebar() {
       <div className="p-6 border-b border-gray-200 flex items-center justify-between md:block">
         <div>
           <Link
-            href="/admin"
+            href="/dashboard"
             onClick={closeMobileMenu}
             className="text-xl font-serif font-semibold text-gray-900 hover:text-bgDark-2 transition-colors"
           >
-            Admin
+            My Dashboard
           </Link>
-          <p className="text-sm text-gray-500 mt-1">Scott Aronin</p>
+          <p className="text-sm text-gray-500 mt-1">{displayName}</p>
         </div>
         <button
           type="button"
@@ -109,23 +111,23 @@ export default function AdminSidebar() {
         </button>
       </div>
 
-      <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+      <nav className="flex-1 p-4 space-y-1 overflow-y-auto" aria-label="Dashboard navigation">
         <Link
           href="/"
           onClick={closeMobileMenu}
           className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-[#1C6ED5] hover:bg-[#1C6ED5]/10 transition-colors min-h-[44px] border border-[#1C6ED5]/30"
-          aria-label="View site as user"
+          aria-label="Back to site"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
           </svg>
-          View as User
+          Back to Site
         </Link>
         {navItems.map((item) => {
           const isActive =
             pathname === item.href ||
-            (item.href !== '/admin' && pathname.startsWith(item.href));
+            (item.href !== '/dashboard' && pathname.startsWith(item.href));
           return (
             <Link
               key={item.href}
@@ -170,10 +172,10 @@ export default function AdminSidebar() {
           <MenuIcon className="w-6 h-6" />
         </button>
         <Link
-          href="/admin"
+          href="/dashboard"
           className="text-lg font-serif font-semibold text-gray-900 truncate"
         >
-          Admin
+          My Dashboard
         </Link>
       </header>
 
@@ -195,7 +197,7 @@ export default function AdminSidebar() {
           transform transition-transform duration-200 ease-out
           ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}
-        aria-label="Admin navigation"
+        aria-label="Dashboard navigation"
       >
         {sidebarContent}
       </aside>

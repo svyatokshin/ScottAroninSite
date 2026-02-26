@@ -28,18 +28,31 @@ export default async function EditCoursePage({
     .eq('course_id', courseId)
     .order('sort_order', { ascending: true });
 
+  const previewUrl = `/courses/${course.slug}?preview=true&returnTo=/admin/courses/${courseId}/edit`;
+
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
         <h1 className="text-2xl font-serif font-semibold text-gray-900">
           Edit Course
         </h1>
-        <Link
-          href={`/admin/courses/${courseId}/lessons`}
-          className="text-sm text-bgDark-2 hover:underline"
-        >
-          Manage Lessons →
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href={previewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-[#1C6ED5] hover:underline inline-flex items-center gap-1 min-h-[44px] items-center"
+            aria-label="Preview course as users would see it"
+          >
+            Preview
+          </Link>
+          <Link
+            href={`/admin/courses/${courseId}/lessons`}
+            className="text-sm text-bgDark-2 hover:underline"
+          >
+            Manage Lessons →
+          </Link>
+        </div>
       </div>
       <CourseForm
         courseId={course.id}

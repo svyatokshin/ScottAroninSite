@@ -3,26 +3,49 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import CourseContent from '@/components/courses/CourseContent';
 import EnrollButton from '@/components/courses/EnrollButton';
+import PreviewBanner from '@/components/admin/PreviewBanner';
 import { getLessonProgressForCourse } from '@/app/actions/lessonProgress';
 
 /**
  * Public course detail. Shows modules/lessons.
  * Lesson media (audio/video) only visible to enrolled users.
+ * Admins can use ?preview=true to view draft content.
  */
 export default async function CourseDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ preview?: string; returnTo?: string }>;
 }) {
   const { slug } = await params;
+  const { preview, returnTo } = await searchParams;
   const supabase = await createClient();
 
-  const { data: course } = await supabase
+  const isPreview = preview === 'true';
+  let isAdmin = false;
+  if (isPreview) {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single();
+      isAdmin = profile?.role === 'admin';
+    }
+  }
+
+  const courseQuery = supabase
     .from('courses')
     .select('id, title, slug, description, self_enroll_enabled')
-    .eq('slug', slug)
-    .eq('published', true)
-    .single();
+    .eq('slug', slug);
+
+  if (!isPreview || !isAdmin) {
+    courseQuery.eq('published', true);
+  }
+
+  const { data: course } = await courseQuery.single();
 
   if (!course) notFound();
 
@@ -91,9 +114,14 @@ export default async function CourseDetailPage({
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
   const { progress } = isEnrolled ? await getLessonProgressForCourse(course.id) : { progress: null };
   const completedLessonIds = progress?.completedLessonIds ?? [];
+  const showPreviewBanner = isPreview && isAdmin;
+  const returnHref = (returnTo && returnTo.startsWith('/admin')) ? returnTo : `/admin/courses/${course.id}/edit`;
+  /** Admins in preview mode see all content including media without enrolling */
+  const canAccessMedia = isEnrolled || showPreviewBanner;
 
   return (
     <div className="min-h-screen py-16 sm:py-24">
+      {showPreviewBanner && <PreviewBanner returnHref={returnHref} />}
       <div className="container mx-auto px-4 max-w-4xl">
         <nav aria-label="Breadcrumb" className="mb-8">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
@@ -112,7 +140,7 @@ export default async function CourseDetailPage({
           <p className="text-lg text-gray-600 mb-10">{course.description}</p>
         )}
 
-        {!isEnrolled && (
+        {!canAccessMedia && (
           <div className="rounded-xl border border-bgDark-2/20 bg-white p-6 mb-10">
             <p className="text-gray-700">
               {user
@@ -145,7 +173,7 @@ export default async function CourseDetailPage({
 
         <CourseContent
           modules={modulesWithLessons}
-          isEnrolled={isEnrolled}
+          isEnrolled={canAccessMedia}
           supabaseUrl={supabaseUrl}
           completedLessonIds={completedLessonIds}
           courseSlug={course.slug}

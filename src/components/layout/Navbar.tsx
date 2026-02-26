@@ -1,15 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Image from 'next/image';
+import { createClient } from '@/lib/supabase/client';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const pathname = usePathname() ?? '';
+
+  useEffect(() => {
+    const supabase = createClient();
+    const checkAuth = async (userId: string | undefined) => {
+      setIsLoggedIn(!!userId);
+      if (!userId) {
+        setIsAdmin(false);
+        return;
+      }
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', userId)
+        .single();
+      setIsAdmin(profile?.role === 'admin');
+    };
+    supabase.auth.getUser().then(({ data: { user } }) => checkAuth(user?.id));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      checkAuth(session?.user?.id);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
@@ -72,12 +97,33 @@ const Navbar = () => {
                 );
               })}
             </div>
-            <Link
-              href="/login"
-              className="ml-4 px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] inline-flex items-center justify-center"
-            >
-              Login / Sign up
-            </Link>
+            <div className="ml-4 flex items-center gap-2">
+              {isAdmin && (
+                <Link
+                  href="/admin"
+                  className="px-4 py-2 rounded-lg text-sm font-semibold text-[#1C6ED5] border border-[#1C6ED5] hover:bg-[#1C6ED5]/10 transition-colors min-h-[44px] inline-flex items-center justify-center"
+                  aria-label="View admin panel"
+                >
+                  View Admin Panel
+                </Link>
+              )}
+              {isLoggedIn ? (
+                <Link
+                  href="/dashboard"
+                  className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] inline-flex items-center justify-center"
+                  aria-label="Go to dashboard"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  href="/login"
+                  className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] inline-flex items-center justify-center"
+                >
+                  Login / Sign up
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -125,13 +171,34 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <Link
-            href="/login"
-            className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] text-center"
-            onClick={() => setIsOpen(false)}
-          >
-            Login / Sign up
-          </Link>
+          {isAdmin && (
+            <Link
+              href="/admin"
+              className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-[#1C6ED5] border border-[#1C6ED5] hover:bg-[#1C6ED5]/10 transition-colors min-h-[44px] text-center"
+              onClick={() => setIsOpen(false)}
+              aria-label="View admin panel"
+            >
+              View Admin Panel
+            </Link>
+          )}
+          {isLoggedIn ? (
+            <Link
+              href="/dashboard"
+              className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] text-center"
+              onClick={() => setIsOpen(false)}
+              aria-label="Go to dashboard"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] text-center"
+              onClick={() => setIsOpen(false)}
+            >
+              Login / Sign up
+            </Link>
+          )}
         </div>
       </motion.div>
     </nav>

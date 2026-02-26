@@ -6,12 +6,15 @@ import Navbar from './Navbar';
 /** Whether the current route is an admin area (navbar/footer hidden). */
 const isAdminRoute = (path: string) => path.startsWith('/admin');
 
+/** Whether the current route is the user dashboard panel (navbar/footer hidden). */
+const isDashboardRoute = (path: string) => path.startsWith('/dashboard');
+
 /** Whether the current route is the login/signup page (navbar/footer hidden). */
 const isLoginRoute = (path: string) => path === '/login';
 
 /**
  * Conditionally renders Navbar and applies main padding.
- * Hides main site chrome on admin and login routes.
+ * Hides main site chrome on admin, dashboard, and login routes.
  */
 export default function LayoutChrome({
   children,
@@ -22,7 +25,8 @@ export default function LayoutChrome({
 }) {
   const pathname = usePathname();
   const path = pathname ?? '';
-  const showSiteChrome = !isAdminRoute(path) && !isLoginRoute(path);
+  const showSiteChrome =
+    !isAdminRoute(path) && !isDashboardRoute(path) && !isLoginRoute(path);
 
   return (
     <>

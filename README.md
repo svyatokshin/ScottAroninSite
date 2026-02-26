@@ -27,7 +27,7 @@ Official website for **Scott Aronin**, offering personalized online wellness coa
 
 **Course Experience**
 
-- Courses, modules, lessons (text + optional video/audio)
+- Courses, modules, lessons (text + optional video/audio or YouTube embeds)
 - Lesson progress tracking
 - Per-lesson quizzes (multiple choice, true/false)
 - Quiz attempts stored for analytics
@@ -40,6 +40,9 @@ Official website for **Scott Aronin**, offering personalized online wellness coa
 - **Courses** — CRUD courses, modules, lessons; manage quizzes
 - **Enrollments** — Manage user enrollments
 - **Modules** — Module management
+- **Preview** — Preview draft courses/blog as users see them (admin-only QA)
+- **View as User** — Switch to user-facing site from admin sidebar
+- **View Admin Panel** — Switch back to admin (visible in navbar for admins only)
 
 **Integrations**
 
@@ -113,7 +116,7 @@ src/
 
 ### Documentation
 
-- [docs/ADMIN_SETUP.md](docs/ADMIN_SETUP.md) — Admin dashboard setup, first admin, migrations
+- [docs/ADMIN_SETUP.md](docs/ADMIN_SETUP.md) — Admin setup (detailed: env, migrations, first admin, preview, troubleshooting)
 - [docs/BRAND_COLORS.md](docs/BRAND_COLORS.md) — Brand colors and design tokens
 - [docs/UX_REVIEW.md](docs/UX_REVIEW.md) — UX review and recommendations
 
@@ -159,7 +162,7 @@ Run migrations in Supabase SQL Editor or via Supabase CLI:
 9. `supabase/migrations/20250204000003_quiz_attempts.sql`
 10. `supabase/migrations/20250204000004_self_enroll.sql`
 
-See [docs/ADMIN_SETUP.md](docs/ADMIN_SETUP.md) for first-admin setup.
+See [docs/ADMIN_SETUP.md](docs/ADMIN_SETUP.md) for admin setup, first-admin creation, storage, and troubleshooting.
 
 ### Install and run
 

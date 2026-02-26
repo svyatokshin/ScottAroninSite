@@ -15,7 +15,7 @@ export default async function EditLessonPage({
   const { courseId, moduleId, lessonId } = await params;
   const supabase = await createClient();
 
-  const [{ data: lesson }, { data: module }, { data: quizQuestions }] =
+  const [{ data: lesson }, { data: module }, { data: course }, { data: quizQuestions }] =
     await Promise.all([
       supabase
         .from('lessons')
@@ -24,6 +24,7 @@ export default async function EditLessonPage({
         .eq('module_id', moduleId)
         .single(),
       supabase.from('modules').select('title').eq('id', moduleId).single(),
+      supabase.from('courses').select('slug').eq('id', courseId).single(),
       supabase
         .from('quiz_questions')
         .select('id, question_text, question_type, options, sort_order')
@@ -33,6 +34,11 @@ export default async function EditLessonPage({
 
   if (!lesson) notFound();
 
+  const returnTo = `/admin/courses/${courseId}/lessons/${moduleId}/lesson/${lessonId}/edit`;
+  const previewUrl = course?.slug
+    ? `/courses/${course.slug}?preview=true&returnTo=${encodeURIComponent(returnTo)}#lesson-${lessonId}`
+    : null;
+
   return (
     <div>
       <Link
@@ -41,9 +47,22 @@ export default async function EditLessonPage({
       >
         ← Back to Lessons
       </Link>
-      <h1 className="text-2xl font-serif font-semibold text-gray-900 mb-8">
-        Edit Lesson — {module?.title ?? 'Module'}
-      </h1>
+      <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+        <h1 className="text-2xl font-serif font-semibold text-gray-900">
+          Edit Lesson — {module?.title ?? 'Module'}
+        </h1>
+        {previewUrl && (
+          <Link
+            href={previewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-[#1C6ED5] hover:underline inline-flex items-center gap-1 min-h-[44px] items-center"
+            aria-label="Preview lesson in course as users would see it"
+          >
+            Preview in Course
+          </Link>
+        )}
+      </div>
       <LessonForm
         courseId={courseId}
         moduleId={moduleId}

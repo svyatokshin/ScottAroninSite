@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { recordLessonComplete } from '@/app/actions/lessonProgress';
 import { submitQuizAttempt } from '@/app/actions/quizzes';
 import { FiCheck } from 'react-icons/fi';
+import { getYouTubeEmbedUrl, isYouTubeUrl } from '@/lib/media';
 
 interface QuizQuestion {
   id: string;
@@ -129,7 +130,17 @@ export default function CourseContent({
                   )}
                   {lesson.media_path && isEnrolled && (
                     <div className="mt-4">
-                      {lesson.media_type === 'video' ? (
+                      {lesson.media_type === 'video' && isYouTubeUrl(lesson.media_path) ? (
+                        <div className="relative aspect-video rounded-lg overflow-hidden">
+                          <iframe
+                            src={getYouTubeEmbedUrl(lesson.media_path) ?? ''}
+                            title={lesson.title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="absolute inset-0 w-full h-full"
+                          />
+                        </div>
+                      ) : lesson.media_type === 'video' ? (
                         <video
                           src={`${supabaseUrl}/storage/v1/object/public/course-media/${lesson.media_path}`}
                           controls

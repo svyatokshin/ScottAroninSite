@@ -31,10 +31,10 @@ export default async function AdminDashboardLayout({
   }
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gray-50">
       <AdminSidebar />
-      <main className="flex-1 overflow-auto">
-        <div className="container mx-auto px-4 py-8">{children}</div>
+      <main className="flex-1 overflow-auto pt-14 md:pt-0 min-w-0">
+        <div className="container mx-auto px-4 py-6 md:py-8">{children}</div>
       </main>
     </div>
   );
