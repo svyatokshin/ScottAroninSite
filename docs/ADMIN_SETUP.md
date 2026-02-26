@@ -252,9 +252,9 @@ Admins can preview draft content as users would see it.
 | Blog edit | Header | `/blog/[slug]?preview=true` |
 | Lesson edit | Header | `/courses/[slug]?preview=true#lesson-[id]` (scrolls to lesson) |
 
-### Admin Media Access in Preview
+### Preview Shows Exact User Experience
 
-When previewing a course, admins see **all lesson media** (video, audio, YouTube embeds) without enrolling. Regular users must enroll to access media.
+Preview displays the page exactly as a user would see it. Admins must enroll to access lesson media (video, audio, YouTube embeds), same as regular users.
 
 ### Security
 

@@ -116,8 +116,8 @@ export default async function CourseDetailPage({
   const completedLessonIds = progress?.completedLessonIds ?? [];
   const showPreviewBanner = isPreview && isAdmin;
   const returnHref = (returnTo && returnTo.startsWith('/admin')) ? returnTo : `/admin/courses/${course.id}/edit`;
-  /** Admins in preview mode see all content including media without enrolling */
-  const canAccessMedia = isEnrolled || showPreviewBanner;
+  /** Preview shows exact user experience: media only when enrolled */
+  const canAccessMedia = isEnrolled;
 
   return (
     <div className="min-h-screen py-16 sm:py-24">
