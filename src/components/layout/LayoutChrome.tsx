@@ -32,7 +32,7 @@ export default function LayoutChrome({
     <>
       <a
         href="#main-content"
-        className="sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#0D47A1] focus:text-white focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:w-auto focus:h-auto focus:m-0 focus:overflow-visible focus:[clip:auto]"
+        className="sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-zen-blue focus:text-white focus:outline-none focus:ring-2 focus:ring-zen-blue focus:w-auto focus:h-auto focus:m-0 focus:overflow-visible focus:[clip:auto]"
       >
         Skip to main content
       </a>

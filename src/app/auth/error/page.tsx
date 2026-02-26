@@ -27,7 +27,7 @@ function AuthErrorContent() {
           <div className="flex flex-col gap-3">
             <Link
               href="/auth/forgot-password"
-              className="text-center py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors"
+              className="text-center py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
             >
               Forgot password
             </Link>

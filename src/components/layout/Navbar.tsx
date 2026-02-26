@@ -110,7 +110,7 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <Link
                   href="/dashboard"
-                  className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] inline-flex items-center justify-center"
+                  className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px] inline-flex items-center justify-center"
                   aria-label="Go to dashboard"
                 >
                   Dashboard
@@ -118,7 +118,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   href="/login"
-                  className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] inline-flex items-center justify-center"
+                  className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px] inline-flex items-center justify-center"
                 >
                   Login / Sign up
                 </Link>
@@ -184,7 +184,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <Link
               href="/dashboard"
-              className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] text-center"
+              className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px] text-center"
               onClick={() => setIsOpen(false)}
               aria-label="Go to dashboard"
             >
@@ -193,7 +193,7 @@ const Navbar = () => {
           ) : (
             <Link
               href="/login"
-              className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px] text-center"
+              className="block mx-4 mt-2 px-4 py-3 rounded-lg text-base font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px] text-center"
               onClick={() => setIsOpen(false)}
             >
               Login / Sign up
