@@ -47,9 +47,9 @@ export default function RootLayout({
         <div className="relative min-h-screen">
           <LayoutChrome
             footer={
-              <footer className="relative bg-gradient-to-br from-bgLight-4 via-bgLight-3 to-bgLight-2 pt-20 pb-10 backdrop-blur-md -mt-16 overflow-hidden">
-                {/* Top fade-in - White to Blue - Extended and smoother */}
-                <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-white via-white/60 via-bgNeutral-eggshell/35 via-bgLight-3/20 via-bgLight-4/50 to-transparent z-0 pointer-events-none" />
+              <footer className="relative bg-gradient-to-b from-white via-bgNeutral-cream via-bgLight-1 to-bgLight-3 pt-20 pb-10 backdrop-blur-md -mt-16 overflow-hidden">
+                {/* Top blend - strong white at top so footer merges with section above */}
+                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white via-white/80 to-transparent z-0 pointer-events-none" />
                 {/* Premium space background effects */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zen-purple/10 via-transparent to-transparent opacity-40" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(56,189,248,0.08),transparent_70%)]" />
