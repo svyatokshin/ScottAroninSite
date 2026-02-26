@@ -155,7 +155,7 @@ export default async function CourseDetailPage({
               ) : (
                 <Link
                   href="/contact"
-                  className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors"
+                  className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
                 >
                   Contact Us
                 </Link>
@@ -163,7 +163,7 @@ export default async function CourseDetailPage({
             ) : (
               <Link
                 href="/login"
-                className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors"
+                className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
               >
                 Sign In
               </Link>

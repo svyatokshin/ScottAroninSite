@@ -197,7 +197,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
       <motion.button
         key="scroll-top-button"
         onClick={scrollToTop}
-        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-[#0D47A1] text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-[#1565C0] transition-colors duration-300 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-zen-blue text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-zen-blue-dark transition-colors duration-300 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: showScrollTop ? 1 : 0, y: showScrollTop ? 0 : 20 }}
         transition={{ duration: 0.3 }}
