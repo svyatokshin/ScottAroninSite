@@ -1,15 +1,12 @@
 'use server';
 
-import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { getAdminSupabase } from '@/lib/auth/master';
 
 async function requireAdmin() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { error: 'Unauthorized', supabase: null as never };
-  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
-  if (profile?.role !== 'admin') return { error: 'Forbidden', supabase: null as never };
-  return { supabase };
+  const auth = await getAdminSupabase();
+  if (!auth) return { error: 'Unauthorized', supabase: null as never };
+  return { supabase: auth.supabase };
 }
 
 /** Course input */

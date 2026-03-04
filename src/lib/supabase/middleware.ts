@@ -1,9 +1,14 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
+import {
+  validateMasterCookie,
+  COOKIE_NAME,
+} from '@/lib/auth/master-cookie';
 
 /**
  * Refreshes Supabase session and protects /admin routes.
  * Unauthenticated users on /admin/* (except /admin/login) are redirected to /admin/login.
+ * Master cookie bypass: valid master_session cookie grants access without Supabase auth.
  */
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
@@ -40,10 +45,17 @@ export async function updateSession(request: NextRequest) {
     const {
       data: { user },
     } = await supabase.auth.getUser();
+
     if (!user) {
-      const url = request.nextUrl.clone();
-      url.pathname = '/admin/login';
-      return NextResponse.redirect(url);
+      const masterCookie = request.cookies.get(COOKIE_NAME)?.value;
+      const isMasterValid =
+        masterCookie && (await validateMasterCookie(masterCookie));
+
+      if (!isMasterValid) {
+        const url = request.nextUrl.clone();
+        url.pathname = '/admin/login';
+        return NextResponse.redirect(url);
+      }
     }
   }
 

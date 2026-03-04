@@ -80,6 +80,7 @@ export default function AdminSidebar() {
   const handleLogout = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
+    await fetch('/api/auth/master-logout', { method: 'POST', credentials: 'include' });
     router.push('/admin/login');
     router.refresh();
   };

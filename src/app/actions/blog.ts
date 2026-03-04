@@ -1,7 +1,7 @@
 'use server';
 
-import { createClient } from '@/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { getAdminSupabase } from '@/lib/auth/master';
 
 /** Single source link entry */
 export interface BlogSourceLink {
@@ -22,18 +22,14 @@ export interface BlogPostInput {
 }
 
 /**
- * Creates a new blog post. Admin only.
+ * Creates a new blog post. Admin only (Supabase or master).
  */
 export async function createBlogPost(input: BlogPostInput) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { error: 'Unauthorized' };
-
-  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
-  if (profile?.role !== 'admin') return { error: 'Forbidden' };
+  const auth = await getAdminSupabase();
+  if (!auth) return { error: 'Unauthorized' };
 
   const sourceLinks = (input.source_links ?? []).filter((s) => s?.url?.trim());
-  const { data, error } = await supabase
+  const { data, error } = await auth.supabase
     .from('blog_posts')
     .insert({
       title: input.title,
@@ -56,15 +52,11 @@ export async function createBlogPost(input: BlogPostInput) {
 }
 
 /**
- * Updates a blog post. Admin only.
+ * Updates a blog post. Admin only (Supabase or master).
  */
 export async function updateBlogPost(id: string, input: BlogPostInput) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { error: 'Unauthorized' };
-
-  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
-  if (profile?.role !== 'admin') return { error: 'Forbidden' };
+  const auth = await getAdminSupabase();
+  if (!auth) return { error: 'Unauthorized' };
 
   const sourceLinks = (input.source_links ?? []).filter((s) => s?.url?.trim());
   const updatePayload: Record<string, unknown> = {
@@ -83,7 +75,7 @@ export async function updateBlogPost(id: string, input: BlogPostInput) {
     updatePayload.published_at = null;
   }
 
-  const { error } = await supabase
+  const { error } = await auth.supabase
     .from('blog_posts')
     .update(updatePayload)
     .eq('id', id);
@@ -96,17 +88,13 @@ export async function updateBlogPost(id: string, input: BlogPostInput) {
 }
 
 /**
- * Deletes a blog post. Admin only.
+ * Deletes a blog post. Admin only (Supabase or master).
  */
 export async function deleteBlogPost(id: string) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return { error: 'Unauthorized' };
+  const auth = await getAdminSupabase();
+  if (!auth) return { error: 'Unauthorized' };
 
-  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single();
-  if (profile?.role !== 'admin') return { error: 'Forbidden' };
-
-  const { error } = await supabase.from('blog_posts').delete().eq('id', id);
+  const { error } = await auth.supabase.from('blog_posts').delete().eq('id', id);
   if (error) return { error: error.message };
   revalidatePath('/admin/blog');
   revalidatePath('/blog');

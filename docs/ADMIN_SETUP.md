@@ -52,9 +52,13 @@ Create `.env.local` in the project root with the following variables.
 
 | Variable | Description |
 |----------|-------------|
+| `MASTER_EMAIL` | Master admin email (bypasses Supabase auth) |
+| `MASTER_PASSWORD` | Master admin password (set both for emergency access) |
 | `RESEND_API_KEY` | Contact form email (Resend) |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe payments |
 | `STRIPE_SECRET_KEY` | Stripe payments |
+
+**Master login:** When both `MASTER_EMAIL` and `MASTER_PASSWORD` are set, an "Emergency access" option appears on the admin login page. This grants full admin access without Supabase auth—useful when locked out or when Supabase auth is unavailable.
 
 ---
 

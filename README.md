@@ -139,6 +139,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJxxx
 # Admin login (avoids RLS/503)
 SUPABASE_SERVICE_ROLE_KEY=eyJxxx
 
+# Master login (optional, bypasses Supabase auth for admin)
+MASTER_EMAIL=master@yourdomain.com
+MASTER_PASSWORD=your-secure-password
+
 # Contact form
 RESEND_API_KEY=re_xxxx
 

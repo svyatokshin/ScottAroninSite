@@ -1,33 +1,45 @@
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 import { createClient } from '@/lib/supabase/server';
 import AdminSidebar from '@/components/admin/AdminSidebar';
+import {
+  validateMasterCookie,
+  COOKIE_NAME,
+} from '@/lib/auth/master-cookie';
 
 /**
  * Dashboard layout: verifies admin role and renders sidebar + children.
- * Only applied to routes under admin/(dashboard).
+ * Master cookie bypass: valid master_session grants access without Supabase.
  */
 export default async function AdminDashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const cookieStore = await cookies();
+  const masterCookie = cookieStore.get(COOKIE_NAME)?.value;
+  const isMasterValid =
+    masterCookie && (await validateMasterCookie(masterCookie));
 
-  if (!user) {
-    redirect('/admin/login');
-  }
+  if (!isMasterValid) {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('role')
-    .eq('id', user.id)
-    .single();
+    if (!user) {
+      redirect('/admin/login');
+    }
 
-  if (profile?.role !== 'admin') {
-    redirect('/admin/login');
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+
+    if (profile?.role !== 'admin') {
+      redirect('/admin/login');
+    }
   }
 
   return (

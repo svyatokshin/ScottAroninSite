@@ -1,26 +1,14 @@
-import { createClient } from '@/lib/supabase/server';
 import { NextRequest, NextResponse } from 'next/server';
+import { getAdminSupabase } from '@/lib/auth/master';
 
 /**
  * POST /api/course-images
- * Uploads course featured/thumbnail images to course-images bucket. Admin only.
+ * Uploads course featured/thumbnail images to course-images bucket. Admin only (Supabase or master).
  */
 export async function POST(request: NextRequest) {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) {
+  const auth = await getAdminSupabase();
+  if (!auth) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('role')
-    .eq('id', user.id)
-    .single();
-  if (profile?.role !== 'admin') {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
   const formData = await request.formData();
@@ -32,7 +20,7 @@ export async function POST(request: NextRequest) {
   const ext = file.name.split('.').pop() ?? 'jpg';
   const path = `featured/${Date.now()}-${crypto.randomUUID().slice(0, 8)}.${ext}`;
 
-  const { data, error } = await supabase.storage
+  const { data, error } = await auth.supabase.storage
     .from('course-images')
     .upload(path, file, { upsert: true });
 
@@ -40,7 +28,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  const { data: urlData } = supabase.storage
+  const { data: urlData } = auth.supabase.storage
     .from('course-images')
     .getPublicUrl(data.path);
   return NextResponse.json({ path: data.path, url: urlData.publicUrl });
