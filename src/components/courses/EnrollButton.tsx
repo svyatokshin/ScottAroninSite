@@ -34,7 +34,7 @@ export default function EnrollButton({ courseId }: EnrollButtonProps) {
         type="button"
         onClick={handleEnroll}
         disabled={isLoading}
-        className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors disabled:opacity-50 min-h-[44px]"
+        className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors disabled:opacity-50 min-h-[44px]"
         aria-label="Enroll in this course"
       >
         {isLoading ? 'Enrolling...' : 'Enroll in course'}

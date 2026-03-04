@@ -57,7 +57,7 @@ export default function OnboardingPage() {
               <div
                 key={i}
                 className={`h-1 flex-1 rounded-full transition-colors ${
-                  i <= step ? 'bg-[#0D47A1]' : 'bg-gray-200'
+                  i <= step ? 'bg-zen-blue' : 'bg-gray-200'
                 }`}
               />
             ))}
@@ -83,7 +83,7 @@ export default function OnboardingPage() {
               type="button"
               onClick={handleNext}
               disabled={isCompleting}
-              className="px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors disabled:opacity-50 min-h-[44px]"
+              className="px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors disabled:opacity-50 min-h-[44px]"
             >
               {isCompleting
                 ? 'Loading...'

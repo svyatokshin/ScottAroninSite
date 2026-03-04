@@ -134,7 +134,7 @@ export default function AdminSidebar() {
               onClick={closeMobileMenu}
               className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors min-h-[44px] flex items-center ${
                 isActive
-                  ? 'bg-[#0D47A1] text-white'
+                  ? 'bg-zen-blue text-white'
                   : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
               }`}
               aria-current={isActive ? 'page' : undefined}

@@ -58,7 +58,7 @@ export default async function DashboardCoursesPage() {
                 {isEnrolled ? (
                   <Link
                     href={`/courses/${course.slug}`}
-                    className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px]"
+                    className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px]"
                   >
                     Continue course →
                   </Link>
@@ -67,7 +67,7 @@ export default async function DashboardCoursesPage() {
                 ) : (
                   <Link
                     href="/contact"
-                    className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors min-h-[44px]"
+                    className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px]"
                   >
                     Contact to enroll
                   </Link>

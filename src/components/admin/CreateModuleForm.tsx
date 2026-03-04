@@ -87,7 +87,7 @@ export default function CreateModuleForm({ courses }: CreateModuleFormProps) {
       <button
         type="submit"
         disabled={isSubmitting || !title.trim()}
-        className="px-6 py-2 rounded-lg font-medium text-white bg-[#0D47A1] hover:bg-[#1565C0] disabled:opacity-50 min-h-[44px]"
+        className="px-6 py-2 rounded-lg font-medium text-white bg-zen-blue hover:bg-zen-blue-dark disabled:opacity-50 min-h-[44px]"
       >
         {isSubmitting ? 'Creating...' : 'Create Module'}
       </button>

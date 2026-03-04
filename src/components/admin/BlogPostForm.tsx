@@ -447,7 +447,7 @@ export default function BlogPostForm({ postId, initialData }: BlogPostFormProps)
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors disabled:opacity-50 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
+          className="px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors disabled:opacity-50 min-h-[44px] focus:outline-none focus:ring-2 focus:ring-zen-blue/60"
         >
           {isSubmitting ? 'Saving...' : postId ? 'Update' : 'Create'}
         </button>

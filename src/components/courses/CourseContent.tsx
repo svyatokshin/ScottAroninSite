@@ -107,7 +107,7 @@ export default function CourseContent({
                         className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors min-h-[44px] min-w-[44px] justify-center ${
                           done
                             ? 'bg-green-100 text-green-800 cursor-default'
-                            : 'bg-[#0D47A1] text-white hover:bg-[#1565C0] disabled:opacity-50'
+                            : 'bg-zen-blue text-white hover:bg-zen-blue-dark disabled:opacity-50'
                         }`}
                       >
                         {done ? (
@@ -221,7 +221,7 @@ function LessonQuiz({
                     onChange={() =>
                       setAnswers((prev) => ({ ...prev, [q.id]: idx }))
                     }
-                    className="h-4 w-4 text-[#0D47A1] border-gray-300 focus:ring-bgDark-2/60"
+                    className="h-4 w-4 text-zen-blue border-gray-300 focus:ring-zen-blue/60"
                   />
                   <span className="text-sm text-gray-700">{opt.text}</span>
                 </label>
@@ -234,7 +234,7 @@ function LessonQuiz({
                 disabled={
                   answers[q.id] === undefined || submittingId === q.id
                 }
-                className="px-3 py-1.5 rounded text-sm font-medium bg-[#0D47A1] text-white hover:bg-[#1565C0] disabled:opacity-50 min-h-[44px]"
+                className="px-3 py-1.5 rounded text-sm font-medium bg-zen-blue text-white hover:bg-zen-blue-dark disabled:opacity-50 min-h-[44px]"
               >
                 {submittingId === q.id ? 'Checking...' : 'Check answer'}
               </button>

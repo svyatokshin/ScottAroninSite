@@ -105,7 +105,7 @@ export default async function DashboardPage() {
                     <div className="mt-3" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${completedCount} of ${totalCount} lessons completed`}>
                       <div className="h-2 rounded-full bg-gray-200 overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-[#0D47A1] transition-all"
+                          className="h-full rounded-full bg-zen-blue transition-all"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
@@ -128,7 +128,7 @@ export default async function DashboardPage() {
             </p>
             <Link
               href="/dashboard/courses"
-              className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors"
+              className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
             >
               Browse Courses
             </Link>

@@ -160,7 +160,7 @@ export default function AdminAccountPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3 rounded-lg font-semibold text-white bg-[#0D47A1] hover:bg-[#1565C0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 focus:ring-offset-2"
+            className="w-full py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] focus:outline-none focus:ring-2 focus:ring-zen-blue/60 focus:ring-offset-2"
             aria-busy={isLoading}
           >
             {isLoading ? 'Updating...' : 'Change password'}

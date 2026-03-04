@@ -131,7 +131,7 @@ export default function LessonsManager({
                 <button
                   type="button"
                   onClick={handleSaveEditModule}
-                  className="px-3 py-2 rounded-lg font-medium text-white bg-[#0D47A1] hover:bg-[#1565C0] min-h-[44px]"
+                  className="px-3 py-2 rounded-lg font-medium text-white bg-zen-blue hover:bg-zen-blue-dark min-h-[44px]"
                 >
                   Save
                 </button>
@@ -230,7 +230,7 @@ export default function LessonsManager({
         <button
           type="submit"
           disabled={isAddingModule || !newModuleTitle.trim()}
-          className="px-4 py-2 rounded-lg font-medium text-white bg-[#0D47A1] hover:bg-[#1565C0] disabled:opacity-50 min-h-[44px]"
+          className="px-4 py-2 rounded-lg font-medium text-white bg-zen-blue hover:bg-zen-blue-dark disabled:opacity-50 min-h-[44px]"
         >
           Add Module
         </button>
