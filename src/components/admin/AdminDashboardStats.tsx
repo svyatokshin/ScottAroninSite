@@ -54,6 +54,7 @@ export interface DashboardStats {
   blogTotal: number;
   blogPublished: number;
   enrollmentsTotal: number;
+  appointmentsUpcoming: number;
 }
 
 interface AdminDashboardStatsProps {
@@ -65,7 +66,7 @@ interface AdminDashboardStatsProps {
  */
 export default function AdminDashboardStats({ stats }: AdminDashboardStatsProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       <StatCard
         label="Total Users"
         value={stats.usersTotal}
@@ -101,6 +102,12 @@ export default function AdminDashboardStats({ stats }: AdminDashboardStatsProps)
         value={stats.enrollmentsTotal}
         subtext="Total course enrollments"
         href="/admin/enrollments"
+      />
+      <StatCard
+        label="Appointments"
+        value={stats.appointmentsUpcoming}
+        subtext="Upcoming confirmed"
+        href="/admin/scheduling"
       />
     </div>
   );

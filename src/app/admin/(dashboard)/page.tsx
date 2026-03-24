@@ -32,6 +32,7 @@ export default async function AdminDashboardPage() {
     { data: lessonProgressData },
     { data: lessonsWithModulesData },
     { data: quizAttemptsData },
+    { count: appointmentsUpcoming },
   ] = await Promise.all([
     supabase
       .from('profiles')
@@ -64,6 +65,11 @@ export default async function AdminDashboardPage() {
       .from('lessons')
       .select('id, module_id, modules(course_id)'),
     supabase.from('quiz_attempts').select('id, is_correct'),
+    supabase
+      .from('appointments')
+      .select('*', { count: 'exact', head: true })
+      .eq('status', 'confirmed')
+      .gte('start_time', new Date().toISOString()),
   ]);
 
   const coursesPublished = coursesData?.filter((c) => c.published).length ?? 0;
@@ -81,6 +87,7 @@ export default async function AdminDashboardPage() {
     blogTotal,
     blogPublished,
     enrollmentsTotal: enrollmentsCount ?? 0,
+    appointmentsUpcoming: appointmentsUpcoming ?? 0,
   };
 
   const enrollmentsByCourse: CourseEnrollmentRow[] = (coursesData ?? []).map(

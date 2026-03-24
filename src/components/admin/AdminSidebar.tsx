@@ -11,6 +11,7 @@ const navItems = [
   { href: '/admin/courses', label: 'Courses' },
   { href: '/admin/blog', label: 'Blog' },
   { href: '/admin/enrollments', label: 'Enrollments' },
+  { href: '/admin/scheduling', label: 'Scheduling' },
   { href: '/admin/account', label: 'Account' },
 ];
 
