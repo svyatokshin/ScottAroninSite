@@ -10,6 +10,7 @@ const navItems = [
   { href: '/admin/modules', label: 'Modules' },
   { href: '/admin/courses', label: 'Courses' },
   { href: '/admin/blog', label: 'Blog' },
+  { href: '/admin/research', label: 'Research' },
   { href: '/admin/enrollments', label: 'Enrollments' },
   { href: '/admin/scheduling', label: 'Scheduling' },
   { href: '/admin/account', label: 'Account' },
