@@ -33,7 +33,7 @@ export default function Contact() {
             </h1>
             <div className="mb-8 sm:mb-12 px-4">
               <a
-                href="/contact"
+                href="/book"
                 className="inline-flex items-center gap-2 sm:gap-3 border border-bgDark-2/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-gray-900 shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 min-h-[44px] justify-center"
                 style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
               >

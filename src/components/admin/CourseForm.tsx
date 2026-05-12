@@ -11,7 +11,6 @@ interface CourseFormProps {
     slug: string;
     description: string;
     published: boolean;
-    self_enroll_enabled?: boolean;
     featured_image_path?: string;
     default_media_type?: 'video' | 'audio' | 'mixed' | null;
   };
@@ -35,9 +34,6 @@ export default function CourseForm({ courseId, initialData }: CourseFormProps) {
   const [slug, setSlug] = useState(initialData?.slug ?? '');
   const [description, setDescription] = useState(initialData?.description ?? '');
   const [published, setPublished] = useState(initialData?.published ?? false);
-  const [selfEnrollEnabled, setSelfEnrollEnabled] = useState(
-    initialData?.self_enroll_enabled ?? false
-  );
   const [featuredImagePath, setFeaturedImagePath] = useState(
     initialData?.featured_image_path ?? ''
   );
@@ -91,7 +87,6 @@ export default function CourseForm({ courseId, initialData }: CourseFormProps) {
         slug: slug || slugify(title),
         description: description || null,
         published,
-        self_enroll_enabled: selfEnrollEnabled,
         featured_image_path: featuredImagePath || null,
         default_media_type: defaultMediaType,
       };
@@ -250,19 +245,6 @@ export default function CourseForm({ courseId, initialData }: CourseFormProps) {
             className="h-4 w-4 rounded border-gray-300 text-bgDark-1 focus:ring-bgDark-2/60"
           />
           <label htmlFor="published" className="text-sm font-medium text-gray-700">Published</label>
-        </div>
-        <div className="flex items-center gap-2">
-          <input
-            id="self_enroll_enabled"
-            type="checkbox"
-            checked={selfEnrollEnabled}
-            onChange={(e) => setSelfEnrollEnabled(e.target.checked)}
-            disabled={isSubmitting}
-            className="h-4 w-4 rounded border-gray-300 text-bgDark-1 focus:ring-bgDark-2/60"
-          />
-          <label htmlFor="self_enroll_enabled" className="text-sm font-medium text-gray-700">
-            Allow self-enrollment
-          </label>
         </div>
       </div>
 

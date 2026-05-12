@@ -74,29 +74,107 @@ export default function CourseContent({
     if (!isCompleted(lessonId)) handleMarkComplete(lessonId);
   };
 
+  const totalLessons = modules.reduce((count, module) => count + module.lessons.length, 0);
+  const completedCount = modules.reduce((count, module) => {
+    return (
+      count +
+      module.lessons.reduce((lessonCount, lesson) => {
+        if (isCompleted(lesson.id)) return lessonCount + 1;
+        return lessonCount;
+      }, 0)
+    );
+  }, 0);
+
   return (
     <div className="space-y-8">
-      {modules.map((mod) => (
+      <div
+        className="relative rounded-3xl border border-bgDark-2/20 p-6 sm:p-8 overflow-hidden"
+        style={{
+          background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+          boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)',
+        }}
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
+        <div className="relative z-10 flex flex-wrap items-center gap-3 sm:gap-4">
+          <span className="inline-flex items-center rounded-full border border-bgDark-2/30 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-wider text-gray-800 uppercase">
+            Course Curriculum
+          </span>
+          <span className="inline-flex items-center rounded-full border border-bgDark-2/20 bg-white/70 px-4 py-1.5 text-sm font-medium text-gray-800">
+            {modules.length} modules
+          </span>
+          <span className="inline-flex items-center rounded-full border border-bgDark-2/20 bg-white/70 px-4 py-1.5 text-sm font-medium text-gray-800">
+            {totalLessons} lessons
+          </span>
+          {isEnrolled && (
+            <span className="inline-flex items-center rounded-full border border-bgDark-2/20 bg-white/70 px-4 py-1.5 text-sm font-medium text-gray-800">
+              {completedCount}/{totalLessons} completed
+            </span>
+          )}
+        </div>
+      </div>
+
+      {modules.map((mod, moduleIndex) => (
         <section
           key={mod.id}
-          className="rounded-xl border border-bgDark-2/20 bg-white overflow-hidden"
+          className="relative rounded-3xl border border-bgDark-2/20 bg-white overflow-hidden shadow-xl"
+          style={{ boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04)' }}
         >
-          <h2 className="px-6 py-4 bg-gray-50 font-semibold text-gray-900">
-            {mod.title}
-          </h2>
-          <div className="divide-y divide-gray-100">
-            {mod.lessons.map((lesson) => {
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(0,0,0,0.02),transparent_45%)]" />
+          <div className="relative z-10">
+            <div className="px-6 sm:px-8 py-6 border-b border-gray-200/80">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div className="space-y-3">
+                  <span className="inline-flex items-center rounded-full border border-bgDark-2/20 bg-bgDark-2/10 px-3 py-1 text-xs font-semibold tracking-wider text-gray-800 uppercase">
+                    Module {moduleIndex + 1}
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-playfair font-light text-gray-900 leading-tight">
+                    {mod.title}
+                  </h2>
+                </div>
+                <span className="inline-flex items-center rounded-full border border-bgDark-2/20 bg-white px-4 py-2 text-sm font-medium text-gray-700">
+                  {mod.lessons.length} {mod.lessons.length === 1 ? 'lesson' : 'lessons'}
+                </span>
+              </div>
+            </div>
+
+            <div className="px-4 sm:px-6 md:px-8 py-6 space-y-4 sm:space-y-6">
+              {mod.lessons.map((lesson, lessonIndex) => {
               const done = isCompleted(lesson.id);
               return (
                 <div
                   key={lesson.id}
                   id={`lesson-${lesson.id}`}
-                  className="p-6 scroll-mt-24"
+                  className="scroll-mt-24 rounded-2xl border border-bgDark-2/20 bg-white p-5 sm:p-6 shadow-lg"
+                  style={{ boxShadow: '0 10px 32px -14px rgba(0,70,201,0.18), 0 0 0 1px rgba(0,70,201,0.06)' }}
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-medium text-gray-900 flex-1">
-                      {lesson.title}
-                    </h3>
+                  <div className="flex items-start justify-between gap-4 flex-wrap">
+                    <div className="flex-1 min-w-[240px]">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <span className="inline-flex items-center rounded-full bg-bgDark-2/10 px-2.5 py-1 text-xs font-semibold text-gray-800">
+                          Lesson {lessonIndex + 1}
+                        </span>
+                        {lesson.duration_sec && (
+                          <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700">
+                            {formatDuration(lesson.duration_sec)}
+                          </span>
+                        )}
+                        {lesson.media_type && (
+                          <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 capitalize">
+                            {lesson.media_type}
+                          </span>
+                        )}
+                        {!isEnrolled && lesson.media_path && (
+                          <span className="inline-flex items-center rounded-full bg-amber-50 border border-amber-200 px-2.5 py-1 text-xs font-medium text-amber-800">
+                            Locked media
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-playfair font-light text-gray-900 leading-tight">
+                        {lesson.title}
+                      </h3>
+                    </div>
                     {isEnrolled && (
                       <button
                         type="button"
@@ -104,9 +182,9 @@ export default function CourseContent({
                         disabled={done || markingId === lesson.id}
                         aria-label={done ? 'Lesson completed' : 'Mark lesson complete'}
                         aria-pressed={done}
-                        className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors min-h-[44px] min-w-[44px] justify-center ${
+                        className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors min-h-[44px] min-w-[44px] justify-center ${
                           done
-                            ? 'bg-green-100 text-green-800 cursor-default'
+                            ? 'bg-green-100 text-green-800 cursor-default border border-green-200'
                             : 'bg-zen-blue text-white hover:bg-zen-blue-dark disabled:opacity-50'
                         }`}
                       >
@@ -123,13 +201,9 @@ export default function CourseContent({
                       </button>
                     )}
                   </div>
-                  {lesson.content && (
-                    <p className="mt-2 text-gray-600 whitespace-pre-wrap">
-                      {lesson.content}
-                    </p>
-                  )}
+                  {lesson.content && <LessonBody content={lesson.content} />}
                   {lesson.media_path && isEnrolled && (
-                    <div className="mt-4">
+                    <div className="mt-5 rounded-2xl border border-bgDark-2/15 bg-gray-50/70 p-3 sm:p-4">
                       {lesson.media_type === 'video' && isYouTubeUrl(lesson.media_path) ? (
                         <div className="relative aspect-video rounded-lg overflow-hidden">
                           <iframe
@@ -170,11 +244,41 @@ export default function CourseContent({
                 </div>
               );
             })}
+            </div>
           </div>
         </section>
       ))}
     </div>
   );
+}
+
+function LessonBody({ content }: { content: string }) {
+  const paragraphs = content
+    .split('\n')
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  return (
+    <div className="mt-4 space-y-4">
+      {paragraphs.map((paragraph, index) => (
+        <p
+          key={`${paragraph.slice(0, 16)}-${index}`}
+          className="text-base sm:text-lg text-gray-700/95 leading-relaxed tracking-wide"
+        >
+          {paragraph}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function formatDuration(durationSec: number) {
+  const minutes = Math.floor(durationSec / 60);
+  const seconds = durationSec % 60;
+
+  if (minutes === 0) return `${seconds}s`;
+  if (seconds === 0) return `${minutes}m`;
+  return `${minutes}m ${seconds}s`;
 }
 
 /**
@@ -199,19 +303,19 @@ function LessonQuiz({
   };
 
   return (
-    <div className="mt-6 rounded-lg border border-bgDark-2/20 bg-gray-50 p-4">
-      <h4 className="text-sm font-semibold text-gray-900 mb-3">
+    <div className="mt-6 rounded-2xl border border-bgDark-2/20 bg-gray-50/90 p-4 sm:p-5">
+      <h4 className="text-sm font-semibold tracking-wide text-gray-900 mb-3 uppercase">
         Quick Quiz
       </h4>
       <div className="space-y-4">
         {questions.map((q) => (
-          <div key={q.id} className="space-y-2">
-            <p className="text-sm font-medium text-gray-800">{q.question_text}</p>
-            <div className="flex flex-wrap gap-2" role="group" aria-label={q.question_text}>
+          <div key={q.id} className="space-y-3 rounded-xl border border-bgDark-2/10 bg-white p-4">
+            <p className="text-sm sm:text-base font-medium text-gray-800">{q.question_text}</p>
+            <div className="grid gap-2" role="group" aria-label={q.question_text}>
               {q.options.map((opt, idx) => (
                 <label
                   key={idx}
-                  className="flex items-center gap-2 cursor-pointer"
+                  className="flex items-center gap-2 cursor-pointer rounded-lg border border-bgDark-2/10 px-3 py-2 hover:bg-bgDark-2/5 transition-colors"
                 >
                   <input
                     type="radio"

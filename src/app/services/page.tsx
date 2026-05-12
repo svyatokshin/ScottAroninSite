@@ -46,7 +46,7 @@ export default function Services() {
             </h1>
             <div className="mb-8 sm:mb-12 px-4">
               <a
-                href="/book"
+                href="/contact"
                 className="inline-flex items-center gap-2 sm:gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-gray-900 shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 min-h-[44px] justify-center"
                 style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
               >
@@ -123,7 +123,7 @@ export default function Services() {
             className="text-center mt-16"
           >
             <a
-              href="/book"
+              href="/contact"
               className="inline-flex items-center gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-gray-900 shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
               style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
             >
@@ -312,7 +312,7 @@ export default function Services() {
                   Take the first step towards holistic wellness and inner peace.
                 </p>
                 <a
-                  href="/book"
+                  href="/contact"
                   className="inline-flex items-center gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-gray-900 shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
                   style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
                 >

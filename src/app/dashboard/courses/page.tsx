@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
-import EnrollButton from '@/components/courses/EnrollButton';
+import { getSubscriptionStateForUser } from '@/lib/subscription';
 
 /**
  * Browse all published courses. Shows enrollment status and enroll/continue actions.
@@ -12,7 +12,7 @@ export default async function DashboardCoursesPage() {
   const [coursesRes, enrollmentsRes] = await Promise.all([
     supabase
       .from('courses')
-      .select('id, title, slug, description, self_enroll_enabled')
+      .select('id, title, slug, description')
       .eq('published', true)
       .order('created_at', { ascending: false }),
     user
@@ -27,6 +27,9 @@ export default async function DashboardCoursesPage() {
   const enrolledIds = new Set(
     (enrollmentsRes.data ?? []).map((e) => e.course_id)
   );
+  const hasActiveSubscription = user
+    ? (await getSubscriptionStateForUser(user.id, supabase)).hasActiveSubscription
+    : false;
 
   return (
     <div className="max-w-4xl">
@@ -34,7 +37,7 @@ export default async function DashboardCoursesPage() {
         Browse Courses
       </h1>
       <p className="text-gray-600 mb-10">
-        Explore available courses and enroll to access lesson content.
+        Explore available courses. Premium members can open all course materials.
       </p>
 
       <div className="grid gap-6 sm:grid-cols-2">
@@ -55,21 +58,19 @@ export default async function DashboardCoursesPage() {
                 </p>
               )}
               <div className="mt-4">
-                {isEnrolled ? (
+                {isEnrolled || hasActiveSubscription ? (
                   <Link
                     href={`/courses/${course.slug}`}
                     className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px]"
                   >
                     Continue course →
                   </Link>
-                ) : course.self_enroll_enabled ? (
-                  <EnrollButton courseId={course.id} />
                 ) : (
                   <Link
-                    href="/contact"
+                    href="/pricing"
                     className="inline-block px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors min-h-[44px]"
                   >
-                    Contact to enroll
+                    Unlock with Premium
                   </Link>
                 )}
               </div>

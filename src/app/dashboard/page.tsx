@@ -2,6 +2,8 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getLessonProgressForEnrolledCourses } from '@/app/actions/lessonProgress';
+import { getSubscriptionStateForUser } from '@/lib/subscription';
+import SubscriptionButton from '@/components/subscription/SubscriptionButton';
 
 /**
  * User dashboard home. Shows enrolled courses with progress and browse CTA.
@@ -20,7 +22,7 @@ export default async function DashboardPage() {
     .eq('id', user.id)
     .single();
 
-  const [enrollmentsRes, { progress }] = await Promise.all([
+  const [enrollmentsRes, { progress }, subscriptionState] = await Promise.all([
     supabase
       .from('course_enrollments')
       .select(`
@@ -35,6 +37,7 @@ export default async function DashboardPage() {
       .eq('user_id', user.id)
       .order('enrolled_at', { ascending: false }),
     getLessonProgressForEnrolledCourses(),
+    getSubscriptionStateForUser(user.id, supabase),
   ]);
 
   const enrollments = enrollmentsRes.data ?? [];
@@ -52,6 +55,19 @@ export default async function DashboardPage() {
   const totalLessons = progress.reduce((sum, p) => sum + p.totalCount, 0);
 
   const displayName = profile?.full_name?.trim() || 'there';
+  const hasActiveSubscription = subscriptionState.hasActiveSubscription;
+  const freeVideos = [
+    {
+      title: '5-Minute Breath Reset',
+      embedUrl: 'https://www.youtube.com/embed/SEfs5TJZ6Nk',
+      description: 'A short guided breathing reset you can use anytime.',
+    },
+    {
+      title: 'Morning Mobility Warmup',
+      embedUrl: 'https://www.youtube.com/embed/4BOTvaRaDjI',
+      description: 'Easy movement routine to prepare your body for the day.',
+    },
+  ];
 
   return (
     <div className="max-w-4xl">
@@ -61,6 +77,19 @@ export default async function DashboardPage() {
       <p className="text-gray-600 mb-6">
         Continue your learning journey.
       </p>
+      <div className="mb-8 rounded-xl border border-bgDark-2/20 bg-white p-5">
+        <p className="text-sm font-medium text-gray-900">
+          Premium access: {hasActiveSubscription ? 'Active' : 'Free account'}
+        </p>
+        <p className="mt-1 text-sm text-gray-600">
+          {hasActiveSubscription
+            ? 'You can access all premium course content.'
+            : 'Upgrade to premium to unlock full course material.'}
+        </p>
+        <div className="mt-4">
+          <SubscriptionButton hasActiveSubscription={hasActiveSubscription} />
+        </div>
+      </div>
 
       {totalLessons > 0 && (
         <div className="mb-10 rounded-xl border border-bgDark-2/20 bg-white p-4">
@@ -148,6 +177,35 @@ export default async function DashboardPage() {
             </Link>
           </div>
         )}
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          Free Videos
+        </h2>
+        <p className="text-sm text-gray-600 mb-5">
+          These videos are included for every dashboard account.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {freeVideos.map((video) => (
+            <article
+              key={video.title}
+              className="rounded-xl border border-bgDark-2/20 bg-white p-4 shadow-sm"
+            >
+              <h3 className="font-semibold text-gray-900">{video.title}</h3>
+              <p className="mt-1 text-sm text-gray-600">{video.description}</p>
+              <div className="relative mt-4 aspect-video overflow-hidden rounded-lg">
+                <iframe
+                  src={video.embedUrl}
+                  title={video.title}
+                  className="absolute inset-0 h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </div>
   );

@@ -295,7 +295,7 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
         {/* CTA Button within Light Blue Section */}
         <div className="text-center relative z-20">
         <a
-          href="/book"
+          href="/contact"
             className="inline-flex items-center gap-3 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-black shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 bg-white"
             style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
         >

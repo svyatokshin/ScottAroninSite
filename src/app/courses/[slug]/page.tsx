@@ -2,9 +2,9 @@ import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import CourseContent from '@/components/courses/CourseContent';
-import EnrollButton from '@/components/courses/EnrollButton';
 import PreviewBanner from '@/components/admin/PreviewBanner';
 import { getLessonProgressForCourse } from '@/app/actions/lessonProgress';
+import { getSubscriptionStateForUser } from '@/lib/subscription';
 
 /**
  * Public course detail. Shows modules/lessons.
@@ -38,7 +38,7 @@ export default async function CourseDetailPage({
 
   const courseQuery = supabase
     .from('courses')
-    .select('id, title, slug, description, self_enroll_enabled')
+    .select('id, title, slug, description')
     .eq('slug', slug);
 
   if (!isPreview || !isAdmin) {
@@ -51,14 +51,19 @@ export default async function CourseDetailPage({
 
   const { data: { user } } = await supabase.auth.getUser();
   let isEnrolled = false;
+  let hasActiveSubscription = false;
   if (user) {
-    const { data: enr } = await supabase
-      .from('course_enrollments')
-      .select('id')
-      .eq('user_id', user.id)
-      .eq('course_id', course.id)
-      .single();
-    isEnrolled = !!enr;
+    const [enrollmentResponse, subscriptionState] = await Promise.all([
+      supabase
+        .from('course_enrollments')
+        .select('id')
+        .eq('user_id', user.id)
+        .eq('course_id', course.id)
+        .maybeSingle(),
+      getSubscriptionStateForUser(user.id, supabase),
+    ]);
+    isEnrolled = !!enrollmentResponse.data;
+    hasActiveSubscription = subscriptionState.hasActiveSubscription;
   }
 
   const { data: modules } = await supabase
@@ -112,15 +117,15 @@ export default async function CourseDetailPage({
   });
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
-  const { progress } = isEnrolled ? await getLessonProgressForCourse(course.id) : { progress: null };
+  const canAccessMedia = isEnrolled || hasActiveSubscription;
+  const { progress } = canAccessMedia ? await getLessonProgressForCourse(course.id) : { progress: null };
   const completedLessonIds = progress?.completedLessonIds ?? [];
   const showPreviewBanner = isPreview && isAdmin;
   const returnHref = (returnTo && returnTo.startsWith('/admin')) ? returnTo : `/admin/courses/${course.id}/edit`;
-  /** Preview shows exact user experience: media only when enrolled */
-  const canAccessMedia = isEnrolled;
+  /** Preview shows exact user experience: media only for entitled users */
 
   return (
-    <div className="min-h-screen py-16 sm:py-24">
+    <div className="min-h-screen py-16 sm:py-24 bg-gradient-to-br from-bgLight-4 via-bgLight-4 to-bgLight-3">
       {showPreviewBanner && <PreviewBanner returnHref={returnHref} />}
       <div className="container mx-auto px-4 max-w-4xl">
         <nav aria-label="Breadcrumb" className="mb-8">
@@ -133,39 +138,50 @@ export default async function CourseDetailPage({
           </ol>
         </nav>
 
-        <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-gray-900 mb-4">
-          {course.title}
-        </h1>
-        {course.description && (
-          <p className="text-lg text-gray-600 mb-10">{course.description}</p>
-        )}
+        <section
+          className="relative rounded-3xl border border-bgDark-2/20 p-6 sm:p-8 md:p-10 mb-10 overflow-hidden"
+          style={{
+            background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)',
+            boxShadow: '0 10px 40px -12px rgba(0,70,201,0.15), 0 0 0 1px rgba(0,70,201,0.1)',
+          }}
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,70,201,0.08),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(16,85,201,0.06),transparent_50%)]" />
+          <div className="relative z-10">
+            <span className="inline-flex items-center rounded-full border border-bgDark-2/20 bg-white/70 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase text-gray-800 mb-4">
+              Wellness Course
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-playfair font-light text-gray-900 mb-4 leading-tight">
+              {course.title}
+            </h1>
+            {course.description && (
+              <p className="text-base sm:text-lg text-gray-700/95 max-w-3xl leading-relaxed">
+                {course.description}
+              </p>
+            )}
+          </div>
+        </section>
 
         {!canAccessMedia && (
-          <div className="rounded-xl border border-bgDark-2/20 bg-white p-6 mb-10">
-            <p className="text-gray-700">
+          <div className="rounded-2xl border border-bgDark-2/20 bg-white p-6 sm:p-7 mb-10 shadow-lg">
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
               {user
-                ? course.self_enroll_enabled
-                  ? 'Enroll to access lesson content, including audio and video.'
-                  : 'Contact us to be enrolled in this course.'
-                : 'Sign in and enroll to access lesson content, including audio and video.'}
+                ? 'Upgrade to premium to unlock all lesson content, including audio and video.'
+                : 'Sign in and upgrade to premium to unlock all lesson content.'}
             </p>
             {user ? (
-              course.self_enroll_enabled ? (
-                <EnrollButton courseId={course.id} />
-              ) : (
-                <Link
-                  href="/contact"
-                  className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
-                >
-                  Contact Us
-                </Link>
-              )
+              <Link
+                href="/pricing"
+                className="inline-block mt-5 px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
+              >
+                View Premium Plans
+              </Link>
             ) : (
               <Link
-                href="/login"
-                className="inline-block mt-4 px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
+                href={`/login?redirect=${encodeURIComponent(`/courses/${course.slug}`)}`}
+                className="inline-block mt-5 px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
               >
-                Sign In
+                Sign In to Continue
               </Link>
             )}
           </div>

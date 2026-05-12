@@ -61,7 +61,6 @@ export default async function EditCoursePage({
           slug: course.slug,
           description: course.description ?? '',
           published: course.published,
-          self_enroll_enabled: course.self_enroll_enabled ?? false,
           featured_image_path: course.featured_image_path ?? undefined,
           default_media_type: course.default_media_type ?? undefined,
         }}

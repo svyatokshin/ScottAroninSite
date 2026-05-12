@@ -17,13 +17,14 @@ Official website for **Scott Aronin**, offering personalized online wellness coa
 - **Research** — Evidence-based findings and visual data
 - **Contact** — Form with `/api/contact` (Resend)
 - **Blog** — Post list and individual posts (Markdown, featured images, source links)
-- **Courses** — Course catalog and course detail with self-enrollment for enabled courses
+- **Courses** — Course catalog and premium-gated course detail
 
 **Authenticated User Flow**
 
 - **Login / Sign up** — Supabase Auth at `/login`
 - **Onboarding** — First-time welcome wizard at `/onboarding`
 - **Dashboard** — Enrolled courses, progress bars, “Continue where you left off”
+- **Premium Access** — Stripe checkout + customer portal with subscription-gated course access
 
 **Course Experience**
 
@@ -31,7 +32,7 @@ Official website for **Scott Aronin**, offering personalized online wellness coa
 - Lesson progress tracking
 - Per-lesson quizzes (multiple choice, true/false)
 - Quiz attempts stored for analytics
-- Self-enrollment for courses where `self_enroll_enabled = true`
+- Premium subscription unlock for full lesson content
 
 **Admin Dashboard** (`/admin/login` → `/admin`)
 
@@ -67,7 +68,7 @@ Official website for **Scott Aronin**, offering personalized online wellness coa
 ### Database (Supabase)
 
 - **profiles** — Role (admin/user), onboarding_completed_at
-- **courses** — Title, slug, description, published, self_enroll_enabled, featured_image_path, default_media_type
+- **courses** — Title, slug, description, published, featured_image_path, default_media_type
 - **modules** — Course modules with sort_order
 - **lessons** — Title, content, media_type (video/audio), media_path, duration_sec
 - **quiz_questions** — Per-lesson questions (multiple_choice, true_false)
@@ -75,6 +76,7 @@ Official website for **Scott Aronin**, offering personalized online wellness coa
 - **blog_posts** — Title, slug, content (Markdown), featured_image_path, source_links
 - **course_enrollments** — User–course enrollment
 - **lesson_progress** — Per-user lesson completion
+- **user_subscriptions** — Stripe subscription state by user
 
 ### Storage Buckets
 
@@ -149,6 +151,9 @@ RESEND_API_KEY=re_xxxx
 # Stripe (if using payments)
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_xxx
 STRIPE_SECRET_KEY=sk_xxx
+STRIPE_WEBHOOK_SECRET=whsec_xxx
+STRIPE_PREMIUM_PRICE_ID=price_xxx
+NEXT_PUBLIC_APP_URL=https://yourdomain.com
 ```
 
 ### Database Migrations
@@ -165,6 +170,8 @@ Run migrations in Supabase SQL Editor or via Supabase CLI:
 8. `supabase/migrations/20250204000002_lesson_progress.sql`
 9. `supabase/migrations/20250204000003_quiz_attempts.sql`
 10. `supabase/migrations/20250204000004_self_enroll.sql`
+11. `supabase/migrations/20260512000000_stripe_subscriptions.sql`
+12. `supabase/migrations/20260512000001_disable_self_enroll.sql`
 
 See [docs/ADMIN_SETUP.md](docs/ADMIN_SETUP.md) for admin setup, first-admin creation, storage, and troubleshooting.
 

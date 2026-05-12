@@ -1,6 +1,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import AccountSettings from '@/components/user/AccountSettings';
+import { getSubscriptionStateForUser } from '@/lib/subscription';
+import SubscriptionButton from '@/components/subscription/SubscriptionButton';
 
 /**
  * User account page. Shows profile info and password change form.
@@ -21,6 +23,8 @@ export default async function DashboardAccountPage() {
 
   const displayName = profile?.full_name?.trim() || 'User';
   const email = user.email ?? '';
+  const subscriptionState = await getSubscriptionStateForUser(user.id, supabase);
+  const subscriptionLabel = subscriptionState.subscription?.status ?? 'inactive';
 
   return (
     <div className="max-w-lg">
@@ -42,6 +46,21 @@ export default async function DashboardAccountPage() {
             <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">Email</p>
             <p className="text-gray-900">{email}</p>
           </div>
+        </div>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-lg font-semibold text-gray-900 mb-3">Subscription</h2>
+        <div className="rounded-xl border border-bgDark-2/20 bg-white p-6 space-y-4">
+          <p className="text-gray-700">
+            Status:{' '}
+            <span className="font-semibold text-gray-900 capitalize">
+              {subscriptionState.hasActiveSubscription ? 'active' : subscriptionLabel}
+            </span>
+          </p>
+          <SubscriptionButton
+            hasActiveSubscription={subscriptionState.hasActiveSubscription}
+          />
         </div>
       </section>
 
