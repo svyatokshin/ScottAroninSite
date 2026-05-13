@@ -99,7 +99,7 @@ export default function SchedulingSettings({
               placeholder="https://calendly.com/your-username"
             />
             <p className="text-xs text-gray-500 mt-1">
-              This URL will be embedded on the public /book page.
+              Public booking is currently disabled; this setting is kept for future use.
             </p>
           </div>
 

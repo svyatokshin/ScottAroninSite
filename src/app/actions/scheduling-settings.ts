@@ -75,6 +75,5 @@ export async function updateSchedulingSettings(input: SchedulingSettingsInput) {
 
   revalidatePath('/admin/scheduling');
   revalidatePath('/admin/scheduling/settings');
-  revalidatePath('/book');
   return {};
 }
