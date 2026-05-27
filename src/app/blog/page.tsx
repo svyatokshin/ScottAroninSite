@@ -39,12 +39,10 @@ export default async function BlogListPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-bgLight-4 via-white to-bgLight-3 py-16 sm:py-24">
-      <div className="container mx-auto max-w-7xl px-4">
+    <div className="relative min-h-screen bg-gradient-to-br from-bgLight-4 via-white to-bgLight-3 py-16 sm:py-24 overflow-hidden">
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white via-white/85 via-white/60 via-bgNeutral-eggshell/35 via-bgNeutral-cream/15 to-transparent z-0" />
+      <div className="container mx-auto max-w-7xl px-4 relative z-10">
         <section className="mb-14 text-center sm:mb-16">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-gray-500">
-            Scott Aronin Journal
-          </p>
           <h1 className="mx-auto max-w-4xl font-playfair text-4xl font-light leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
             Modern Wellness Insights for a More Centered Life
           </h1>

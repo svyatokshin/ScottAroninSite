@@ -60,13 +60,20 @@ export default async function BlogPostPage({
     : 'Unscheduled';
   const wordsInContent = (post.content ?? '').trim().split(/\s+/).filter(Boolean).length;
   const readingMinutes = Math.max(3, Math.ceil(wordsInContent / 220));
+  const hasBodyContent = Boolean(post.content?.trim());
+  const validSourceLinks = Array.isArray(post.source_links)
+    ? (post.source_links as Array<{ url: string; label?: string }>).filter(
+        (source) => Boolean(source?.url?.trim())
+      )
+    : [];
   const showPreviewBanner = isPreview && isAdmin;
   const returnHref = (returnTo && returnTo.startsWith('/admin')) ? returnTo : `/admin/blog/${post.id}/edit`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-bgLight-4 via-white to-bgLight-3 py-14 sm:py-20">
+    <div className="relative min-h-screen bg-gradient-to-br from-bgLight-4 via-white to-bgLight-3 py-14 sm:py-20 overflow-hidden">
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white via-white/85 via-white/60 via-bgNeutral-eggshell/35 via-bgNeutral-cream/15 to-transparent z-0" />
       {showPreviewBanner && <PreviewBanner returnHref={returnHref} />}
-      <article className="container mx-auto max-w-5xl px-4">
+      <article className="container mx-auto max-w-5xl px-4 relative z-10">
         <div className="mb-8 sm:mb-10">
           <Link
             href="/blog"
@@ -77,9 +84,6 @@ export default async function BlogPostPage({
         </div>
 
         <header className="mx-auto mb-10 max-w-4xl text-center sm:mb-12">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
-            Scott Aronin Journal
-          </p>
           <h1 className="font-playfair text-4xl font-light leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
             {post.title}
           </h1>
@@ -109,18 +113,20 @@ export default async function BlogPostPage({
           </div>
         )}
 
-        <section className="rounded-3xl border border-bgDark-2/15 bg-white p-6 shadow-[0_20px_55px_-28px_rgba(17,24,39,0.28)] sm:p-10 lg:p-12">
-          <MarkdownContent content={post.content ?? ''} />
-        </section>
+        {hasBodyContent && (
+          <section className="rounded-3xl border border-bgDark-2/15 bg-white p-6 shadow-[0_20px_55px_-28px_rgba(17,24,39,0.28)] sm:p-10 lg:p-12">
+            <MarkdownContent content={post.content ?? ''} />
+          </section>
+        )}
 
-        {Array.isArray(post.source_links) && post.source_links.length > 0 && (
+        {validSourceLinks.length > 0 && (
           <section
             className="mt-10 rounded-2xl border border-bgDark-2/15 bg-white p-6 shadow-sm sm:p-8"
             aria-label="Sources"
           >
             <h2 className="mb-4 font-playfair text-2xl font-light text-gray-900">Sources</h2>
             <ul className="space-y-3">
-              {(post.source_links as Array<{ url: string; label?: string }>).map((s, i) => (
+              {validSourceLinks.map((s, i) => (
                 <li key={i}>
                   <a
                     href={s.url}

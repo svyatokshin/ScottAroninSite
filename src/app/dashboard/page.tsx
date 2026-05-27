@@ -73,13 +73,13 @@ export default async function DashboardPage() {
       <p className="text-gray-600 mb-6">
         Continue your learning journey.
       </p>
-      <div className="mb-8 rounded-xl border border-bgDark-2/20 bg-white p-5">
+      <div className="mb-8 rounded-xl border border-bgDark-2/20 bg-white p-5 text-center">
         <p className="text-sm font-medium text-gray-900">1:1 Sessions</p>
         <p className="mt-1 text-sm text-gray-600">
           One-on-one coaching sessions are launching soon. Reach out now and we can
           coordinate directly.
         </p>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-center">
           <Link
             href="/contact"
             className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-zen-blue px-6 py-3 font-semibold text-white transition-colors hover:bg-zen-blue-dark"

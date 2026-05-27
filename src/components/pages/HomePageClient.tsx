@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { HomePage } from '@/types';
 import { FaArrowUp } from 'react-icons/fa';
 import { AnimatedSection } from '@/components/animations/AnimatedSection';
@@ -18,44 +18,29 @@ interface HomePageClientProps {
  * @returns JSX element for the interactive home page
  */
 export function HomePageClient({ data }: HomePageClientProps) {
-  const controls = useAnimation();
-  const sectionOneControls = useAnimation();
-  const sectionTwoControls = useAnimation();
-  const sectionThreeControls = useAnimation();
-  const pillarsControls = useAnimation();
   const newsletterControls = useAnimation();
-  const ref = useRef(null);
   const { scrollY } = useScroll();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const heroHeight = useTransform(scrollY, [0, 300], ['100vh', '60vh']);
   const [openModalKey, setOpenModalKey] = useState<string | null>(null);
-  
+
   useEffect(() => {
+    let hasRevealedNewsletter = false;
+
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
       const scrollPosition = window.scrollY;
-      
-      // Trigger animations at different scroll positions
-      if (scrollPosition > 100) {
-        sectionOneControls.start('visible');
-      }
-      if (scrollPosition > 300) {
-        sectionTwoControls.start('visible');
-      }
-      if (scrollPosition > 500) {
-        sectionThreeControls.start('visible');
-      }
-      if (scrollPosition > 700) {
-        pillarsControls.start('visible');
-      }
-      if (scrollPosition > 900) {
+      setShowScrollTop(scrollPosition > 300);
+
+      if (!hasRevealedNewsletter && scrollPosition > 900) {
+        hasRevealedNewsletter = true;
         newsletterControls.start('visible');
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sectionOneControls, sectionTwoControls, sectionThreeControls, pillarsControls, newsletterControls]);
+  }, [newsletterControls]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
