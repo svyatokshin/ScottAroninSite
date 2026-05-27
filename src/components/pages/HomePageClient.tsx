@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useAnimation, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { HomePage } from '@/types';
 import { FaArrowUp } from 'react-icons/fa';
 import { AnimatedSection } from '@/components/animations/AnimatedSection';
@@ -18,44 +18,29 @@ interface HomePageClientProps {
  * @returns JSX element for the interactive home page
  */
 export function HomePageClient({ data }: HomePageClientProps) {
-  const controls = useAnimation();
-  const sectionOneControls = useAnimation();
-  const sectionTwoControls = useAnimation();
-  const sectionThreeControls = useAnimation();
-  const pillarsControls = useAnimation();
   const newsletterControls = useAnimation();
-  const ref = useRef(null);
   const { scrollY } = useScroll();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const heroHeight = useTransform(scrollY, [0, 300], ['100vh', '60vh']);
   const [openModalKey, setOpenModalKey] = useState<string | null>(null);
-  
+
   useEffect(() => {
+    let hasRevealedNewsletter = false;
+
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
       const scrollPosition = window.scrollY;
-      
-      // Trigger animations at different scroll positions
-      if (scrollPosition > 100) {
-        sectionOneControls.start('visible');
-      }
-      if (scrollPosition > 300) {
-        sectionTwoControls.start('visible');
-      }
-      if (scrollPosition > 500) {
-        sectionThreeControls.start('visible');
-      }
-      if (scrollPosition > 700) {
-        pillarsControls.start('visible');
-      }
-      if (scrollPosition > 900) {
+      setShowScrollTop(scrollPosition > 300);
+
+      if (!hasRevealedNewsletter && scrollPosition > 900) {
+        hasRevealedNewsletter = true;
         newsletterControls.start('visible');
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [sectionOneControls, sectionTwoControls, sectionThreeControls, pillarsControls, newsletterControls]);
+  }, [newsletterControls]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -197,7 +182,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
       <motion.button
         key="scroll-top-button"
         onClick={scrollToTop}
-        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-[#0D47A1] text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-[#1565C0] transition-colors duration-300 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 bg-zen-blue text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-zen-blue-dark transition-colors duration-300 z-50 min-w-[44px] min-h-[44px] flex items-center justify-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: showScrollTop ? 1 : 0, y: showScrollTop ? 0 : 20 }}
         transition={{ duration: 0.3 }}
@@ -962,7 +947,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
                  className="inline-flex items-center gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-gray-800 shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
                  style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
                >
-                 Subscribe
+                Join the Community
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-gray-800 group-hover:text-gray-600 transition-colors">
                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                  </svg>

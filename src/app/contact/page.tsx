@@ -1,6 +1,5 @@
 'use client'
 
-import { ContactPage } from '@/types'
 import { contactPageData } from '@/data/static-content'
 import { AnimatedSection } from '@/components/animations/AnimatedSection'
 import { ContactForm } from '@/components/forms/ContactForm'
@@ -31,18 +30,6 @@ export default function Contact() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-light text-gray-900 leading-tight tracking-tight mb-6 sm:mb-8 drop-shadow-lg px-4">
               {data.title}
             </h1>
-            <div className="mb-8 sm:mb-12 px-4">
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 sm:gap-3 border border-bgDark-2/50 px-6 sm:px-8 md:px-12 py-3 sm:py-4 text-sm sm:text-base md:text-xl rounded-full font-semibold text-gray-900 shadow-xl hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 min-h-[44px] justify-center"
-                style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
-              >
-                <span className="text-center">Book a Session - Free Consultation Available</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900 group-hover:text-gray-700 transition-colors flex-shrink-0">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                </svg>
-              </a>
-            </div>
           </AnimatedSection>
 
           {/* Container with darker light blue background - similar to 5 Pillars */}

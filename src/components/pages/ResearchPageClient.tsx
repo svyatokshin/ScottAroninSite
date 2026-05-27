@@ -11,7 +11,6 @@ interface ResearchPageClientProps {
 }
 
 export function ResearchPageClient({ data }: ResearchPageClientProps) {
-  console.log('ResearchPageClient received data:', data);
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -19,7 +18,6 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
   const [heroHeight, setHeroHeight] = useState(600);
 
   useEffect(() => {
-    console.log('ResearchPageClient useEffect - data:', data);
     if (isInView) {
       controls.start('visible');
     }
@@ -242,26 +240,50 @@ export function ResearchPageClient({ data }: ResearchPageClientProps) {
                     Related Studies
                   </h3>
                   <div className="space-y-4">
-                    {section.relatedStudies.map((study, idx) => (
-              <a
-                key={idx}
-                href={study.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block p-6 rounded-xl border border-bgDark-2/20 transition-all duration-300 hover:scale-[1.02]"
-                style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
-              >
-                        <h4 className="text-lg font-medium text-black mb-2">
-                          {study.title}
-                        </h4>
-                        <p className="text-black mb-2 font-light">
-                          {study.authors} ({study.year})
-                        </p>
-                        <p className="text-sm text-black">
-                          {study.journal}
-                        </p>
-                      </a>
-                    ))}
+                    {section.relatedStudies.map((study, idx) => {
+                      const hasLink = study.url && study.url !== '#';
+                      const Wrapper = hasLink ? 'a' : 'div';
+                      const linkProps = hasLink
+                        ? {
+                            href: study.url,
+                            target: '_blank' as const,
+                            rel: 'noopener noreferrer',
+                          }
+                        : {};
+                      return (
+                        <Wrapper
+                          key={idx}
+                          {...linkProps}
+                          className={`block p-6 rounded-xl border border-bgDark-2/20 transition-all duration-300 ${hasLink ? 'hover:scale-[1.02] cursor-pointer group' : ''}`}
+                          style={{background: 'linear-gradient(to bottom right, #BBE9FF, #BBE9FF, #AFDDFF)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.05)'}}
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="flex-1">
+                              <h4 className="text-lg font-medium text-black mb-2">
+                                {study.title}
+                              </h4>
+                              <p className="text-black mb-2 font-light">
+                                {study.authors} ({study.year})
+                              </p>
+                              <p className="text-sm text-black">
+                                {study.journal}
+                              </p>
+                            </div>
+                            {hasLink && (
+                              <svg
+                                className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors flex-shrink-0 mt-1"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            )}
+                          </div>
+                        </Wrapper>
+                      );
+                    })}
                   </div>
                 </div>
               )}

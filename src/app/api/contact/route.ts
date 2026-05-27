@@ -26,10 +26,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const contactRecipient =
+      process.env.CONTACT_FORM_TO_EMAIL ?? 'scott@scottaronin.com';
+    const contactFromEmail =
+      process.env.CONTACT_FORM_FROM_EMAIL ?? 'onboarding@resend.dev';
+    const contactFromName =
+      process.env.CONTACT_FORM_FROM_NAME ?? 'Scott Aronin Contact Form';
+
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>', // You'll need to verify a domain in Resend for production
-      to: ['slavaok11@gmail.com'], // Test email address
+      from: `${contactFromName} <${contactFromEmail}>`,
+      to: [contactRecipient],
       reply_to: email, // So you can reply directly to the sender
       subject: `Contact Form: ${subject}`,
       html: `
