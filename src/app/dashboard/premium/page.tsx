@@ -1,7 +1,6 @@
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
-import { getSubscriptionStateForUser } from '@/lib/subscription';
-import SubscriptionButton from '@/components/subscription/SubscriptionButton';
 
 export default async function DashboardPremiumPage() {
   const supabase = await createClient();
@@ -13,38 +12,31 @@ export default async function DashboardPremiumPage() {
     redirect('/login?redirect=/dashboard/premium');
   }
 
-  const subscriptionState = await getSubscriptionStateForUser(user.id, supabase);
-
   return (
     <div className="max-w-3xl">
       <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-gray-900 mb-2">
-        Premium Membership
+        1:1 Sessions
       </h1>
       <p className="text-gray-600 mb-8">
-        Upgrade to unlock all premium course material while keeping free dashboard
-        videos on every account.
+        We are not offering online subscriptions right now. One-on-one sessions are
+        the next offering and booking will be available soon.
       </p>
 
       <section className="rounded-xl border border-bgDark-2/20 bg-white p-6 sm:p-8">
-        <p className="text-sm uppercase tracking-wide text-gray-500">Premium</p>
-        <h2 className="mt-2 text-3xl font-semibold text-gray-900">$99/month</h2>
+        <p className="text-sm uppercase tracking-wide text-gray-500">Coming Soon</p>
+        <h2 className="mt-2 text-3xl font-semibold text-gray-900">Private Coaching</h2>
         <ul className="mt-6 space-y-3 text-gray-700">
-          <li>Unlimited access to premium lessons and full media library</li>
-          <li>Lesson quizzes and progress tracking across all courses</li>
-          <li>Self-service billing and cancellation in Stripe portal</li>
+          <li>Personalized 1:1 guidance and accountability</li>
+          <li>Mind-body wellness strategy tailored to your goals</li>
+          <li>Direct support while session scheduling is being finalized</li>
         </ul>
-        <p className="mt-6 text-sm text-gray-600">
-          Current status:{' '}
-          <span className="font-medium text-gray-900 capitalize">
-            {subscriptionState.hasActiveSubscription
-              ? 'active'
-              : subscriptionState.subscription?.status ?? 'inactive'}
-          </span>
-        </p>
         <div className="mt-5">
-          <SubscriptionButton
-            hasActiveSubscription={subscriptionState.hasActiveSubscription}
-          />
+          <Link
+            href="/contact"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-zen-blue px-6 py-3 font-semibold text-white transition-colors hover:bg-zen-blue-dark"
+          >
+            Contact for Early Booking
+          </Link>
         </div>
       </section>
     </div>

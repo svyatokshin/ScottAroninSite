@@ -4,7 +4,6 @@ import Link from 'next/link';
 import CourseContent from '@/components/courses/CourseContent';
 import PreviewBanner from '@/components/admin/PreviewBanner';
 import { getLessonProgressForCourse } from '@/app/actions/lessonProgress';
-import { getSubscriptionStateForUser } from '@/lib/subscription';
 
 /**
  * Public course detail. Shows modules/lessons.
@@ -51,19 +50,14 @@ export default async function CourseDetailPage({
 
   const { data: { user } } = await supabase.auth.getUser();
   let isEnrolled = false;
-  let hasActiveSubscription = false;
   if (user) {
-    const [enrollmentResponse, subscriptionState] = await Promise.all([
-      supabase
-        .from('course_enrollments')
-        .select('id')
-        .eq('user_id', user.id)
-        .eq('course_id', course.id)
-        .maybeSingle(),
-      getSubscriptionStateForUser(user.id, supabase),
-    ]);
+    const enrollmentResponse = await supabase
+      .from('course_enrollments')
+      .select('id')
+      .eq('user_id', user.id)
+      .eq('course_id', course.id)
+      .maybeSingle();
     isEnrolled = !!enrollmentResponse.data;
-    hasActiveSubscription = subscriptionState.hasActiveSubscription;
   }
 
   const { data: modules } = await supabase
@@ -117,7 +111,7 @@ export default async function CourseDetailPage({
   });
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
-  const canAccessMedia = isEnrolled || hasActiveSubscription;
+  const canAccessMedia = isEnrolled;
   const { progress } = canAccessMedia ? await getLessonProgressForCourse(course.id) : { progress: null };
   const completedLessonIds = progress?.completedLessonIds ?? [];
   const showPreviewBanner = isPreview && isAdmin;
@@ -166,15 +160,15 @@ export default async function CourseDetailPage({
           <div className="rounded-2xl border border-bgDark-2/20 bg-white p-6 sm:p-7 mb-10 shadow-lg">
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
               {user
-                ? 'Upgrade to premium to unlock all lesson content, including audio and video.'
-                : 'Sign in and upgrade to premium to unlock all lesson content.'}
+                ? 'Enrollment is required to unlock all lesson content, including audio and video.'
+                : 'Sign in to view your enrollment status and request access to this course.'}
             </p>
             {user ? (
               <Link
-                href="/pricing"
+                href="/contact"
                 className="inline-block mt-5 px-6 py-3 rounded-lg font-semibold text-white bg-zen-blue hover:bg-zen-blue-dark transition-colors"
               >
-                View Premium Plans
+                Contact to Request Enrollment
               </Link>
             ) : (
               <Link

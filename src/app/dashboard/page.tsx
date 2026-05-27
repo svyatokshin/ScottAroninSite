@@ -2,8 +2,6 @@ import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getLessonProgressForEnrolledCourses } from '@/app/actions/lessonProgress';
-import { getSubscriptionStateForUser } from '@/lib/subscription';
-import SubscriptionButton from '@/components/subscription/SubscriptionButton';
 
 /**
  * User dashboard home. Shows enrolled courses with progress and browse CTA.
@@ -22,7 +20,7 @@ export default async function DashboardPage() {
     .eq('id', user.id)
     .single();
 
-  const [enrollmentsRes, { progress }, subscriptionState] = await Promise.all([
+  const [enrollmentsRes, { progress }] = await Promise.all([
     supabase
       .from('course_enrollments')
       .select(`
@@ -37,7 +35,6 @@ export default async function DashboardPage() {
       .eq('user_id', user.id)
       .order('enrolled_at', { ascending: false }),
     getLessonProgressForEnrolledCourses(),
-    getSubscriptionStateForUser(user.id, supabase),
   ]);
 
   const enrollments = enrollmentsRes.data ?? [];
@@ -55,7 +52,6 @@ export default async function DashboardPage() {
   const totalLessons = progress.reduce((sum, p) => sum + p.totalCount, 0);
 
   const displayName = profile?.full_name?.trim() || 'there';
-  const hasActiveSubscription = subscriptionState.hasActiveSubscription;
   const freeVideos = [
     {
       title: '5-Minute Breath Reset',
@@ -78,16 +74,18 @@ export default async function DashboardPage() {
         Continue your learning journey.
       </p>
       <div className="mb-8 rounded-xl border border-bgDark-2/20 bg-white p-5">
-        <p className="text-sm font-medium text-gray-900">
-          Premium access: {hasActiveSubscription ? 'Active' : 'Free account'}
-        </p>
+        <p className="text-sm font-medium text-gray-900">1:1 Sessions</p>
         <p className="mt-1 text-sm text-gray-600">
-          {hasActiveSubscription
-            ? 'You can access all premium course content.'
-            : 'Upgrade to premium to unlock full course material.'}
+          One-on-one coaching sessions are launching soon. Reach out now and we can
+          coordinate directly.
         </p>
         <div className="mt-4">
-          <SubscriptionButton hasActiveSubscription={hasActiveSubscription} />
+          <Link
+            href="/contact"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-zen-blue px-6 py-3 font-semibold text-white transition-colors hover:bg-zen-blue-dark"
+          >
+            Contact to Book a Session
+          </Link>
         </div>
       </div>
 
