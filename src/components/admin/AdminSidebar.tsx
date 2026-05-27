@@ -13,6 +13,7 @@ const navItems = [
   { href: '/admin/research', label: 'Research' },
   { href: '/admin/enrollments', label: 'Enrollments' },
   { href: '/admin/scheduling', label: 'Scheduling' },
+  { href: '/admin/newsletter', label: 'Newsletter' },
   { href: '/admin/account', label: 'Account' },
 ];
 

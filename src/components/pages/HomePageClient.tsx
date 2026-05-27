@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
+import NewsletterForm from '@/components/forms/NewsletterForm';
 import { HomePage } from '@/types';
 import { FaArrowUp } from 'react-icons/fa';
 import { AnimatedSection } from '@/components/animations/AnimatedSection';
@@ -936,23 +937,7 @@ export function HomePageClient({ data }: HomePageClientProps) {
             <p className="text-xl text-gray-800/95 font-light mb-12 max-w-2xl mx-auto">
               Join our community and receive insights, tips, and updates on wellness practices.
             </p>
-             <form className="flex flex-col md:flex-row gap-6 justify-center items-center">
-               <input
-                 type="email"
-                 placeholder="Enter your email"
-                 className="px-8 py-4 rounded-full border border-bgDark-2/50 bg-white/80 text-gray-800 placeholder-gray-500/60 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60 focus:border-bgDark-2/60 font-light backdrop-blur-sm min-w-[300px]"
-               />
-               <button
-                 type="submit"
-                 className="inline-flex items-center gap-3 bg-bgDark-2/20 border border-bgDark-2/50 px-8 py-3 rounded-full font-semibold text-gray-800 shadow-xl hover:bg-bgDark-2/30 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-bgDark-2/60"
-                 style={{boxShadow: '0 4px 32px 0 rgba(0,70,201,0.25)'}}
-               >
-                Join the Community
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-gray-800 group-hover:text-gray-600 transition-colors">
-                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                 </svg>
-               </button>
-             </form>
+             <NewsletterForm source="home_page" />
            </motion.div>
          </div>
        </section>
