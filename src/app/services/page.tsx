@@ -138,8 +138,7 @@ export default function Services() {
 
       {/* Second Section - White Background - 5 Pillars + Final CTA */}
       <motion.section 
-        className="py-16 sm:py-24 md:py-32 -mt-16 relative overflow-hidden z-10"
-        style={{ background: 'linear-gradient(to bottom right, #FFFFFF, #F5F5F0, #FAFAF5)' }}
+        className="py-16 sm:py-24 md:py-32 -mt-16 relative overflow-hidden z-10 bg-white"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
