@@ -16,6 +16,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null)
+  const [submitErrorMessage, setSubmitErrorMessage] = useState<string | null>(null)
 
   const validate = (): boolean => {
     const next: Record<string, string> = {}
@@ -33,6 +34,7 @@ export function ContactForm() {
     if (!validate()) return
     setIsSubmitting(true)
     setSubmitStatus(null)
+    setSubmitErrorMessage(null)
     setErrors({})
 
     try {
@@ -44,10 +46,10 @@ export function ContactForm() {
         body: JSON.stringify(formData),
       })
 
-      const data = await response.json()
+      const data = await response.json().catch(() => ({} as { error?: string }))
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
+        throw new Error(data?.error || 'Failed to send message')
       }
 
       setSubmitStatus('success')
@@ -55,6 +57,11 @@ export function ContactForm() {
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+      setSubmitErrorMessage(
+        error instanceof Error && error.message
+          ? error.message
+          : 'Failed to send message. Please try again.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -194,7 +201,9 @@ export function ContactForm() {
             <p className="text-gray-900 text-center animate-fade-in font-light">Message sent successfully!</p>
           )}
           {submitStatus === 'error' && (
-            <p className="text-red-600 text-center animate-fade-in font-light">Failed to send message. Please try again.</p>
+            <p className="text-red-600 text-center animate-fade-in font-light" role="alert">
+              {submitErrorMessage ?? 'Failed to send message. Please try again.'}
+            </p>
           )}
         </form>
         </div>

@@ -69,20 +69,25 @@ ${message}
 
     if (error) {
       console.error('Resend error:', error);
+      const resendMessage =
+        (error as { message?: string; name?: string })?.message ??
+        (typeof error === 'string' ? error : 'Unknown email service error');
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: `Email service rejected the send: ${resendMessage}` },
         { status: 500 }
       );
     }
 
     return NextResponse.json(
-      { success: true, message: 'Email sent successfully' },
+      { success: true, message: 'Email sent successfully', id: data?.id },
       { status: 200 }
     );
   } catch (error) {
     console.error('API error:', error);
+    const message =
+      error instanceof Error ? error.message : 'Internal server error';
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: message },
       { status: 500 }
     );
   }
